@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
-  development : {
+  // development : {
     client: 'pg',
     connection: {
       host : process.env.HOST,
@@ -22,5 +22,5 @@ module.exports = {
     seeds: {
       directory: __dirname + '/database/seeds'
     }
-  }
+  // }
 }
