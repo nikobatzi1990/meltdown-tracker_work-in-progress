@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Signup.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,9 +8,8 @@ import Button from "../components/Button"
 
 const Signup = () => {
 
-  // const navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <>
@@ -41,7 +40,9 @@ const Signup = () => {
           text="Submit"
           />
       </div>
-
+      <p>
+        Already have an account? <Link to = "/"> Log In! </Link>
+      </p>
       <Footer />
     </>
   );

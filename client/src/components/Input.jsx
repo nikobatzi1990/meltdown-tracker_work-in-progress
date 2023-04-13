@@ -2,7 +2,7 @@ import React from "react";
 import "./Input.css";
 
 const Input = (props) => {
-  const { className, htmlFor, placeholder, type, value, onChange } = props;
+  const { className, htmlFor, placeholder, type, value, onChange, onSubmit } = props;
 
   return (
     <>
@@ -12,7 +12,8 @@ const Input = (props) => {
         placeholder = { placeholder }
         type = { type }
         value = { value }
-        onChange = { onChange }>
+        onChange = { onChange }
+        onSubmit = { onSubmit }>
       </input>
     </>
   )
