@@ -6,9 +6,9 @@ function App() {
 
   return (
     <div>
-      <Header className = "header" text = "Solo MVP"/>
+      {/* <Header className = "header" text = "Solo MVP"/>
       
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }

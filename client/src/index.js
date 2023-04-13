@@ -1,28 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from './pages/App';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
-// import Entries from "./pages/Entries";
-// import SingleEntry from "./pages/SingleEntry";
-// import Form from "./pages/Form";
+import Entries from "./pages/Entries";
+import SingleEntry from "./pages/SingleEntry";
+import Submission from "./pages/Submission";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-/**
- 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />
   },
   {
-    path: "/",
+    path: "/Signup",
     element: <Signup />
   },
   {
@@ -35,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/newEntry",
-    element: <Form />
+    element: <Submission />
   }
 ])
 
@@ -44,4 +36,3 @@ root.render(
   <RouterProvider router = { router } />
   );
   
-  */
