@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Home.css";
+// import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const Home = () => {
+const Signup = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
-      <Header />
+      <Header className = "header" text = "Signup"/>
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default Signup;

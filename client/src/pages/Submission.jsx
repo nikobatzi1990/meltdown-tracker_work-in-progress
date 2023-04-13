@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./Submission.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const Login = () => {
+const Submission = () => {
 
   return (
     <>
-      <Header className = "header" text = "Login"/>
+      <Header className = "header" text = "Submission"/>
       <Footer />
     </>
   );
 };
 
-export default Login;
+export default Submission;

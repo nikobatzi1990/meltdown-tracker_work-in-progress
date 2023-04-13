@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header className = "header" text = "Solo MVP"/>
       
       <Footer />
     </div>
