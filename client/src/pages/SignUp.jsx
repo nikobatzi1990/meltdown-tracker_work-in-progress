@@ -72,6 +72,7 @@ const Signup = () => {
       <p>
         Already have an account? <Link to = "/Login"> Login! </Link>
       </p>
+      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
   );
 };

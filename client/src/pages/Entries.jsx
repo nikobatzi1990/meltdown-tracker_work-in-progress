@@ -8,7 +8,7 @@ const Entries = () => {
   return (
     <>
       <Header className = "header" text = "All Entries"/>
-      <Footer />
+      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
   );
 };
