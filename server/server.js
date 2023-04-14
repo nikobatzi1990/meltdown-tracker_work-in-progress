@@ -19,9 +19,9 @@ function setUpServer() {
     const { email, password } = req.body;
     console.log('💋', email, password)
     try {
-      // const newUser = await handleSignUp(email, password);
-      // const uid = newUser.uid;
-      // console.log('🤡', uid);
+      const newUser = await handleSignUp(email, password);
+      const uid = newUser.uid;
+      console.log('🤡', uid);
       await knex('users').insert({'username': 'niko', "email": email, 'UID': '12737473748374' });
 
       res.status(200).send("Success");
