@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,7 +9,7 @@ import Button from "../components/Button"
 
 const Signup = () => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,8 +22,8 @@ const Signup = () => {
       password: password,
       timestamp: new Date()
     }
-    const newUser = await axios.post('/api/signup', newUserInfo);
-    // console.log("🤌", newUser);
+    await axios.post('/api/signup', newUserInfo);
+    navigate('/home');
   }
 
   return (
@@ -66,6 +66,9 @@ const Signup = () => {
       </div>
 
       <Footer />
+      <p>
+        Already have an account? <Link to = "/Login"> Login! </Link>
+      </p>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 import "./Login.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,7 +8,7 @@ import Input from '../components/Input';
 import Button from "../components/Button";
 
 const Login = () => {
-  
+  const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -42,7 +43,7 @@ const Login = () => {
         />
       </div>
       <p>
-        Don't have an account? <Link to = "/SignUp"> Sign up! </Link>
+        Don't have an account? <Link to = "/Signup"> Sign up! </Link>
       </p>
       <Footer />
     </>

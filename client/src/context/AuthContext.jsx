@@ -7,7 +7,7 @@ export const AuthContextProvider = (children) => {
 
 
   return <UserContext.Provider value={{}}>
-    {children}
+    {/* {children} */}
   </UserContext.Provider>
 }
 
