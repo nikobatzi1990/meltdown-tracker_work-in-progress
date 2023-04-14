@@ -60,11 +60,14 @@ const Signup = () => {
           <Button 
           className = "submit"
           type = "submit"
-          text="Submit"
-          onClick= { handleSignup }
+          text ="Submit"
+          onClick = { handleSignup }
           />
       </div>
-
+        <p>
+          Already have an account? 
+          <Link to = "/"> Log In! </Link>
+        </p>
       <Footer />
       <p>
         Already have an account? <Link to = "/Login"> Login! </Link>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./Login.css";
@@ -11,6 +12,16 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const userInfo = {
+      email: email,
+      password: password,
+    }
+    await axios.post('/api/login', userInfo);
+    navigate('/home');
+  }
 
   return (
     <>
@@ -40,10 +51,12 @@ const Login = () => {
           className = "submit"
           type = "submit"
           text="Login"
+          onClick = { handleLogin }
         />
       </div>
       <p>
-        Don't have an account? <Link to = "/Signup"> Sign up! </Link>
+        Don't have an account? 
+        <Link to = "/SignUp"> Sign up! </Link>
       </p>
       <Footer />
     </>
