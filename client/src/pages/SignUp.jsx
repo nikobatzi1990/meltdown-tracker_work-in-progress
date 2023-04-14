@@ -17,11 +17,13 @@ const Signup = () => {
   const handleSignup = async (event) => {
     event.preventDefault();
     const newUserInfo = {
+      username: username,
       email: email,
-      password: password
+      password: password,
+      timestamp: new Date()
     }
     const newUser = await axios.post('/api/signup', newUserInfo);
-    console.log("🤌", newUser);
+    // console.log("🤌", newUser);
   }
 
   return (
