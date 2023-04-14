@@ -29,8 +29,7 @@ module.exports = {
         console.log("User is signed out");
       }) 
     } catch (error) {
-        console.log("LOGOUT:🤒 ", error);
+        console.log("LOGOUT: ", error);
     }
   }
-  
 }
