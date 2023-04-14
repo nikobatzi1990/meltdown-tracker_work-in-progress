@@ -9,13 +9,13 @@ function App() {
 
   return (
     <div>
-      <AuthContextProvider>
+      {/* <AuthContextProvider> */}
         <Routes>
           <Route path = "/" element = {<Login/>}></Route>
           <Route path = "/signup" element = {<Signup/>}></Route>
           <Route path = "/home" element = {<Homepage/>}></Route>
         </Routes>
-      </AuthContextProvider>
+      {/* </AuthContextProvider> */}
     </div>
   )
 }
