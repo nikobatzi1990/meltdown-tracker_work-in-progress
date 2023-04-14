@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+const { initializeApp } = require("firebase/app") ;
+const { getAuth } = require("firebase/auth");
 
 // Path to process.env file
 require("dotenv").config({
@@ -18,4 +18,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+
+module.exports = auth
