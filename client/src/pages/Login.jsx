@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 import "./Login.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Input from '../components/Input';
-import Button from "../components/Button"
+import Button from "../components/Button";
 
 const Login = () => {
-  
+  const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
