@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Signup.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,7 +9,6 @@ import Button from "../components/Button"
 
 const Signup = () => {
 
-  // const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +22,6 @@ const Signup = () => {
       timestamp: new Date()
     }
     const newUser = await axios.post('/api/signup', newUserInfo);
-    // console.log("🤌", newUser);
   }
 
   return (
@@ -60,11 +58,14 @@ const Signup = () => {
           <Button 
           className = "submit"
           type = "submit"
-          text="Submit"
-          onClick= { handleSignup }
+          text ="Submit"
+          onClick = { handleSignup }
           />
       </div>
-
+        <p>
+          Already have an account? 
+          <Link to = "/"> Log In! </Link>
+        </p>
       <Footer />
     </>
   );

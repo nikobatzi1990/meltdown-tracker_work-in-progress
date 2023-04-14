@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Header from '../components/Header';
@@ -10,6 +11,15 @@ const Login = () => {
   
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const userInfo = {
+      email: email,
+      password: password,
+    }
+    const user = await axios.post('/api/login', userInfo);
+  }
 
   return (
     <>
@@ -39,10 +49,12 @@ const Login = () => {
           className = "submit"
           type = "submit"
           text="Login"
+          onClick = { handleLogin }
         />
       </div>
       <p>
-        Don't have an account? <Link to = "/SignUp"> Sign up! </Link>
+        Don't have an account? 
+        <Link to = "/SignUp"> Sign up! </Link>
       </p>
       <Footer />
     </>
