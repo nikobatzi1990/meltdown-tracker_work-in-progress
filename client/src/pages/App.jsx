@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React from 'react';
+import Signup from './Signup';
+import Login from './Login';
+import Homepage from './Homepage';
+import { Routes, Route } from 'react-router-dom';
+import { AuthContextProvider } from '../context/AuthContext';
 
 function App() {
 
   return (
     <div>
-      {/* <Header className = "header" text = "Solo MVP"/>
-      
-      <Footer /> */}
+      <AuthContextProvider>
+        <Routes>
+          <Route path = "/" element = {<Login/>}></Route>
+          <Route path = "/signup" element = {<Signup/>}></Route>
+          <Route path = "/home" element = {<Homepage/>}></Route>
+        </Routes>
+      </AuthContextProvider>
     </div>
   )
 }
