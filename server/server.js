@@ -18,7 +18,6 @@ function setUpServer() {
     try {
       const newUser = await createUserWithEmailAndPassword(auth, email, password);
       const uid = newUser.user.uid;
-
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': timestamp });
       res.status(200).send(uid);
 
@@ -29,14 +28,21 @@ function setUpServer() {
 // login endpoint
   app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
-
+    
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      const uid = user.user.uid;
+      const uid = user.data;
       res.status(200).send(uid);
     } catch (error) {
       res.status(400).send(error);
     }
+  });
+
+  // logout endpoint
+  app.post('/api/logout', async (req, res) => {
+    await signOut(auth)
+      .then(result => res.status(200).send(result))
+      .catch(error => res.status(400).send(error))
   });
 
   return app;

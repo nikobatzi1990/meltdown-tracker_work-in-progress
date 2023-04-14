@@ -69,9 +69,6 @@ const Signup = () => {
           <Link to = "/"> Log In! </Link>
         </p>
       <Footer />
-      <p>
-        Already have an account? <Link to = "/Login"> Login! </Link>
-      </p>
     </>
   );
 };
