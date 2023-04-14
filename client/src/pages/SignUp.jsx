@@ -10,6 +10,7 @@ import Button from "../components/Button"
 const Signup = () => {
 
   // const navigate = useNavigate();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,6 +29,14 @@ const Signup = () => {
       <Header className = "header" text = "Signup"/>
 
       <div className="signup">
+        <Input 
+          htmlFor = "Username"
+          className = "input"
+          placeholder = "your nickname"
+          value = { username }
+          onChange = {(e) => {
+            setUsername(e.target.value);
+          }} />
         <Input 
           htmlFor = "Email"
           className = "input"
