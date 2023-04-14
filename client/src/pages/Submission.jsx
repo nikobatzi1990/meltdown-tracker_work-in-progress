@@ -8,7 +8,7 @@ const Submission = () => {
   return (
     <>
       <Header className = "header" text = "Submission"/>
-      <Footer />
+      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
   );
 };

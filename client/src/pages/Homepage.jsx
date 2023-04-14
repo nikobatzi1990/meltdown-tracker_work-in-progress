@@ -21,7 +21,7 @@ const Homepage = () => {
         text="Logout"
         onClick={ handleLogout } />
 
-      <Footer />
+      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
   )
 }
