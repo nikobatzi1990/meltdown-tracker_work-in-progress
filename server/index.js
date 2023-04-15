@@ -1,5 +1,5 @@
 const setUpServer = require('./server');
-const PORT = process.env.PORT || 4500;
+const PORT = process.env.PORT || 8000;
 const server = setUpServer();
 
 (async () => {
