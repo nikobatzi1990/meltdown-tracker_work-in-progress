@@ -53,7 +53,6 @@ function setUpServer() {
     .then(result => {
       result.map((e) => {
         tagList.push(e.tag_name);
-        console.log("😇", tagList);
       })
       res.status(200).send(tagList)})
     .catch(error => res.status(400).send(error))
@@ -67,25 +66,23 @@ function setUpServer() {
 
     .then(result => {
       result.map((e) => {
-        // console.log('🤩', e);
         timesUsed = e.times_used.toString();
       });
-      console.log("🥶", timesUsed);
       res.status(200).send(timesUsed)
     })
     .catch(error => res.status(400).send(error))
   });
 
   app.post('/api/tags', async (req, res) => {
-    const { userId, tagName, timesUsed } = req.body;
+    const { userId, tagName } = req.body;
     try {
       await knex('tags')
-      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': timesUsed });
+      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': 0 });
       res.status(200).send(tagName);
     } catch (error) {
         res.status(400).send(error);
     }
-  })
+  });
 
   return app;
 }
