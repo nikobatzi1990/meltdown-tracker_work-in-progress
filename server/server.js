@@ -19,20 +19,21 @@ function setUpServer() {
       const newUser = await createUserWithEmailAndPassword(auth, email, password);
       const uid = newUser.user.uid;
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': timestamp });
-      res.status(200).send(uid);
+      res.status(200).send(auth);
 
     } catch (error) {
       res.status(400).send(error);
     }
   });
+  
 // login endpoint
   app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      const uid = user.data;
-      res.status(200).send(uid);
+      // const uid = user.data;
+      res.status(200).send(auth);
     } catch (error) {
       res.status(400).send(error);
     }

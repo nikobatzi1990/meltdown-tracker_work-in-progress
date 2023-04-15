@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 import "./Signup.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,20 +11,19 @@ import Button from "../components/Button"
 const Signup = () => {
 
   const navigate = useNavigate();
+  const { createUser } = UserAuth();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    const newUserInfo = {
-      username: username,
-      email: email,
-      password: password,
-      timestamp: new Date()
+    try {
+      await createUser (username, email, password);
+      navigate('/home');
+    } catch (error) {
+      console.log("🤡", error);
     }
-    await axios.post('/api/signup', newUserInfo);
-    navigate('/home');
   }
 
   return (
