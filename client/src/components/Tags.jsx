@@ -10,15 +10,15 @@ const Tags = (props) => {
   const { getTags } = UserAuth();
   const [tags, setTags] = useState();
 
-  useEffect (() => {
-    getTagList();
-    console.log('🦷', getTagList());
-  }, []);
+  // useEffect (() => {
+  //   getTagList();
+  //   console.log('🦷', getTagList());
+  // }, []);
 
-  const getTagList = async (event) => {
-    event.preventDefault();
-    setTags(getTags());
-  }
+  // const getTagList = async (event) => {
+  //   event.preventDefault();
+  //   setTags(getTags());
+  // }
 
   // const addTag = async (event) => {
   //   event.preventDefault();

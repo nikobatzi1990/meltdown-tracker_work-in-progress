@@ -46,18 +46,37 @@ function setUpServer() {
   
   // endpoints for user created tags
   app.get('/api/tags', async (req, res) => {
-    await knex.select('*').from('tags')
+    const tagList = [];
+    await knex.select('tag_name').from('tags')
       .join('users', 'users.id', '=', 'tags.user_id')
-    
     .then(result => {
-      console.log("😇", result)
-      res.status(200).send(result)})
+      result.map((e) => {
+        tagList.push(e.tag_name);
+        // console.log("😇", tagList);
+      })
+      res.status(200).send(tagList)})
+    .catch(error => res.status(400).send(error))
+  });
+
+  app.get('/api/:tagName/timesUsed', async (req, res) => {
+    let timesUsed;
+    await knex.select('times_used').from('tags')
+      .where('tag_name', req.params.tagName)
+      .join('users', 'users.id', '=', 'tags.user_id')
+
+    .then(result => {
+      result.map((e) => {
+        // console.log('🤩', e);
+        timesUsed = e.times_used.toString();
+      });
+      console.log("🥶", timesUsed);
+      res.status(200).send(timesUsed)
+    })
     .catch(error => res.status(400).send(error))
   });
 
   app.post('/api/tags', async (req, res) => {
     const { userId, tagName, timesUsed } = req.body;
-    
     try {
       await knex('tags')
       .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': timesUsed });
@@ -66,8 +85,7 @@ function setUpServer() {
         res.status(400).send(error);
     }
   })
-                   
-
+                
   return app;
 }
 module.exports = setUpServer;
