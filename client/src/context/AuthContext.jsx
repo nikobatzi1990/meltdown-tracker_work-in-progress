@@ -6,7 +6,7 @@ const UserContext = createContext();
 // wraps children and gives access to values
 export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState({});
-
+  
   const createUser = async (username, email, password) => {
     const newUserInfo = {
       username: username,
@@ -29,8 +29,18 @@ export const AuthContextProvider = ({children}) => {
     return loggedIn.data.currentUser;
   };
 
+  const getTags = async () => {
+    const userTags = await axios.get('/api/tags');
+    let tagList = [];
+    await userTags.map((e) => {
+      tagList.push(e.tag_name)
+    });
+    // console.log('😡', tagList);
+    return tagList;
+  }
 
-  return <UserContext.Provider value={{ createUser, loginUser, user }}>
+
+  return <UserContext.Provider value={{ createUser, loginUser, user, getTags }}>
     {children}
   </UserContext.Provider>
 }

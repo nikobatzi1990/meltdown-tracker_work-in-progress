@@ -20,7 +20,6 @@ function setUpServer() {
       const uid = newUser.user.uid;
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': timestamp });
       res.status(200).send(auth);
-
     } catch (error) {
       res.status(400).send(error);
     }
@@ -31,8 +30,7 @@ function setUpServer() {
     const { email, password } = req.body;
     
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      // const uid = user.data;
+      await signInWithEmailAndPassword(auth, email, password);
       res.status(200).send(auth);
     } catch (error) {
       res.status(400).send(error);
@@ -44,6 +42,46 @@ function setUpServer() {
     await signOut(auth)
       .then(result => res.status(200).send(result))
       .catch(error => res.status(400).send(error))
+  });
+  
+  // endpoints for user created tags
+  app.get('/api/:user/tags', async (req, res) => {
+    const tagList = [];
+    await knex.select('tag_name').from('tags')
+      .where('user_id', req.params.user)
+      .join('users', 'users.id', '=', 'tags.user_id')
+    .then(result => {
+      result.map((e) => {
+        tagList.push(e.tag_name);
+      })
+      res.status(200).send(tagList)})
+    .catch(error => res.status(400).send(error))
+  });
+
+  app.get('/api/:tagName/timesUsed', async (req, res) => {
+    let timesUsed;
+    await knex.select('times_used').from('tags')
+      .where('tag_name', req.params.tagName)
+      .join('users', 'users.id', '=', 'tags.user_id')
+
+    .then(result => {
+      result.map((e) => {
+        timesUsed = e.times_used.toString();
+      });
+      res.status(200).send(timesUsed)
+    })
+    .catch(error => res.status(400).send(error))
+  });
+
+  app.post('/api/tags', async (req, res) => {
+    const { userId, tagName } = req.body;
+    try {
+      await knex('tags')
+      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': 0 });
+      res.status(200).send(tagName);
+    } catch (error) {
+        res.status(400).send(error);
+    }
   });
 
   return app;
