@@ -12,9 +12,9 @@ const Homepage = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
 
-  useEffect (() => {
-    console.log('🏀', user);
-  }, []);
+  // useEffect (() => {
+  //   console.log('🏀', user);
+  // }, []);
 
   const handleLogout = async (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@ const Homepage = () => {
 
       <div className = "main">
         <Tags className = "tag-wrapper" />
-        
+
         <Button 
           text = "See all Entries" />
 
