@@ -61,7 +61,6 @@ function setUpServer() {
     try {
       await knex('tags')
       .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': timesUsed });
-      console.log('🥲', tagName);
       res.status(200).send(tagName);
     } catch (error) {
         res.status(400).send(error);
