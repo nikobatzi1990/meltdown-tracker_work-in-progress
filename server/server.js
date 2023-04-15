@@ -45,6 +45,19 @@ function setUpServer() {
       .then(result => res.status(200).send(result))
       .catch(error => res.status(400).send(error))
   });
+  
+  // get user created tags
+
+  app.get('/api/tags', async (req, res) => {
+    await knex.select('*').from('tags')
+      .join('users', 'users.id', '=', 'tags.user_id')
+    
+    .then(result => {
+      console.log("😇", result)
+      res.status(200).send(result)})
+    .catch(error => res.status(400).send(error))
+  });
+                   
 
   return app;
 }
