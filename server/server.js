@@ -107,6 +107,21 @@ function setUpServer() {
     }
   });
 
+  // endpoint for all of one user's entries
+  app.get('/api/:userId/entries', async (req, res) => {
+    try {
+      await knex.select('title', 'body').from('posts')
+        .where('user_id', req.params.userId)
+        .join('users', 'users.id', '=', 'posts.user_id')
+      .then(result => {
+        console.log('😏', result);
+        res.status(200).send(result)
+      })
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  })
+  
   return app;
 }
 module.exports = setUpServer;
