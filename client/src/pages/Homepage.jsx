@@ -6,6 +6,7 @@ import "./Homepage.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from "../components/Button";
+import Tags from "../components/Tags";
 
 const Homepage = () => {
   const { user } = UserAuth();
@@ -22,11 +23,22 @@ const Homepage = () => {
   }
   return (
     <>
+      <h6>Hello, { user.email }! </h6>
       <Header className = "header" text = "Homepage"/>
-      <h2>current user: { user && user.email }</h2>
+
+      <div className = "main">
+        <Tags className = "tag-wrapper" />
+        
+        <Button 
+          text = "See all Entries" />
+
+        <Button 
+          text = "Write New" />
+      </div>
+
       <Button 
-        text="Logout"
-        onClick={ handleLogout } />
+          text="Logout"
+          onClick={ handleLogout } />
 
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
