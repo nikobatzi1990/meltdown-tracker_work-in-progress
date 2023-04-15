@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-// import { onAuthStateChanged } from 'firebase/auth';
+import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
 const UserContext = createContext();
@@ -29,7 +28,6 @@ export const AuthContextProvider = ({children}) => {
     setUser(loggedIn.data.currentUser);
     return loggedIn.data.currentUser;
   };
-
 
 
   return <UserContext.Provider value={{ createUser, loginUser, user }}>
