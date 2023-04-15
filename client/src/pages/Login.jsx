@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./Login.css";
@@ -58,10 +57,12 @@ const Login = () => {
           onClick = { handleLogin }
         />
       </div>
+      
       <p>
         Don't have an account? 
         <Link to = "/SignUp"> Sign up! </Link>
       </p>
+
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </>
   );

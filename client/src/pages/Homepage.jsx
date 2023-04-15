@@ -23,6 +23,7 @@ const Homepage = () => {
   return (
     <>
       <Header className = "header" text = "Homepage"/>
+      <h2>current user: { user && user.email }</h2>
       <Button 
         text="Logout"
         onClick={ handleLogout } />

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./Signup.css";
@@ -21,6 +20,7 @@ const Signup = () => {
     try {
       await createUser (username, email, password);
       navigate('/home');
+
     } catch (error) {
       console.log("🤡", error);
     }

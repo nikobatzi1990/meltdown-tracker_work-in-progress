@@ -16,8 +16,8 @@ export const AuthContextProvider = ({children}) => {
       timestamp: new Date()
     };
     const newUser = await axios.post('/api/signup', newUserInfo);
-    setUser(newUser.data);
-    return newUser.data;
+    setUser(newUser.data.currentUser);
+    return newUser.data.currentUser;
   };
 
   const loginUser = async (email, password) => {
@@ -26,8 +26,8 @@ export const AuthContextProvider = ({children}) => {
       password: password,
     }
     const loggedIn = await axios.post('/api/login', userInfo);
-    setUser(loggedIn.data);
-    return loggedIn.data;
+    setUser(loggedIn.data.currentUser);
+    return loggedIn.data.currentUser;
   };
 
 
