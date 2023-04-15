@@ -20,7 +20,6 @@ function setUpServer() {
       const uid = newUser.user.uid;
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': timestamp });
       res.status(200).send(auth);
-
     } catch (error) {
       res.status(400).send(error);
     }
@@ -31,8 +30,7 @@ function setUpServer() {
     const { email, password } = req.body;
     
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      // const uid = user.data;
+      await signInWithEmailAndPassword(auth, email, password);
       res.status(200).send(auth);
     } catch (error) {
       res.status(400).send(error);
@@ -46,8 +44,7 @@ function setUpServer() {
       .catch(error => res.status(400).send(error))
   });
   
-  // get user created tags
-
+  // endpoints for user created tags
   app.get('/api/tags', async (req, res) => {
     await knex.select('*').from('tags')
       .join('users', 'users.id', '=', 'tags.user_id')
@@ -57,6 +54,19 @@ function setUpServer() {
       res.status(200).send(result)})
     .catch(error => res.status(400).send(error))
   });
+
+  app.post('/api/tags', async (req, res) => {
+    const { userId, tagName, timesUsed } = req.body;
+    
+    try {
+      await knex('tags')
+      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': timesUsed });
+      console.log('🥲', tagName);
+      res.status(200).send(tagName);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+  })
                    
 
   return app;
