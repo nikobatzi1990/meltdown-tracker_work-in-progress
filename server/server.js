@@ -45,14 +45,15 @@ function setUpServer() {
   });
   
   // endpoints for user created tags
-  app.get('/api/tags', async (req, res) => {
+  app.get('/api/:user/tags', async (req, res) => {
     const tagList = [];
     await knex.select('tag_name').from('tags')
+      .where('user_id', req.params.user)
       .join('users', 'users.id', '=', 'tags.user_id')
     .then(result => {
       result.map((e) => {
         tagList.push(e.tag_name);
-        // console.log("😇", tagList);
+        console.log("😇", tagList);
       })
       res.status(200).send(tagList)})
     .catch(error => res.status(400).send(error))
@@ -85,7 +86,7 @@ function setUpServer() {
         res.status(400).send(error);
     }
   })
-                
+
   return app;
 }
 module.exports = setUpServer;
