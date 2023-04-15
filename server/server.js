@@ -77,8 +77,31 @@ function setUpServer() {
     const { userId, tagName } = req.body;
     try {
       await knex('tags')
-      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': 0 });
-      res.status(200).send(tagName);
+        .insert({ 
+          'user_id': userId, 
+          'tag_name': tagName, 
+          'times_used': 0 
+        });
+      res.status(200).send('Tag added!');
+    } catch (error) {
+        res.status(400).send(error);
+    }
+  });
+
+  // endpoint for new entry submission
+  app.post('/api/submission', async (req, res) => {
+    const { title, body, userId, timeOfDay, flagged } = req.body;
+    try {
+      await knex('posts')
+        .insert({ 
+          'title': title, 
+          'body': body,
+          'user_id': userId,
+          'time_of_day': timeOfDay,
+          'created_at': new Date(),
+          'flagged': flagged
+        });
+      res.status(200).send('Post Submitted!')
     } catch (error) {
         res.status(400).send(error);
     }
