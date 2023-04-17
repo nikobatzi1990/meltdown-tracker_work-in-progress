@@ -73,17 +73,18 @@ function setUpServer() {
     })
     .catch(error => res.status(400).send(error))
   });
+
   // endpoint for posting a new tag
   app.post('/api/tags', async (req, res) => {
     const { userId, tagName } = req.body;
     try {
-      await knex('tags')
+      const newTag = await knex('tags')
         .insert({ 
           'user_id': userId, 
           'tag_name': tagName, 
           'times_used': 0 
         });
-      res.status(200).send('Tag added!');
+      res.status(200).send(newTag);
     } catch (error) {
         res.status(400).send(error);
     }
@@ -118,7 +119,7 @@ function setUpServer() {
           'post_id': postQuery[0].id
         });
 
-      res.status(200).send('Post Submitted!')
+      res.status(200).send(postQuery)
       
     } catch (error) {
         res.status(400).send(error);
@@ -168,9 +169,9 @@ function setUpServer() {
   // endpoint for editing an entry by id
   app.patch('/api/:entryId/entry', async (req, res) => {
     const { title, body, timeOfDay, flagged } = req.body;
-    console.log('😁', req.params)
+
     try {
-      await knex('posts')
+      const edit = await knex('posts')
         .where('posts.id', '=', req.params.entryId)
         .update({
         'title': title, 
@@ -178,7 +179,16 @@ function setUpServer() {
         'time_of_day': timeOfDay,
         'flagged': flagged
       });
-      res.status(200).send("Post Edited!")
+      res.status(200).send(edit)
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
+  // endpoint for deleting an entry
+  app.delete('/api/:entryId/entry', async (req, res) => {
+    try {
+
     } catch (error) {
       res.status(400).send(error);
     }
