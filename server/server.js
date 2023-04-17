@@ -11,7 +11,7 @@ function setUpServer() {
 
   app.use(express.json());
 
-// signup endpoint
+  // signup endpoint
   app.post('/api/signup', async (req, res) => {
     const { username, email, password, timestamp } = req.body;
 
@@ -25,7 +25,7 @@ function setUpServer() {
     }
   });
   
-// login endpoint
+  // login endpoint
   app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     
@@ -44,7 +44,7 @@ function setUpServer() {
       .catch(error => res.status(400).send(error))
   });
   
-  // endpoints for user created tags
+  // endpoint for getting user created tags
   app.get('/api/:user/tags', async (req, res) => {
     const tagList = [];
     await knex.select('tag_name').from('tags')
@@ -58,6 +58,7 @@ function setUpServer() {
     .catch(error => res.status(400).send(error))
   });
 
+  // endpoint for getting the number of times a tag has been used
   app.get('/api/:tagName/timesUsed', async (req, res) => {
     let timesUsed;
     await knex.select('times_used').from('tags')
@@ -72,7 +73,7 @@ function setUpServer() {
     })
     .catch(error => res.status(400).send(error))
   });
-
+  // endpoint for posting a new tag
   app.post('/api/tags', async (req, res) => {
     const { userId, tagName } = req.body;
     try {
@@ -91,11 +92,20 @@ function setUpServer() {
     }
   });
 
-  // endpoint for new entry submission
+  // endpoint for a new entry submission
   app.post('/api/submission', async (req, res) => {
-    const { title, body, userId, timeOfDay, flagged } = req.body;
-    try {
-      await knex('posts')
+    const { userId, tagName, timesUsed, title, body, timeOfDay, flagged } = req.body;
+      
+      try {
+      const tagQuery = await knex('tags')
+        .returning('id')
+        .update({
+          'times_used': timesUsed
+        })
+        .where('tag_name', '=', tagName);
+
+      const postQuery = await knex('posts')
+        .returning('id')
         .insert({ 
           'title': title, 
           'body': body,
@@ -104,6 +114,13 @@ function setUpServer() {
           'created_at': new Date(),
           'flagged': flagged
         });
+
+      await knex('tag_to_post')
+        .insert({
+          'tag_id': tagQuery[0].id,
+          'post_id': postQuery[0].id
+        });
+
       res.status(200).send('Post Submitted!')
       
     } catch (error) {
@@ -111,6 +128,36 @@ function setUpServer() {
     }
   });
 
+  // endpoint for all of one user's entries
+  app.get('/api/:userId/entries', async (req, res) => {
+    try {
+      await knex.select('title', 'body').from('posts')
+        .where('user_id', req.params.userId)
+        .join('users', 'users.id', '=', 'posts.user_id')
+      .then(result => {
+        console.log('😏', result);
+        res.status(200).send(result)
+      })
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
+  // endpoint for all entries that include specified tag
+  app.get('/api/entries/:tagId', async (req, res) => {
+    try {
+      const result = await knex.select('title', 'body').from('posts')
+      .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
+      .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
+      .where('tag_to_post.tag_id', '=', req.params.tagId)
+
+      console.log(result);
+      res.status(200).send(result)
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+  
   return app;
 }
 module.exports = setUpServer;
