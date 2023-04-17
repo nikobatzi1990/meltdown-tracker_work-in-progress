@@ -4,6 +4,7 @@ const server = setUpServer();
 
 (async () => {
   try {
+    await database.migrate.latest();
     server.listen(PORT, () => {
       console.log(`app is listening @ http://localhost:${PORT}`);
     })
