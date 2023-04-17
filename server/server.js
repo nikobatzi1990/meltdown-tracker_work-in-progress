@@ -178,7 +178,8 @@ function setUpServer() {
         'title': title, 
         'body': body,
         'time_of_day': timeOfDay,
-        'flagged': flagged
+        'flagged': flagged,
+        'updated_at': new Date()
       });
       res.status(200).send(edit)
 
