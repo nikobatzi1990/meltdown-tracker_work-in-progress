@@ -77,6 +77,9 @@ function setUpServer() {
     const { userId, tagName } = req.body;
     try {
       await knex('tags')
+      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': 0 });
+      res.status(200).send(tagName);
+
         .insert({ 
           'user_id': userId, 
           'tag_name': tagName, 
@@ -102,6 +105,7 @@ function setUpServer() {
           'flagged': flagged
         });
       res.status(200).send('Post Submitted!')
+      
     } catch (error) {
         res.status(400).send(error);
     }
