@@ -11,7 +11,7 @@ function setUpServer() {
 
   app.use(express.json());
 
-// signup endpoint
+  // signup endpoint
   app.post('/api/signup', async (req, res) => {
     const { username, email, password, timestamp } = req.body;
 
@@ -25,7 +25,7 @@ function setUpServer() {
     }
   });
   
-// login endpoint
+  // login endpoint
   app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     
@@ -57,7 +57,8 @@ function setUpServer() {
       res.status(200).send(tagList)})
     .catch(error => res.status(400).send(error))
   });
-// endpoint for getting the number of times a tag has been used
+
+  // endpoint for getting the number of times a tag has been used
   app.get('/api/:tagName/timesUsed', async (req, res) => {
     let timesUsed;
     await knex.select('times_used').from('tags')
@@ -72,7 +73,7 @@ function setUpServer() {
     })
     .catch(error => res.status(400).send(error))
   });
-// endpoint for posting a new tag
+  // endpoint for posting a new tag
   app.post('/api/tags', async (req, res) => {
     const { userId, tagName } = req.body;
     try {
@@ -100,8 +101,6 @@ function setUpServer() {
         })
         .where('tag_name', '=', tagName);
 
-      console.log(tagQuery[0].id);
-
       const postQuery = await knex('posts')
         .returning('id')
         .insert({ 
@@ -112,7 +111,6 @@ function setUpServer() {
           'created_at': new Date(),
           'flagged': flagged
         });
-      console.log(postQuery[0].id);
 
       await knex('tag_to_post')
         .insert({
@@ -142,14 +140,19 @@ function setUpServer() {
   });
 
   // endpoint for all entries that include specified tag
-  app.get('/api/:tag/entries', async (req, res) => {
+  app.get('/api/entries/:tagId', async (req, res) => {
     try {
-      await knex.select()
-      
+      const result = await knex.select('title', 'body').from('posts')
+      .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
+      .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
+      .where('tag_to_post.tag_id', '=', req.params.tagId)
+
+      console.log(result);
+      res.status(200).send(result)
     } catch (error) {
       res.status(400).send(error);
     }
-  })
+  });
   
   return app;
 }
