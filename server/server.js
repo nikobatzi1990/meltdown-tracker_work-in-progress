@@ -78,9 +78,6 @@ function setUpServer() {
     const { userId, tagName } = req.body;
     try {
       await knex('tags')
-      .insert({ 'user_id': userId, 'tag_name': tagName, 'times_used': 0 });
-      res.status(200).send(tagName);
-
         .insert({ 
           'user_id': userId, 
           'tag_name': tagName, 
@@ -153,6 +150,17 @@ function setUpServer() {
 
       console.log(result);
       res.status(200).send(result)
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
+  // endpoint for getting one entry by id
+  app.get('/api/:entryId/entry', async (req,res) => {
+    try {
+      const entry = await knex.select('title', 'body').from('posts')
+        .where('posts.id', '=', req.params.entryId);
+        res.status(200).send(entry[0])
     } catch (error) {
       res.status(400).send(error);
     }
