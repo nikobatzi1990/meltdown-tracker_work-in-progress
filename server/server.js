@@ -148,7 +148,6 @@ function setUpServer() {
       .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
       .where('tag_to_post.tag_id', '=', req.params.tagId)
 
-      console.log(result);
       res.status(200).send(result)
     } catch (error) {
       res.status(400).send(error);
@@ -161,6 +160,25 @@ function setUpServer() {
       const entry = await knex.select('title', 'body').from('posts')
         .where('posts.id', '=', req.params.entryId);
         res.status(200).send(entry[0])
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
+  // endpoint for editing an entry by id
+  app.patch('/api/:entryId/entry', async (req, res) => {
+    const { title, body, timeOfDay, flagged } = req.body;
+    console.log('😁', req.params)
+    try {
+      await knex('posts')
+        .where('posts.id', '=', req.params.entryId)
+        .update({
+        'title': title, 
+        'body': body,
+        'time_of_day': timeOfDay,
+        'flagged': flagged
+      });
+      res.status(200).send("Post Edited!")
     } catch (error) {
       res.status(400).send(error);
     }
