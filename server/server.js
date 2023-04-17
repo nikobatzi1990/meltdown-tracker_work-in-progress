@@ -1,6 +1,7 @@
 const express = require('express');
 const knex = require('../database/knex');
 const auth  = require('./firebase/firebase')
+const path = require('path');
 const { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
@@ -9,6 +10,7 @@ const {
 function setUpServer() {
   const app = express();
 
+  app.use(express.static(path.resolve(__dirname, '../client/build')));
   app.use(express.json());
 
   // signup endpoint
