@@ -133,9 +133,9 @@ function setUpServer() {
         .where('user_id', req.params.userId)
         .join('users', 'users.id', '=', 'posts.user_id')
       .then(result => {
-        console.log('😏', result);
-        res.status(200).send(result)
-      })
+        res.status(200).send(result);
+      });
+      
     } catch (error) {
       res.status(400).send(error);
     }
@@ -147,9 +147,9 @@ function setUpServer() {
       const result = await knex.select('title', 'body').from('posts')
       .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
       .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
-      .where('tag_to_post.tag_id', '=', req.params.tagId)
+      .where('tag_to_post.tag_id', '=', req.params.tagId);
+      res.status(200).send(result);
 
-      res.status(200).send(result)
     } catch (error) {
       res.status(400).send(error);
     }
@@ -161,6 +161,7 @@ function setUpServer() {
       const entry = await knex.select('title', 'body').from('posts')
         .where('posts.id', '=', req.params.entryId);
         res.status(200).send(entry[0])
+
     } catch (error) {
       res.status(400).send(error);
     }
@@ -180,6 +181,7 @@ function setUpServer() {
         'flagged': flagged
       });
       res.status(200).send(edit)
+
     } catch (error) {
       res.status(400).send(error);
     }
@@ -188,6 +190,10 @@ function setUpServer() {
   // endpoint for deleting an entry
   app.delete('/api/:entryId/entry', async (req, res) => {
     try {
+      await knex('posts')
+        .delete()
+        .where('posts.id', req.params.entryId);
+      res.status(200).send("Post deleted")
 
     } catch (error) {
       res.status(400).send(error);
