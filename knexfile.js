@@ -8,7 +8,7 @@ module.exports = {
       port: process.env.LOCAL_PORT,
       user: process.env.LOCAL_USER,
       password: process.env.LOCAL_PASSWORD,
-      database: process.env.LOCAL_DATABASE,
+      database: process.env.LOCAL_DATABASE
     },
     searchPath: 'public',
     pool: {
