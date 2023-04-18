@@ -29,18 +29,7 @@ export const AuthContextProvider = ({children}) => {
     return loggedIn.data.currentUser;
   };
 
-  const getTags = async () => {
-    const userTags = await axios.get('/api/tags');
-    let tagList = [];
-    await userTags.map((e) => {
-      tagList.push(e.tag_name)
-    });
-    // console.log('😡', tagList);
-    return tagList;
-  }
-
-
-  return <UserContext.Provider value={{ createUser, loginUser, user, getTags }}>
+  return <UserContext.Provider value={{ createUser, loginUser, user }}>
     {children}
   </UserContext.Provider>
 }

@@ -4,36 +4,33 @@ import axios from 'axios';
 import "./Tags.css";
 import Button from "./Button";
 import Input from "./Input";
+import Taglist from "../pages/Taglist";
 
 const Tags = (props) => {
-  const { className, type, value, onChange, onSubmit } = props;
-  const { user, getTags } = UserAuth();
-  const [tags, setTags] = useState();
+  const { className, type } = props;
+  const { user } = UserAuth();
+  // const [tags, setTags] = useState();
   const [newTag, setNewTag] = useState('');
- 
+
+  // handles adding tags
   const handleTagInput = (event) => {
     setNewTag(event.target.value);
   }
 
-  const addTag = async (event) => {
+  const addTag = async () => {
     const newTagData = {
       'tagName': newTag, 
       'uid': user.uid
     }
-    console.log('😁', newTagData);
-    await axios.post('/api/tags', newTagData)
-    console.log('😇', 'Tag added!');
+    await axios.post('/api/tags', newTagData);
   }
 
   return (
     <div
       className = { className }
-      type = { type }
-      value = { value }
-      onChange = { onChange }
-      onSubmit = { onSubmit }>
+      type = { type } >
 
-      <div> Tags appear here </div> 
+      <Taglist />
 
       <Input 
         placeholder = "Type your new tag here"
