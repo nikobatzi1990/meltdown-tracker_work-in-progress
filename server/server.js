@@ -82,7 +82,7 @@ function setUpServer() {
     try {
       const userId = await knex.select('id').from('users')
         .where('users.UID', uid);
-      console.log('🤣', userId[0].id);
+      // console.log('🤣', userId[0].id);
 
       const newTag = await knex('tags')
         .insert({ 
