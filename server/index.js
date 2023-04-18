@@ -1,7 +1,7 @@
 const setUpServer = require('./server');
 const PORT = process.env.PORT || 8000;
 const server = setUpServer();
-const knex = require('../database/knex')
+const knex = require('../database/knex');
 
 (async () => {
   try {
