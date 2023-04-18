@@ -8,7 +8,7 @@ require("dotenv").config({
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FB_API_KEY,
+  apiKey: "AIzaSyAW5IgBueoYDBcipAsGfJ9rbhOI9otJkN4",
   authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FB_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
