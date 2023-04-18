@@ -4,7 +4,7 @@ const server = setUpServer();
 
 (async () => {
   try {
-    await database.migrate.latest();
+    // await knex.migrate.latest();
     server.listen(PORT, () => {
       console.log(`app is listening @ http://localhost:${PORT}`);
     })
