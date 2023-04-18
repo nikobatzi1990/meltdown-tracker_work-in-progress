@@ -4,11 +4,11 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host: process.env.HOST,
-      port: process.env.DB_PORT,
-      user: process.env.USER,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      host: process.env.LOCAL_HOST,
+      port: process.env.LOCAL_PORT,
+      user: process.env.LOCAL_USER,
+      password: process.env.LOCAL_PASSWORD,
+      database: process.env.LOCAL_DATABASE,
     },
     searchPath: 'public',
     pool: {
