@@ -21,6 +21,7 @@ const Homepage = () => {
     await axios.post('/api/logout');
     navigate('/');
   }
+  
   return (
     <>
       <h6>Hello, { user.email }! </h6>
@@ -30,10 +31,12 @@ const Homepage = () => {
         <Tags className = "tag-wrapper" />
 
         <Button 
-          text = "See all Entries" />
+          text = "See all Entries" 
+          onClick = {() => navigate('/entries')} />
 
         <Button 
-          text = "Write New" />
+          text = "Write New" 
+          onClick = {() => navigate('/submission')} />
       </div>
 
       <Button 

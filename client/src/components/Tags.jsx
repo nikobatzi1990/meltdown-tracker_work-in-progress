@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
-// import axios from 'axios';
+import axios from 'axios';
 import "./Tags.css";
 import Button from "./Button";
 import Input from "./Input";
+import Taglist from "../pages/Taglist";
 
 const Tags = (props) => {
-  const { className, type, value, onChange, onSubmit } = props;
-  const { getTags } = UserAuth();
-  const [tags, setTags] = useState();
+  const { className, type } = props;
+  const { user } = UserAuth();
+  // const [tags, setTags] = useState();
+  const [newTag, setNewTag] = useState('');
 
-  // useEffect (() => {
-  //   getTagList();
-  //   console.log('🦷', getTagList());
-  // }, []);
+  // handles adding tags
+  const handleTagInput = (event) => {
+    setNewTag(event.target.value);
+  }
 
-  // const getTagList = async (event) => {
-  //   event.preventDefault();
-  //   setTags(getTags());
-  // }
-
-  // const addTag = async (event) => {
-  //   event.preventDefault();
-  //   newTagData = {
-  //     'user_id': userId, 'tag_name': tagName, 'times_used': timesUsed
-  //   }
-  //   const userTags = await axios.post('/api/tags', newTagData);
-  // }
+  const addTag = async () => {
+    const newTagData = {
+      'tagName': newTag, 
+      'uid': user.uid
+    }
+    await axios.post('/api/tags', newTagData);
+  }
 
   return (
     <div
       className = { className }
-      type = { type }
-      value = { value }
-      onChange = { onChange }
-      onSubmit = { onSubmit }>
+      type = { type } >
 
-      <Input placeholder = "Search"/>
+      <Taglist />
 
-      <div> Tags appear here </div> 
+      <Input 
+        placeholder = "Type your new tag here"
+        onChange = { handleTagInput }
+        value = { newTag }
+        />
 
-      <Button text = "Add New Tag"/>
+      <Button 
+        text = "Add New Tag"
+        onClick = { addTag } />
 
     </div>
   )

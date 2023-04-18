@@ -50,7 +50,7 @@ function setUpServer() {
   app.get('/api/:user/tags', async (req, res) => {
     const tagList = [];
     await knex.select('tag_name').from('tags')
-      .where('user_id', req.params.user)
+      .where('users.UID', req.params.user)
       .join('users', 'users.id', '=', 'tags.user_id')
     .then(result => {
       result.map((e) => {
@@ -78,11 +78,14 @@ function setUpServer() {
 
   // endpoint for posting a new tag
   app.post('/api/tags', async (req, res) => {
-    const { userId, tagName } = req.body;
+    const { tagName, uid } = req.body;
     try {
+      const userId = await knex.select('id').from('users')
+        .where('users.UID', uid);
+
       const newTag = await knex('tags')
         .insert({ 
-          'user_id': userId, 
+          'user_id': userId[0].id, 
           'tag_name': tagName, 
           'times_used': 0 
         });
