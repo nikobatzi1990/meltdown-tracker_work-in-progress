@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
 import './EntryList.css';
 
 const EntryList = () => {
   const { user } = UserAuth();
+  const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -27,10 +29,10 @@ const EntryList = () => {
       {
         entries.map((entry) => {
           return (
-            <>
+            <div onClick = {() => navigate('/entry')}>
               <span>{ entry.title }</span>
               <p>{ entry.body }</p>
-            </>
+            </div>
           )
         })
       }
