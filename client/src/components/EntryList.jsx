@@ -17,7 +17,6 @@ const EntryList = () => {
     try {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`)
       setEntries(fetchedEntries.data);
-      // console.log('🤢', fetchedEntries.data);
     } catch (error) {
       console.log('👹', error);
     }
@@ -27,7 +26,6 @@ const EntryList = () => {
     <div>
       {
         entries.map((entry) => {
-          // console.log('😮‍💨', entry);
           return (
             <>
               <span>{ entry.title }</span>
