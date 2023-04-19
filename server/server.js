@@ -95,9 +95,12 @@ function setUpServer() {
     }
   });
 
-  // endpoint for a new entry submission
+  // endpoint for posting a new entry submission
   app.post('/api/submission', async (req, res) => {
-    const { userId, tagName, timesUsed, title, body, timeOfDay, flagged } = req.body;
+    const { uid, tagName, timesUsed, title, body, timeOfDay, flagged } = req.body;
+      const userId = await knex.select('id')
+        .from('users')
+        .where('UID', '=', uid);
       
       try {
       const tagQuery = await knex('tags')
@@ -112,7 +115,7 @@ function setUpServer() {
         .insert({ 
           'title': title, 
           'body': body,
-          'user_id': userId,
+          'user_id': userId[0].id,
           'time_of_day': timeOfDay,
           'created_at': new Date(),
           'flagged': flagged
