@@ -14,43 +14,51 @@ const Submission = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
+  const [time, setTime] = useState("");
 
   const submissionData = { 
     uid: user.uid, 
-    tagName: "", 
+    tagName: tag, 
     timesUsed: 0, 
     title: title, 
-    body: "", 
-    timeOfDay: "", 
-    flagged: true 
+    body: body, 
+    timeOfDay: time, 
+    flagged: false 
   };
 
   const handleTitleInput = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setTitle(value);
-    submissionData.title = value;
+    // submissionData.title = value;
   }
 
   const handleTextBody = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setBody(value);
-    submissionData.body = value;
+    // submissionData.body = value;
   }
 
   const handleTagInput = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setTag(value);
-    submissionData.tagName = value;
+    // submissionData.tagName = value;
+  }
+
+  const handleTimeOfDay = (event) => {
+    event.preventDefault();
+    const value = event.target.nextElementSibling.innerText;
+    setTime(value);
+    // submissionData.timeOfDay = value;
   }
 
   async function handleSubmission(event) {
     event.preventDefault();
     const previousTimesUsed = await axios.get(`/api/${submissionData.tagName}/timesUsed`);
-    submissionData.timesUsed = previousTimesUsed.data + 1;
-    // console.log('🤯', submissionBody);
+    submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
+    // console.log('🤯', previousTimesUsed.data);
     await axios.post('/api/submission', submissionData);
     navigate('/entries');
   }
@@ -69,21 +77,28 @@ const Submission = () => {
 
         <Input 
           placeholder="Tags"
-          value={ tag } />
+          value={ tag }
+          onChange={ handleTagInput } />
       </div>
 
       <div className="center">
         <div className="time-of-day">Time of Day
           <figure>
-            <img src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" />
+            <img 
+              src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
+              onClick={ handleTimeOfDay } />
             <figcaption>Morning</figcaption>
           </figure>
           <figure>
-            <img src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png" />
+            <img 
+              src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
+              onClick={ handleTimeOfDay } />
             <figcaption>Afternoon</figcaption>
           </figure>
-          <figure>
-            <img src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png" />
+          <figure >
+            <img 
+              src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
+              onClick={ handleTimeOfDay } />
             <figcaption>Night</figcaption>
           </figure>
         </div>
@@ -93,7 +108,7 @@ const Submission = () => {
           placeholder="Type your entry here!"
           value = { body }
           cols="60" 
-          rows="10" 
+          rows="30" 
           onChange={ handleTextBody }>
         </textarea>
       </div>
