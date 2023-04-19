@@ -9,7 +9,6 @@ import Taglist from "./Taglist";
 const Tags = (props) => {
   const { className, type } = props;
   const { user } = UserAuth();
-  // const [tags, setTags] = useState();
   const [newTag, setNewTag] = useState('');
 
   // handles adding tags

@@ -47,10 +47,10 @@ function setUpServer() {
   });
   
   // endpoint for getting user created tags
-  app.get('/api/:user/tags', async (req, res) => {
+  app.get('/api/:uid/tags', async (req, res) => {
     const tagList = [];
     await knex.select('tag_name').from('tags')
-      .where('users.UID', req.params.user)
+      .where('users.UID', req.params.uid)
       .join('users', 'users.id', '=', 'tags.user_id')
     .then(result => {
       result.map((e) => {
@@ -80,7 +80,8 @@ function setUpServer() {
   app.post('/api/tags', async (req, res) => {
     const { tagName, uid } = req.body;
     try {
-      const userId = await knex.select('id').from('users')
+      const userId = await knex.select('id')
+        .from('users')
         .where('users.UID', uid);
 
       const newTag = await knex('tags')
@@ -135,12 +136,14 @@ function setUpServer() {
   });
 
   // endpoint for all of one user's entries
-  app.get('/api/:userId/entries', async (req, res) => {
+  app.get('/api/:uid/entries', async (req, res) => {
+    // console.log('🥳', "HIT ENDPOINT");
     try {
       await knex.select('title', 'body').from('posts')
-        .where('user_id', req.params.userId)
+        .where('users.UID', req.params.uid)
         .join('users', 'users.id', '=', 'posts.user_id')
       .then(result => {
+        // console.log('😝', result)
         res.status(200).send(result);
       });
       
@@ -152,7 +155,8 @@ function setUpServer() {
   // endpoint for all entries that include specified tag
   app.get('/api/entries/:tagId', async (req, res) => {
     try {
-      const result = await knex.select('title', 'body').from('posts')
+      const result = await knex.select('title', 'body')
+      .from('posts')
       .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
       .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
       .where('tag_to_post.tag_id', '=', req.params.tagId);

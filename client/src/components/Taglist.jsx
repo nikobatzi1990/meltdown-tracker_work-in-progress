@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
+import './Taglist.css';
 
 const Taglist = () => {
   const { user } = UserAuth();
@@ -8,7 +9,7 @@ const Taglist = () => {
 
   useEffect(() => {
     getTags();
-    console.log('🥸', tags);
+    // console.log('🥸', tags);
   });
   
   // handles getting user's taglist
