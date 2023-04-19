@@ -12,9 +12,29 @@ const Submission = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
 
+  async function handleSubmission() {
+    const submissionBody = { 
+      uid: user.uid, 
+      tagName: "lightning", 
+      timesUsed: 0, 
+      title: "Monday, Sonya's baby shower", 
+      body: "There was a lightning storm and Luke got upset again", 
+      timeOfDay: "Morning", 
+      flagged: true 
+    };
+
+    const previousTimesUsed = await axios.get(`/api/${submissionBody.tagName}/timesUsed`);
+    submissionBody.timesUsed = previousTimesUsed.data + 1;
+    console.log('🤯', submissionBody);
+    await axios.post('/api/submission', submissionBody);
+    navigate('/entries');
+  }
+
   return (
     <>
-      <Header className="header" text="Submission"/>
+      <Header 
+        className="header" 
+        text="Submission"/>
 
       <div className="top">
         <Input placeholder="Title"/>
@@ -40,8 +60,12 @@ const Submission = () => {
         <textarea className="entry-body"></textarea>
       </div>
 
-      <Button text="Submit" />
-      <Footer className="footer" text="© 2023 Meltown Tracker"/>
+      <Button 
+        text="Submit" 
+        onClick = { handleSubmission } />
+      <Footer 
+        className="footer" 
+        text="© 2023 Meltown Tracker"/>
     </>
   );
 };
