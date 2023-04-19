@@ -9,7 +9,7 @@ const Taglist = () => {
 
   useEffect(() => {
     getTags();
-    // console.log('🥸', tags);
+    console.log('🥸', tags);
   });
   
   // handles getting user's taglist
@@ -18,7 +18,7 @@ const Taglist = () => {
       const fetchedTags = await axios.get(`/api/${user.uid}/tags`);
       setTags(fetchedTags.data);
     } catch (error) {
-      console.log('😁', error);
+      // console.log('😁', error);
     }
   }
   

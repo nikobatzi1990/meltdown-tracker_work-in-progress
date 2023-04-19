@@ -5,11 +5,11 @@ import './EntryList.css';
 
 const EntryList = () => {
   const { user } = UserAuth();
-  const [entries, setEntries] = useState({});
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     getEntries();
-    // console.log('🤬', Array.isArray(entries));
+    // console.log('🤬', entries);
   });
 
   // handles getting user's entries
@@ -27,7 +27,7 @@ const EntryList = () => {
     <div>
       {
         entries.map((entry) => {
-          console.log('😮‍💨', entry);
+          // console.log('😮‍💨', entry);
           return (
             <>
               <span>{ entry.title }</span>
