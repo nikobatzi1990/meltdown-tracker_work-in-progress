@@ -58,7 +58,6 @@ const Submission = () => {
     event.preventDefault();
     const previousTimesUsed = await axios.get(`/api/${submissionData.tagName}/timesUsed`);
     submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-    // console.log('🤯', previousTimesUsed.data);
     await axios.post('/api/submission', submissionData);
     navigate('/entries');
   }
@@ -86,18 +85,21 @@ const Submission = () => {
           <figure>
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
+              alt="a bird and the morning sky"
               onClick={ handleTimeOfDay } />
             <figcaption>Morning</figcaption>
           </figure>
           <figure>
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
+              alt="the sunny afternoon sky"
               onClick={ handleTimeOfDay } />
             <figcaption>Afternoon</figcaption>
           </figure>
           <figure >
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
+              alt="the night sky"
               onClick={ handleTimeOfDay } />
             <figcaption>Night</figcaption>
           </figure>
