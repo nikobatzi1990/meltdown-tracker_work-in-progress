@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -30,28 +30,24 @@ const Submission = () => {
     event.preventDefault();
     const value = event.target.value;
     setTitle(value);
-    // submissionData.title = value;
   }
 
   const handleTextBody = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setBody(value);
-    // submissionData.body = value;
   }
 
   const handleTagInput = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setTag(value);
-    // submissionData.tagName = value;
   }
 
   const handleTimeOfDay = (event) => {
     event.preventDefault();
     const value = event.target.nextElementSibling.innerText;
     setTime(value);
-    // submissionData.timeOfDay = value;
   }
 
   async function handleSubmission(event) {
