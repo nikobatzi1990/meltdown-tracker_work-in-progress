@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./Tags.css";
 import Button from "./Button";
 import Input from "./Input";
-import Taglist from "../pages/Taglist";
+import Taglist from "./Taglist";
 
 const Tags = (props) => {
   const { className, type } = props;
