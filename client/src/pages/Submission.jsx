@@ -11,22 +11,47 @@ import Button from "../components/Button";
 const Submission = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [tag, setTag] = useState("");
 
-  async function handleSubmission() {
-    const submissionBody = { 
-      uid: user.uid, 
-      tagName: "lightning", 
-      timesUsed: 0, 
-      title: "Monday, Sonya's baby shower", 
-      body: "There was a lightning storm and Luke got upset again", 
-      timeOfDay: "Morning", 
-      flagged: true 
-    };
+  const submissionData = { 
+    uid: user.uid, 
+    tagName: "", 
+    timesUsed: 0, 
+    title: title, 
+    body: "", 
+    timeOfDay: "", 
+    flagged: true 
+  };
 
-    const previousTimesUsed = await axios.get(`/api/${submissionBody.tagName}/timesUsed`);
-    submissionBody.timesUsed = previousTimesUsed.data + 1;
-    console.log('🤯', submissionBody);
-    await axios.post('/api/submission', submissionBody);
+  const handleTitleInput = (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    setTitle(value);
+    submissionData.title = value;
+  }
+
+  const handleTextBody = (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    setBody(value);
+    submissionData.body = value;
+  }
+
+  const handleTagInput = (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    setTag(value);
+    submissionData.tagName = value;
+  }
+
+  async function handleSubmission(event) {
+    event.preventDefault();
+    const previousTimesUsed = await axios.get(`/api/${submissionData.tagName}/timesUsed`);
+    submissionData.timesUsed = previousTimesUsed.data + 1;
+    // console.log('🤯', submissionBody);
+    await axios.post('/api/submission', submissionData);
     navigate('/entries');
   }
 
@@ -37,8 +62,14 @@ const Submission = () => {
         text="Submission"/>
 
       <div className="top">
-        <Input placeholder="Title"/>
-        <Input placeholder="Tag Search" />
+        <Input 
+          placeholder="Title"
+          value={ title }
+          onChange={ handleTitleInput }/>
+
+        <Input 
+          placeholder="Tags"
+          value={ tag } />
       </div>
 
       <div className="center">
@@ -57,7 +88,14 @@ const Submission = () => {
           </figure>
         </div>
 
-        <textarea className="entry-body"></textarea>
+        <textarea 
+          className="entry-body"
+          placeholder="Type your entry here!"
+          value = { body }
+          cols="60" 
+          rows="10" 
+          onChange={ handleTextBody }>
+        </textarea>
       </div>
 
       <Button 
