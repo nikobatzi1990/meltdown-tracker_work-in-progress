@@ -137,13 +137,13 @@ function setUpServer() {
 
   // endpoint for all of one user's entries
   app.get('/api/:uid/entries', async (req, res) => {
-    // console.log('🥳', "HIT ENDPOINT");
+    
     try {
-      await knex.select('title', 'body').from('posts')
+      await knex.select('posts.id', 'title', 'body')
+        .from('posts')
         .where('users.UID', req.params.uid)
         .join('users', 'users.id', '=', 'posts.user_id')
       .then(result => {
-        // console.log('😝', result)
         res.status(200).send(result);
       });
       
@@ -170,7 +170,11 @@ function setUpServer() {
   // endpoint for getting one entry by id
   app.get('/api/:entryId/entry', async (req,res) => {
     try {
-      const entry = await knex.select('title', 'body').from('posts')
+      const entry = await knex
+        .from('posts')
+        .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
+        .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
+        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name')
         .where('posts.id', '=', req.params.entryId);
         res.status(200).send(entry[0])
 

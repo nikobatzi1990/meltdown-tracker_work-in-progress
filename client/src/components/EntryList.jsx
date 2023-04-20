@@ -11,8 +11,7 @@ const EntryList = () => {
 
   useEffect(() => {
     getEntries();
-    // console.log('🤬', entries);
-  });
+  }, []);
 
   // handles getting user's entries
   async function getEntries() {
@@ -29,7 +28,8 @@ const EntryList = () => {
       {
         entries.map((entry) => {
           return (
-            <div onClick = {() => navigate('/entry')}>
+            <div onClick = {() => {
+              navigate(`/entry/${entry.id}`)}}>
               <span>{ entry.title }</span>
               <p>{ entry.body }</p>
             </div>
