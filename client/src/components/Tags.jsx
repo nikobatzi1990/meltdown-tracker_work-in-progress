@@ -11,7 +11,6 @@ const Tags = (props) => {
   const { user } = UserAuth();
   const [newTag, setNewTag] = useState('');
 
-  // handles adding tags
   const handleTagInput = (event) => {
     setNewTag(event.target.value);
   }

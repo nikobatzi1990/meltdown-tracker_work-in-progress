@@ -12,13 +12,12 @@ const Taglist = () => {
     // console.log('🥸', tags);
   });
   
-  // handles getting user's taglist
   async function getTags() {
     try {
       const fetchedTags = await axios.get(`/api/${user.uid}/tags`);
       setTags(fetchedTags.data);
     } catch (error) {
-      // console.log('😁', error);
+      console.log('😁', error);
     }
   }
   

@@ -12,10 +12,6 @@ const Homepage = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
 
-  // useEffect (() => {
-  //   console.log('🏀', user);
-  // }, []);
-
   const handleLogout = async (event) => {
     event.preventDefault();
     await axios.post('/api/logout');

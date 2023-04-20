@@ -11,14 +11,12 @@ const EntryList = () => {
 
   useEffect(() => {
     getEntries();
-    // console.log('🤬', entries);
-  });
+  }, []);
 
   // handles getting user's entries
   async function getEntries() {
     try {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`)
-      // console.log('💩', fetchedEntries);
       setEntries(fetchedEntries.data);
     } catch (error) {
       console.log('👹', error);
@@ -31,7 +29,6 @@ const EntryList = () => {
         entries.map((entry) => {
           return (
             <div onClick = {() => {
-              // console.log('🤡', entry)
               navigate(`/entry/${entry.id}`)}}>
               <span>{ entry.title }</span>
               <p>{ entry.body }</p>
