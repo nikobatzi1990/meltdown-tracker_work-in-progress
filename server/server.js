@@ -176,7 +176,7 @@ function setUpServer() {
         .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
         .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name')
         .where('posts.id', '=', req.params.entryId);
-        console.log('🥶', entry);
+        // console.log('🥶', entry);
         res.status(200).send(entry[0])
 
     } catch (error) {
