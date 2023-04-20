@@ -9,7 +9,7 @@ const Taglist = () => {
 
   useEffect(() => {
     getTags();
-    console.log('🥸', tags);
+    // console.log('🥸', tags);
   });
   
   // handles getting user's taglist
