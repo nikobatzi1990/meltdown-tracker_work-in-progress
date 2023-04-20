@@ -170,8 +170,11 @@ function setUpServer() {
   // endpoint for getting one entry by id
   app.get('/api/:entryId/entry', async (req,res) => {
     try {
-      const entry = await knex.select('title', 'body')
+      const entry = await knex
         .from('posts')
+        .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
+        .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
+        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name')
         .where('posts.id', '=', req.params.entryId);
         console.log('🥶', entry);
         res.status(200).send(entry[0])

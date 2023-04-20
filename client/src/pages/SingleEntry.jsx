@@ -16,8 +16,9 @@ const Entry = () => {
 
   async function getEntry() {
     try {
-      const fetchedEntry = await axios.get(`/api/${entryId}/entry`)
-      console.log('🧠', fetchedEntry);
+      // console.log('💋', entryId.entryId);
+      const fetchedEntry = await axios.get(`/api/${entryId.entryId}/entry`)
+      // console.log('🧠', fetchedEntry);
       setEntry(fetchedEntry.data);
     } catch (error) {
       console.log('👁️', error);
