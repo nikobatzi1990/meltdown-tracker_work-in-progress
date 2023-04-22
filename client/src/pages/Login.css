@@ -1,3 +1,26 @@
 body {
   margin: 0px;
 }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+.inputs {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-input {
+  height: 20px;
+  width: 200px;
+  text-align: center;
+  border-radius: 5px;
+}

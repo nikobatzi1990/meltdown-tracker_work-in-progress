@@ -27,14 +27,14 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="login">
       <Header className = "header" text = "Login"/>
 
-      <div>
+      <div className="inputs">
         <Input 
           htmlFor = "Email"
-          className = "input"
-          placeholder = "youremail@domain.com"
+          className = "login-input"
+          placeholder = "Enter your email here"
           value = { email }
           onChange = {(e) => {
             setEmail(e.target.value);
@@ -42,8 +42,8 @@ const Login = () => {
 
         <Input 
           htmlFor = "Password"
-          className = "input"
-          placeholder = "your password"
+          className = "login-input"
+          placeholder = "Enter your password here"
           value = { password }
           onChange = {(e) => {
             setPassword(e.target.value);
@@ -56,15 +56,15 @@ const Login = () => {
           text="Login"
           onClick = { handleLogin }
         />
+
+        <p>
+          Don't have an account? 
+          <Link to = "/SignUp"> Sign up! </Link>
+        </p>
       </div>
       
-      <p>
-        Don't have an account? 
-        <Link to = "/SignUp"> Sign up! </Link>
-      </p>
-
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
-    </>
+    </div>
   );
 };
 
