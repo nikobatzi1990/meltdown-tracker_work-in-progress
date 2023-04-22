@@ -90,39 +90,41 @@ const Submission = () => {
         </div>
 
         <div className="submission">
+          <div className="top">
+            <Input 
+              className="title-input"
+              placeholder="Title"
+              value={ title }
+              onChange={ handleTitleInput }/>
 
-        <div className="top">
-          <Input 
-            className="title-input"
-            placeholder="Title"
-            value={ title }
-            onChange={ handleTitleInput }/>
+            <Input 
+              className="tag-input"
+              placeholder="Tags"
+              value={ tag }
+              onChange={ handleTagInput } />
+          </div>
 
-          <Input 
-            className="tag-input"
-            placeholder="Tags"
-            value={ tag }
-            onChange={ handleTagInput } />
-      </div>
+          {/* <div className="entry-text"> */}
+            <textarea 
+              className="entry-body"
+              placeholder="Type your entry here!"
+              value = { body }
+              cols="60" 
+              rows="30" 
+              onChange={ handleTextBody }>
+            </textarea>
 
-          <textarea 
-            className="entry-body"
-            placeholder="Type your entry here!"
-            value = { body }
-            cols="60" 
-            rows="30" 
-            onChange={ handleTextBody }>
-          </textarea>
-          <Button 
-            text="Submit" 
-            onClick = { handleSubmission } />
+            <Button 
+              className="button"
+              text="Submit" 
+              onClick = { handleSubmission } />
           </div>
         </div>
-
+      {/* </div> */}
 
       <Footer 
-        className="footer" 
-        text="© 2023 Meltown Tracker"/>
+      className="footer" 
+      text="© 2023 Meltown Tracker"/>
     </>
   );
 };
