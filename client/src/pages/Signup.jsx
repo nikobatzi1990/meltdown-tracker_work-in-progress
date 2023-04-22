@@ -58,7 +58,7 @@ const Signup = () => {
           }} />
 
           <Button 
-          className = "submit"
+          className = "button"
           type = "submit"
           text ="Submit"
           onClick = { handleSignup }

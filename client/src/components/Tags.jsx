@@ -39,7 +39,7 @@ const Tags = (props) => {
         />
 
       <Button 
-        className="tag-submit"
+        className="button tag-submit"
         text = "Add New Tag"
         onClick = { addTag } />
 

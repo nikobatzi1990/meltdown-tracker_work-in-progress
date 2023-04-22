@@ -51,7 +51,7 @@ const Login = () => {
         />
 
         <Button 
-          className = "submit"
+          className = "button"
           type = "submit"
           text="Login"
           onClick = { handleLogin }

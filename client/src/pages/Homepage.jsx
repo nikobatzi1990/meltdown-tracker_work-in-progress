@@ -23,7 +23,7 @@ const Homepage = () => {
       <div className="greeting">
         <p>Hello, { user.email }! </p>
         <Button 
-          className="logout"
+          className="button logout"
           text="Logout"
           onClick={ handleLogout } />
       </div>
@@ -35,12 +35,12 @@ const Homepage = () => {
 
         <div className="buttons">
           <Button 
-            className="button"
+            className="button big-button"
             text = "See all Entries" 
             onClick = {() => navigate('/entries')} />
 
           <Button 
-            className="button"
+            className="button big-button"
             text = "Write New" 
             onClick = {() => navigate('/submission')} />
         </div>

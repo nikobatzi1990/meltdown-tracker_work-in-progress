@@ -36,7 +36,3 @@ p {
   align-items: stretch;
   gap: 20px;
 }
-
-.button {
-  flex-grow: 1;
-}

@@ -64,8 +64,9 @@ const Submission = () => {
         className="header entries-header" 
         text="Submission"/>
 
-      <div className="main">
-        <div className="time-of-day">Time of Day
+      <div className="main-body">
+        <div className="time-of-day">
+          <p>Time of Day</p>
           <figure>
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
@@ -92,35 +93,33 @@ const Submission = () => {
         <div className="submission">
           <div className="top">
             <Input 
-              className="title-input"
+              className="input title-input"
               placeholder="Title"
               value={ title }
               onChange={ handleTitleInput }/>
 
             <Input 
-              className="tag-input"
-              placeholder="Tags"
+              className="input"
+              placeholder="Tag"
               value={ tag }
               onChange={ handleTagInput } />
           </div>
+          
+          <textarea 
+            className="entry-body"
+            placeholder="Type your entry here!"
+            value = { body }
+            cols="60" 
+            rows="30" 
+            onChange={ handleTextBody }>
+          </textarea>
 
-          {/* <div className="entry-text"> */}
-            <textarea 
-              className="entry-body"
-              placeholder="Type your entry here!"
-              value = { body }
-              cols="60" 
-              rows="30" 
-              onChange={ handleTextBody }>
-            </textarea>
-
-            <Button 
-              className="button"
-              text="Submit" 
-              onClick = { handleSubmission } />
-          </div>
+          <Button 
+            className="button"
+            text="Submit" 
+            onClick = { handleSubmission } />
         </div>
-      {/* </div> */}
+      </div>
 
       <Footer 
       className="footer" 

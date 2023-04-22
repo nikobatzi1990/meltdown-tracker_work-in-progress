@@ -1,16 +1,13 @@
 .input {
+  margin: 5px;
+  padding: 5px;
+  height: 20px;
   border-radius: 5px;
   text-align: center;
 }
 
 .login-input {
-  height: 20px;
   width: 200px;
-}
-
-.tag-input {
-  margin: 5px;
-  padding: 5px;
 }
 
 .title-input {

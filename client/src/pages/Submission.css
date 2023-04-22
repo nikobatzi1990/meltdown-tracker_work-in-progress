@@ -2,16 +2,15 @@ body {
   margin: 0px;
 }
 
-
-.main {
+.main-body {
   padding: 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* gap: 30px; */
 }
 
 .time-of-day {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,14 +28,17 @@ img {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .top {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 
 .entry-body {
+  padding: 10px;
   background-color: blueviolet;
   height: 350px;
   border-radius: 10px;
