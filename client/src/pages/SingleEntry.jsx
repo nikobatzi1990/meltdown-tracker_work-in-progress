@@ -13,7 +13,7 @@ const Entry = () => {
     getEntry();
   }, []);
 
-  async function getEntry(event) {
+  async function getEntry() {
     try {
       const fetchedEntry = await axios.get(`/api/${entryId.entryId}/entry`);
       setEntry(fetchedEntry.data);
@@ -24,15 +24,17 @@ const Entry = () => {
 
   return (
     <>
-      <Header className = "header" text = "Single Entry"/>
-      <div>
-        <h2>{ entry.title }</h2>
-        <h4>{ entry.tags } </h4>
-        <div>
-          <div>{ entry.time_of_day }</div>
-          <p>{ entry.body }</p>
+      <Header className = "header entries-header" text = "Single Entry"/>
+      
+      <div className="entry">
+        <div className="entry-time">{ entry.time_of_day }</div>
+        <div className="entry-main">
+          <div className="entry-top">
+          <h3 className="entry-title">{ entry.title }</h3>
+          <h4>{ entry.tags } </h4>
         </div>
-
+        <p className="entry-body">{ entry.body }</p>
+        </div>
       </div>
 
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
