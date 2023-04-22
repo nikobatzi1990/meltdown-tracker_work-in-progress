@@ -28,7 +28,9 @@ const Tags = (props) => {
       className = { className }
       type = { type } >
 
-      <Taglist />
+        {/* <div className="tags">
+        </div> */}
+          <Taglist />
 
       <Input 
         placeholder = "Type your new tag here"

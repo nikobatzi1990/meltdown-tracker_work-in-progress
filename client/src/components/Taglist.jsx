@@ -22,12 +22,12 @@ const Taglist = () => {
   }
   
   return ( 
-    <div>
-      <h6>Your Tags</h6>
+    <div className='tags'>
+      {/* <h6>Your Tags</h6> */}
       {
         tags.map((tag) => {
           return (
-            <span>{"   " + tag + "   " }</span>
+            <span className="tag">{"   " + tag + "   " }</span>
           )
         })
       }
