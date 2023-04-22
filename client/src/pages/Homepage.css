@@ -3,23 +3,24 @@ body {
   background-color: #F3E8CB;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around;  */
   min-height: 100vh;
 }
 
 .greeting {
   background-color: #99E1E5;
   margin: 0px;
-  padding: 10px;
+  padding: 15px;
+  padding-bottom: 0px;
+  display: flex;
 }
 
-h4 {
+p {
   margin: 5px;
 }
 
 .main {
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .tag-input {
@@ -42,6 +43,6 @@ h4 {
   gap: 20px;
 }
 
-button {
+.button {
   flex-grow: 1;
 }

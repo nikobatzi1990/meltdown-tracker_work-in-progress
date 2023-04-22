@@ -23,7 +23,6 @@ const Taglist = () => {
   
   return ( 
     <div className='tags'>
-      {/* <h6>Your Tags</h6> */}
       {
         tags.map((tag) => {
           return (

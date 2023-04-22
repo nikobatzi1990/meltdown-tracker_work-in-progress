@@ -21,8 +21,9 @@ const Homepage = () => {
   return (
     <div>
       <div className="greeting">
-        <h4>Hello, { user.email }! </h4>
+        <p>Hello, { user.email }! </p>
         <Button 
+          className="logout"
           text="Logout"
           onClick={ handleLogout } />
       </div>
@@ -39,12 +40,12 @@ const Homepage = () => {
             onClick = {() => navigate('/entries')} />
 
           <Button 
+            className="button"
             text = "Write New" 
             onClick = {() => navigate('/submission')} />
         </div>
       </div>
       <Footer className = "homepage-footer" text = "© 2023 Meltown Tracker"/>
-
     </div>
   )
 }
