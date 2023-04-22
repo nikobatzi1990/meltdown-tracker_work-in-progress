@@ -45,7 +45,7 @@ const Homepage = () => {
             onClick = {() => navigate('/submission')} />
         </div>
       </div>
-      <Footer className = "homepage-footer" text = "© 2023 Meltown Tracker"/>
+      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
     </div>
   )
 }

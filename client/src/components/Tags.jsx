@@ -32,7 +32,7 @@ const Tags = (props) => {
           <Taglist />
 
       <Input 
-        className="tag-input"
+        className="input tag-input"
         placeholder = "Type your new tag here"
         onChange = { handleTagInput }
         value = { newTag }

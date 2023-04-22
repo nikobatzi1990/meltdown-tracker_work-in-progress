@@ -61,22 +61,10 @@ const Submission = () => {
   return (
     <>
       <Header 
-        className="header" 
+        className="header entries-header" 
         text="Submission"/>
 
-      <div className="top">
-        <Input 
-          placeholder="Title"
-          value={ title }
-          onChange={ handleTitleInput }/>
-
-        <Input 
-          placeholder="Tags"
-          value={ tag }
-          onChange={ handleTagInput } />
-      </div>
-
-      <div className="center">
+      <div className="main">
         <div className="time-of-day">Time of Day
           <figure>
             <img 
@@ -101,19 +89,37 @@ const Submission = () => {
           </figure>
         </div>
 
-        <textarea 
-          className="entry-body"
-          placeholder="Type your entry here!"
-          value = { body }
-          cols="60" 
-          rows="30" 
-          onChange={ handleTextBody }>
-        </textarea>
+        <div className="submission">
+
+        <div className="top">
+          <Input 
+            className="title-input"
+            placeholder="Title"
+            value={ title }
+            onChange={ handleTitleInput }/>
+
+          <Input 
+            className="tag-input"
+            placeholder="Tags"
+            value={ tag }
+            onChange={ handleTagInput } />
       </div>
 
-      <Button 
-        text="Submit" 
-        onClick = { handleSubmission } />
+          <textarea 
+            className="entry-body"
+            placeholder="Type your entry here!"
+            value = { body }
+            cols="60" 
+            rows="30" 
+            onChange={ handleTextBody }>
+          </textarea>
+          <Button 
+            text="Submit" 
+            onClick = { handleSubmission } />
+          </div>
+        </div>
+
+
       <Footer 
         className="footer" 
         text="© 2023 Meltown Tracker"/>

@@ -1,3 +1,34 @@
 body {
   margin: 0px;
 }
+
+.top {
+  display: flex;
+  gap: 20px;
+}
+
+.main {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.time-of-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: blue;
+  text-align: center;
+}
+
+img {
+  width: 100px;
+}
+
+.entry-body {
+  background-color: blueviolet;
+  height: 300px;
+}

@@ -17,10 +17,3 @@ body {
   align-items: center;
   gap: 10px;
 }
-
-.login-input {
-  height: 20px;
-  width: 200px;
-  text-align: center;
-  border-radius: 5px;
-}

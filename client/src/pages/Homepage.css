@@ -23,12 +23,6 @@ p {
   justify-content: center;
 }
 
-.tag-input {
-  margin: 5px;
-  padding: 5px;
-  border-radius: 8px;
-}
-
 .tag-submit {
   margin: 5px;
 }

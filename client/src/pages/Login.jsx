@@ -28,12 +28,12 @@ const Login = () => {
 
   return (
     <div className="login">
-      <Header className = "header" text = "Login"/>
+      <Header className = "header login-header" text = "Login"/>
 
       <div className="inputs">
         <Input 
           htmlFor = "Email"
-          className = "login-input"
+          className = "input login-input"
           placeholder = "Enter your email here"
           value = { email }
           onChange = {(e) => {
@@ -42,7 +42,7 @@ const Login = () => {
 
         <Input 
           htmlFor = "Password"
-          className = "login-input"
+          className = "input login-input"
           placeholder = "Enter your password here"
           value = { password }
           onChange = {(e) => {
@@ -63,7 +63,7 @@ const Login = () => {
         </p>
       </div>
       
-      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
+      <Footer className = "login-footer" text = "© 2023 Meltown Tracker"/>
     </div>
   );
 };
