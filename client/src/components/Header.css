@@ -1,5 +1,18 @@
 .header {
-  margin: 0px;
-  padding: 20px;
   background-color: #99E1E5;
+  margin: 0px;
+  text-align: center;
+}
+
+.login-header {
+  padding: 50px;
+}
+
+.homepage-header {
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+}
+
+.entries-header {
+  padding: 30px;
 }

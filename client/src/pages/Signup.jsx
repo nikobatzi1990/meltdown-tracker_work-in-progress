@@ -27,13 +27,13 @@ const Signup = () => {
   }
 
   return (
-    <>
+    <div className="signup"> 
       <Header className = "header" text = "Signup"/>
 
-      <div className="signup">
+      <div className="inputs">
         <Input 
           htmlFor = "Username"
-          className = "input"
+          className = "signup-input"
           placeholder = "your nickname"
           value = { username }
           onChange = {(e) => {
@@ -41,7 +41,7 @@ const Signup = () => {
           }} />
         <Input 
           htmlFor = "Email"
-          className = "input"
+          className = "signup-input"
           placeholder = "youremail@domain.com"
           value = { email }
           onChange = {(e) => {
@@ -50,7 +50,7 @@ const Signup = () => {
 
         <Input 
           htmlFor = "Password"
-          className = "input"
+          className = "signup-input"
           placeholder = "your password"
           value = { password }
           onChange = {(e) => {
@@ -58,19 +58,19 @@ const Signup = () => {
           }} />
 
           <Button 
-          className = "submit"
+          className = "button"
           type = "submit"
           text ="Submit"
           onClick = { handleSignup }
           />
-      </div>
         <p>
           Already have an account? 
           <Link to = "/"> Log In! </Link>
         </p>
+      </div>
         
-      <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
-    </>
+      <Footer className = "login-footer" text = "© 2023 Meltown Tracker"/>
+    </div>
   );
 };
 

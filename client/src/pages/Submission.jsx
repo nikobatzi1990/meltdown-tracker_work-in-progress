@@ -61,23 +61,12 @@ const Submission = () => {
   return (
     <>
       <Header 
-        className="header" 
+        className="header entries-header" 
         text="Submission"/>
 
-      <div className="top">
-        <Input 
-          placeholder="Title"
-          value={ title }
-          onChange={ handleTitleInput }/>
-
-        <Input 
-          placeholder="Tags"
-          value={ tag }
-          onChange={ handleTagInput } />
-      </div>
-
-      <div className="center">
-        <div className="time-of-day">Time of Day
+      <div className="main-body">
+        <div className="time-of-day">
+          <p>Time of Day</p>
           <figure>
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
@@ -101,22 +90,40 @@ const Submission = () => {
           </figure>
         </div>
 
-        <textarea 
-          className="entry-body"
-          placeholder="Type your entry here!"
-          value = { body }
-          cols="60" 
-          rows="30" 
-          onChange={ handleTextBody }>
-        </textarea>
+        <div className="submission">
+          <div className="top">
+            <Input 
+              className="input title-input"
+              placeholder="Title"
+              value={ title }
+              onChange={ handleTitleInput }/>
+
+            <Input 
+              className="input"
+              placeholder="Tag"
+              value={ tag }
+              onChange={ handleTagInput } />
+          </div>
+          
+          <textarea 
+            className="entry-body"
+            placeholder="Type your entry here!"
+            value = { body }
+            cols="60" 
+            rows="30" 
+            onChange={ handleTextBody }>
+          </textarea>
+
+          <Button 
+            className="button"
+            text="Submit" 
+            onClick = { handleSubmission } />
+        </div>
       </div>
 
-      <Button 
-        text="Submit" 
-        onClick = { handleSubmission } />
       <Footer 
-        className="footer" 
-        text="© 2023 Meltown Tracker"/>
+      className="footer" 
+      text="© 2023 Meltown Tracker"/>
     </>
   );
 };

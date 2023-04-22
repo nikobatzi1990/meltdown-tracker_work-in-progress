@@ -1,3 +1,17 @@
 body {
   margin: 0px;
 }
+
+.main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.entries-wrapper {
+  margin: 10px;
+  padding: 20px;
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

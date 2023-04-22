@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -19,28 +19,34 @@ const Homepage = () => {
   }
   
   return (
-    <>
-      <h6>Hello, { user.email }! </h6>
-      <Header className = "header" text = "Homepage"/>
+    <div>
+      <div className="greeting">
+        <p>Hello, { user.email }! </p>
+        <Button 
+          className="button logout"
+          text="Logout"
+          onClick={ handleLogout } />
+      </div>
+
+      <Header className = "header homepage-header" text = "Homepage"/>
 
       <div className = "main">
         <Tags className = "tag-wrapper" />
 
-        <Button 
-          text = "See all Entries" 
-          onClick = {() => navigate('/entries')} />
+        <div className="buttons">
+          <Button 
+            className="button big-button"
+            text = "See all Entries" 
+            onClick = {() => navigate('/entries')} />
 
-        <Button 
-          text = "Write New" 
-          onClick = {() => navigate('/submission')} />
+          <Button 
+            className="button big-button"
+            text = "Write New" 
+            onClick = {() => navigate('/submission')} />
+        </div>
       </div>
-
-      <Button 
-          text="Logout"
-          onClick={ handleLogout } />
-
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>
-    </>
+    </div>
   )
 }
 

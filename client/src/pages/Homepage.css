@@ -1,16 +1,38 @@
 body {
+  margin: 0px;
   background-color: #F3E8CB;
   display: flex;
   flex-direction: column;
-  margin: 0px;
+  min-height: 100vh;
 }
 
-h6 {
+.greeting {
   background-color: #99E1E5;
   margin: 0px;
-  padding: 1px;
+  padding: 15px;
+  padding-bottom: 0px;
+  display: flex;
+}
+
+p {
+  margin: 5px;
 }
 
 .main {
   display: flex;
+  justify-content: center;
+}
+
+.tag-submit {
+  margin: 5px;
+}
+
+.buttons {
+  width: 400px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 20px;
 }
