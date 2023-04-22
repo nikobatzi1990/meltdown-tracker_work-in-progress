@@ -27,18 +27,19 @@ const Tags = (props) => {
     <div
       className = { className }
       type = { type } >
+      <h4>Your tags</h4>
 
-        {/* <div className="tags">
-        </div> */}
           <Taglist />
 
       <Input 
+        className="tag-input"
         placeholder = "Type your new tag here"
         onChange = { handleTagInput }
         value = { newTag }
         />
 
       <Button 
+        className="tag-submit"
         text = "Add New Tag"
         onClick = { addTag } />
 
