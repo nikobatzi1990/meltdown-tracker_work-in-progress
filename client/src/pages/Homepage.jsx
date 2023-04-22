@@ -28,7 +28,7 @@ const Homepage = () => {
           onClick={ handleLogout } />
       </div>
 
-      <Header className = "header" text = "Homepage"/>
+      <Header className = "header homepage-header" text = "Homepage"/>
 
       <div className = "main">
         <Tags className = "tag-wrapper" />

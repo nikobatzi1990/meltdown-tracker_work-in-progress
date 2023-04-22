@@ -10,15 +10,18 @@ const Entries = () => {
   
   return (
     <>
-      <Header className='header' text='All Entries'/>
+      <Header className='header entries-header' text='All Entries'/>
+      
+      <div className="main">
 
-      <Tags className='tag-wrapper' />
+        <Tags className='tag-wrapper entries-tags' />
 
-      <div className='entries-wrapper'>Your Entries
-
-        <EntryList />
+        <div className='entries-wrapper'>
+          <EntryList />
+        </div>
 
       </div>
+
       <Footer 
         className='footer' 
         text='© 2023 Meltown Tracker' />
