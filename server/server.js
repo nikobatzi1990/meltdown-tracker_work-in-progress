@@ -143,6 +143,7 @@ function setUpServer() {
         .from('posts')
         .where('users.UID', req.params.uid)
         .join('users', 'users.id', '=', 'posts.user_id')
+        .orderBy('id', 'desc')
       .then(result => {
         res.status(200).send(result);
       });
