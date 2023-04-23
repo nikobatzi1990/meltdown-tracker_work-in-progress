@@ -1,13 +1,13 @@
 body {
   margin: 0px;
-  background-color: #F3E8CB;
+  background-color: #D1EBFF;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .greeting {
-  background-color: #99E1E5;
+  background-color: #37CAEC;
   margin: 0px;
   padding: 15px;
   padding-bottom: 0px;

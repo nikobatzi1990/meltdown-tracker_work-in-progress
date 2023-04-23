@@ -1,7 +1,8 @@
 .login-footer {
   height: 60px;
   padding: 10px;
-  background-color: #FBAFAF; 
+  background-color: #125488; 
+  color: white;
   text-align: center;
   width: 100%;
 }
@@ -10,7 +11,8 @@
   margin-top: 10px;
   height: 30px;
   padding: 10px;
-  background-color: #FBAFAF; 
+  background-color: #125488; 
+  color: white;
   text-align: center;
   width: 100%;
   position: fixed;

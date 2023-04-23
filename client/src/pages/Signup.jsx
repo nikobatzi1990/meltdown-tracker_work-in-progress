@@ -28,7 +28,7 @@ const Signup = () => {
 
   return (
     <div className="signup"> 
-      <Header className = "header" text = "Signup"/>
+      <Header className = "header login-header" text = "Signup"/>
 
       <div className="inputs">
         <Input 
