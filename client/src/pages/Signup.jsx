@@ -33,6 +33,7 @@ const Signup = () => {
       <div className="inputs">
         <Input 
           htmlFor = "Username"
+          type="username"
           className = "signup-input"
           placeholder = "your nickname"
           value = { username }
@@ -41,6 +42,7 @@ const Signup = () => {
           }} />
         <Input 
           htmlFor = "Email"
+          type="email"
           className = "signup-input"
           placeholder = "youremail@domain.com"
           value = { email }
@@ -50,6 +52,7 @@ const Signup = () => {
 
         <Input 
           htmlFor = "Password"
+          type="password"
           className = "signup-input"
           placeholder = "your password"
           value = { password }
