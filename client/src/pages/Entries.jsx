@@ -10,7 +10,7 @@ const Entries = () => {
   
   return (
     <>
-      <Header className='header entries-header' text='All Entries'/>
+      <Header className='header entries-header' text='Meltdown Tracker'/>
       
       <div className="main">
 

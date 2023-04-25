@@ -24,7 +24,7 @@ const Entry = () => {
 
   return (
     <>
-      <Header className = "header entries-header" text = "Single Entry"/>
+      <Header className = "header entries-header" text = "Meltdown Tracker"/>
       
       <div className="entry">
         <div className="entry-time">{ entry.time_of_day }</div>
