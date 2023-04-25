@@ -3,20 +3,21 @@ body {
 }
 
 .main-body {
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
 .time-of-day {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: blue;
+  background-color: #2A93D5;
+  font-size: large;
   text-align: center;
 }
 
@@ -39,7 +40,6 @@ img {
 
 .entry-body {
   padding: 10px;
-  background-color: blueviolet;
   height: 350px;
   border-radius: 10px;
 }

@@ -31,7 +31,7 @@ const Entry = () => {
         <div className="entry-main">
           <div className="entry-top">
           <h3 className="entry-title">{ entry.title }</h3>
-          <h4>{ entry.tags } </h4>
+          <p>Tags: { entry.tag_name } </p>
         </div>
         <p className="entry-body">{ entry.body }</p>
         </div>

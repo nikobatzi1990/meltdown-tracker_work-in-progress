@@ -33,6 +33,7 @@ const Login = () => {
       <div className="inputs">
         <Input 
           htmlFor = "Email"
+          type="email"
           className = "input login-input"
           placeholder = "Enter your email here"
           value = { email }
@@ -42,6 +43,7 @@ const Login = () => {
 
         <Input 
           htmlFor = "Password"
+          type="password"
           className = "input login-input"
           placeholder = "Enter your password here"
           value = { password }
