@@ -62,7 +62,7 @@ const Submission = () => {
     <>
       <Header 
         className="header entries-header" 
-        text="Submission"/>
+        text="Meltdown Tracker"/>
 
       <div className="main-body">
         <div className="time-of-day">

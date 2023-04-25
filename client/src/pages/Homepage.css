@@ -3,7 +3,7 @@ body {
   background-color: #D1EBFF;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .greeting {
@@ -28,7 +28,8 @@ p {
 }
 
 .buttons {
-  width: 400px;
+  width: 500px;
+  max-height: 400px;
   margin: 20px;
   display: flex;
   flex-direction: column;
