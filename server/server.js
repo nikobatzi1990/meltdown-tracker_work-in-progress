@@ -154,13 +154,13 @@ function setUpServer() {
   });
 
   // endpoint for all entries that include specified tag
-  app.get('/api/entries/:tagId', async (req, res) => {
+  app.get('/api/entries/:tagName', async (req, res) => {
     try {
       const result = await knex.select('title', 'body')
       .from('posts')
       .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
       .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
-      .where('tag_to_post.tag_id', '=', req.params.tagId);
+      .where('tags.tag_name', '=', req.params.tagName);
       res.status(200).send(result);
 
     } catch (error) {
