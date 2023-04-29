@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./Submission.css";
+import "./Icons.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
@@ -92,6 +93,10 @@ const Submission = () => {
 
         <div className="submission">
           <div className="top">
+            <div className="light-bulb">
+              <span class="material-symbols-outlined">emoji_objects</span>
+            </div>
+
             <Input 
               className="input title-input"
               placeholder="Title"

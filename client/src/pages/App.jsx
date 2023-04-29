@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthContextProvider } from '../context/AuthContext';
 import ProtectedRoute from '../context/ProtectedRoute';
 import Signup from './Signup';
@@ -10,7 +10,6 @@ import SingleEntry from './SingleEntry';
 import Submission from './Submission';
 
 function App() {
-
 
   return (
     <div>

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const UserContext = createContext();
 
-// wraps children and gives access to values
 export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState({});
   
@@ -34,7 +33,6 @@ export const AuthContextProvider = ({children}) => {
   </UserContext.Provider>
 }
 
-// gives access to values in above wrapper
 export const UserAuth = () => {
   return useContext(UserContext);
 }

@@ -1,0 +1,19 @@
+.light-bulb {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}

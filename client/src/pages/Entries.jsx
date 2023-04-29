@@ -13,13 +13,11 @@ const Entries = () => {
       <Header className='header entries-header' text='Meltdown Tracker'/>
       
       <div className="main">
-
         <Tags className='tag-wrapper entries-tags' />
 
         <div className='entries-wrapper'>
           <EntryList />
         </div>
-
       </div>
 
       <Footer 
