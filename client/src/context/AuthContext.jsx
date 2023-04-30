@@ -30,7 +30,7 @@ export const AuthContextProvider = ({children}) => {
       sessionStorage.setItem('userData', JSON.stringify(newUser));
       return newUser;
     } else {
-      alert("Could not create an account, check your email and password and try again.");
+      alert("Could not create an account, check email and password and try again.");
       return false;
     }
   };
@@ -46,6 +46,9 @@ export const AuthContextProvider = ({children}) => {
       setUser(loggedIn);
       sessionStorage.setItem('userData', JSON.stringify(loggedIn));
       return loggedIn;
+    } else {
+      alert("User not found, check email and password and try again.");
+      return false;
     }
   };
 
