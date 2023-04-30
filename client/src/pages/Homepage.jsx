@@ -8,8 +8,7 @@ import Button from "../components/Button";
 import Tags from "../components/Tags";
 
 const Homepage = () => {
-  const { user } = UserAuth();
-  const { logoutUser } = UserAuth();
+  const { logoutUser, user } = UserAuth();
   const navigate = useNavigate();
 
   return (
