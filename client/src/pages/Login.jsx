@@ -10,7 +10,7 @@ import Button from "../components/Button";
 const Login = () => {
 
   const navigate = useNavigate();
-  const { loginUser, user } = UserAuth();
+  const { loginUser } = UserAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,7 +18,6 @@ const Login = () => {
     event.preventDefault();
     try {
       await loginUser(email, password);
-      console.log(`${user} is logged in!`)
       navigate('/home');
 
     } catch (error) {

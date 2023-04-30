@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./Homepage.css";
@@ -9,15 +8,9 @@ import Button from "../components/Button";
 import Tags from "../components/Tags";
 
 const Homepage = () => {
-  const { user } = UserAuth();
+  const { logoutUser, user } = UserAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async (event) => {
-    event.preventDefault();
-    await axios.post('/api/logout');
-    navigate('/');
-  }
-  
   return (
     <div>
       <div className="greeting">
@@ -25,7 +18,10 @@ const Homepage = () => {
         <Button 
           className="button logout"
           text="Logout"
-          onClick={ handleLogout } />
+          onClick={() => {
+            logoutUser();
+            navigate('/');
+          }} />
       </div>
 
       <Header className = "header homepage-header" text = "Meltdown Tracker"/>
