@@ -11,8 +11,18 @@ import {
 const UserContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('userData')));
   
+  useEffect(() => {
+    try {
+      if(JSON.parse(sessionStorage.getItem('userData'))) {
+        setUser(JSON.parse(sessionStorage.getItem('userData')));
+      }
+    } catch (error) {
+      console.log('🤪', error);
+    }
+  }, []);
+
   const createUser = async (username, email, password) => {
     const newUserInfo = {
       username: username,
