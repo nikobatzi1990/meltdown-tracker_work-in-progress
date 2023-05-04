@@ -1,62 +1,49 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import auth, { currentUser } from '../firebase'
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut,
+  onAuthStateChanged 
+} from 'firebase/auth';
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('userData')));
+  const [user, setUser] = useState({});
   
-  useEffect(() => {
-    try {
-      if(JSON.parse(sessionStorage.getItem('userData'))) {
-        setUser(JSON.parse(sessionStorage.getItem('userData')));
-      }
-    } catch (error) {
-      console.log('🤪', error);
-    }
-  }, []);
-
   const createUser = async (username, email, password) => {
     const newUserInfo = {
       username: username,
       email: email,
       password: password,
-      timestamp: new Date()
+      uid: null
     };
-    const newUser = await axios.post('/api/signup', newUserInfo)
-    .then(result => result.data.currentUser);
-    if (newUser) {
-      setUser(newUser);
-      sessionStorage.setItem('userData', JSON.stringify(newUser));
-      return newUser;
-    } else {
-      alert("Could not create an account, check email and password and try again.");
-      return false;
-    }
+
+    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+    newUserInfo.uid = newUser.user.uid;
+    await axios.post('/api/signup', newUserInfo);
+    return newUser;
   };
 
   const loginUser = async (email, password) => {
-    const userInfo = {
-      email: email,
-      password: password,
-    }
-    const loggedIn = await axios.post('/api/login', userInfo)
-      .then(result => result.data.currentUser);
-    if(loggedIn) {
-      setUser(loggedIn);
-      sessionStorage.setItem('userData', JSON.stringify(loggedIn));
-      return loggedIn;
-    } else {
-      alert("User not found, check email and password and try again.");
-      return false;
-    }
+    const loggedIn = signInWithEmailAndPassword(auth, email, password);
+    return loggedIn;
   };
 
-  const logoutUser =  async () => {
-    await axios.post('/api/logout');
-    setUser({});
-    sessionStorage.removeItem('userData');
+  const logoutUser = () => {
+    return signOut(auth);
   };
+
+  useEffect(() => {
+    const authenticatedUser = onAuthStateChanged(auth, 
+      (currentUser) => {
+        console.log('🫡', currentUser);
+        setUser(currentUser);
+      })
+      return authenticatedUser;
+  }, []);
 
   return <UserContext.Provider value={{ createUser, loginUser, logoutUser, user }}>
     {children}

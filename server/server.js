@@ -1,11 +1,6 @@
 const express = require('express');
 const knex = require('../database/knex');
-const auth  = require('./firebase/firebase')
 const path = require('path');
-const { 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
-  signOut } = require("firebase/auth");
 
 function setUpServer() {
   const app = express();
@@ -15,36 +10,35 @@ function setUpServer() {
 
   // signup endpoint
   app.post('/api/signup', async (req, res) => {
-    const { username, email, password, timestamp } = req.body;
-
+    const { username, email, uid } = req.body;
     try {
-      const newUser = await createUserWithEmailAndPassword(auth, email, password);
-      const uid = newUser.user.uid;
-      await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': timestamp });
-      res.status(200).send(auth);
+      // const newUser = await createUserWithEmailAndPassword(auth, email, password);
+      // const uid = newUser.user.uid;
+      await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': new Date() });
+      res.status(200).send("New User Created");
     } catch (error) {
       res.status(400).send(error);
     }
   });
   
-  // login endpoint
-  app.post('/api/login', async (req, res) => {
-    const { email, password } = req.body;
+  // // login endpoint
+  // app.post('/api/login', async (req, res) => {
+  //   const { email, password } = req.body;
     
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      res.status(200).send(auth);
-    } catch (error) {
-      res.status(400).send(error);
-    }
-  });
+  //   try {
+      
+  //     res.status(200).send(auth);
+  //   } catch (error) {
+  //     res.status(400).send(error);
+  //   }
+  // });
 
   // logout endpoint
-  app.post('/api/logout', async (req, res) => {
-    await signOut(auth)
-      .then(result => res.status(200).send(result))
-      .catch(error => res.status(400).send(error))
-  });
+  // app.post('/api/logout', async (req, res) => {
+  //   await signOut(auth)
+  //     .then(result => res.status(200).send(result))
+  //     .catch(error => res.status(400).send(error))
+  // });
   
   // endpoint for getting user created tags
   app.get('/api/:uid/tags', async (req, res) => {
