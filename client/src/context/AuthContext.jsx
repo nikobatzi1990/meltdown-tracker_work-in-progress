@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import auth, { currentUser } from '../firebase'
+import auth from '../firebase'
 import { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 

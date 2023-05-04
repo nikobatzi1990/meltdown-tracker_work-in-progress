@@ -21,25 +21,6 @@ function setUpServer() {
     }
   });
   
-  // // login endpoint
-  // app.post('/api/login', async (req, res) => {
-  //   const { email, password } = req.body;
-    
-  //   try {
-      
-  //     res.status(200).send(auth);
-  //   } catch (error) {
-  //     res.status(400).send(error);
-  //   }
-  // });
-
-  // logout endpoint
-  // app.post('/api/logout', async (req, res) => {
-  //   await signOut(auth)
-  //     .then(result => res.status(200).send(result))
-  //     .catch(error => res.status(400).send(error))
-  // });
-  
   // endpoint for getting user created tags
   app.get('/api/:uid/tags', async (req, res) => {
     const tagList = [];
