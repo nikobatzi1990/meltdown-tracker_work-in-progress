@@ -1,11 +1,6 @@
 const { initializeApp } = require("firebase/app") ;
 const { getAuth } = require("firebase/auth");
 
-// Path to process.env file
-require("dotenv").config({
-  path: "./.env",
-});
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAW5IgBueoYDBcipAsGfJ9rbhOI9otJkN4",
