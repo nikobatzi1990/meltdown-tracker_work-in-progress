@@ -8,6 +8,10 @@ function setUpServer() {
   app.use(express.static(path.resolve(__dirname, '../client/build')));
   app.use(express.json());
 
+  app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+  });
+
   // signup endpoint
   app.post('/api/signup', async (req, res) => {
     const { username, email, uid } = req.body;
