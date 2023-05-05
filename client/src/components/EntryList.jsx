@@ -11,7 +11,7 @@ const EntryList = () => {
 
   useEffect(() => {
     getEntries();
-  }, []);
+  });
 
   // handles getting user's entries
   async function getEntries() {
