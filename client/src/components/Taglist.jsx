@@ -10,7 +10,7 @@ const  { onClick }  = props;
 
   useEffect(() => {
     getTags();
-  }, []);
+  });
   
   async function getTags() {
     try {
