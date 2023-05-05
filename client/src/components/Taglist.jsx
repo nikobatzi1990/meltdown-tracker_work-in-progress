@@ -10,11 +10,13 @@ const  { onClick }  = props;
 
   useEffect(() => {
     getTags();
-  }, []);
+    console.log('tags: ', tags);
+  });
   
   async function getTags() {
     try {
       const fetchedTags = await axios.get(`/api/${user.uid}/tags`);
+      console.log('😤', fetchedTags.data);
       setTags(fetchedTags.data);
     } catch (error) {
       console.log('😁', error);

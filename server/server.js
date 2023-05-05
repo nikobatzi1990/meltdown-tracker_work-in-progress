@@ -9,15 +9,13 @@ function setUpServer() {
   app.use(express.json());
 
   app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+    res.sendFile(path.join(__dirname, '../client/public/index.html'))
   });
 
   // signup endpoint
   app.post('/api/signup', async (req, res) => {
     const { username, email, uid } = req.body;
     try {
-      // const newUser = await createUserWithEmailAndPassword(auth, email, password);
-      // const uid = newUser.user.uid;
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': new Date() });
       res.status(200).send("New User Created");
     } catch (error) {
