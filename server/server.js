@@ -16,8 +16,6 @@ function setUpServer() {
   app.post('/api/signup', async (req, res) => {
     const { username, email, uid } = req.body;
     try {
-      // const newUser = await createUserWithEmailAndPassword(auth, email, password);
-      // const uid = newUser.user.uid;
       await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': new Date() });
       res.status(200).send("New User Created");
     } catch (error) {
