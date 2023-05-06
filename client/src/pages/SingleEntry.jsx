@@ -18,7 +18,6 @@ const Entry = () => {
     try {
       const fetchedEntry = await axios.get(`/api/${entryId.entryId}/entry`);
       setEntry(fetchedEntry.data);
-      console.log('🤨', fetchedEntry.data);
       setDate(new Date(fetchedEntry.data.created_at)
         .toLocaleDateString(
           'en-gb',
@@ -28,7 +27,8 @@ const Entry = () => {
             day: 'numeric',
             hour: "numeric", 
             minute: "numeric", 
-            hour12: true
+            hour12: true,
+            timeZoneName: "long"
           })
         );
     } catch (error) {

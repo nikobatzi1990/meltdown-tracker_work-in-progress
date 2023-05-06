@@ -94,7 +94,7 @@ const Submission = () => {
         <div className="submission">
           <div className="top">
             <div className="light-bulb">
-              <span class="material-symbols-outlined">emoji_objects</span>
+              <span className="material-symbols-outlined">emoji_objects</span>
             </div>
 
             <Input 
