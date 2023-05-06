@@ -53,11 +53,16 @@ const Entry = () => {
         </div>
 
         <Button 
+          className="button"
           text="Back to Entries" />
 
-        <div className="edit">
-          <span class="material-symbols-outlined">edit</span> 
-        </div>
+        <Button 
+          className = "edit"
+          text= { <span className="material-symbols-outlined">edit</span> } />
+
+        <Button 
+          className = "trash"
+          text= { <span className="material-symbols-outlined">delete</span> } /> 
 
       </div>
 

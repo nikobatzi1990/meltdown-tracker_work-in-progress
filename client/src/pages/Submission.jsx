@@ -93,10 +93,11 @@ const Submission = () => {
 
         <div className="submission">
           <div className="top">
-            <div className="light-bulb">
-              <span className="material-symbols-outlined">emoji_objects</span>
-              <img></img>
-            </div>
+
+
+            <Button 
+            className = "light-bulb"
+            text= { <span className="material-symbols-outlined">emoji_objects</span> }/>
 
             <Input 
               className="input title-input"
