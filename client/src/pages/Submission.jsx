@@ -84,19 +84,25 @@ const Submission = () => {
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
               alt="a bird and the morning sky"
               onClick={ handleTimeOfDay } 
-              title="Morning" />
+              title="Morning (5am ~ 11am)" />
 
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
               alt="the sunny afternoon sky"
               onClick={ handleTimeOfDay } 
-              title="Afternoon"/>
+              title="Afternoon (11am ~ 5pm)"/>
+            
+            <img 
+              src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
+              alt="the orange, evening sky"
+              onClick={ handleTimeOfDay }
+              title="Evening (5pm ~ 8pm)" />
 
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
               alt="the night sky"
               onClick={ handleTimeOfDay } 
-              title="Night"/>
+              title="Night (8pm ~ 5am)" />
 
         </div>
 
