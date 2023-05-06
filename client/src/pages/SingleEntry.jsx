@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 
 const Entry = () => {
   const [entry, setEntry] = useState({});
+  const [date, setDate] = useState('');
   let entryId = useParams();
 
   useEffect(() => {
@@ -17,6 +18,19 @@ const Entry = () => {
     try {
       const fetchedEntry = await axios.get(`/api/${entryId.entryId}/entry`);
       setEntry(fetchedEntry.data);
+      console.log('🤨', fetchedEntry.data);
+      setDate(new Date(fetchedEntry.data.created_at)
+        .toLocaleDateString(
+          'en-gb',
+          {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: "numeric", 
+            minute: "numeric", 
+            hour12: true
+          })
+        );
     } catch (error) {
       console.log('👁️', error);
     }
@@ -30,10 +44,11 @@ const Entry = () => {
         <div className="entry-time">{ entry.time_of_day }</div>
         <div className="entry-main">
           <div className="entry-top">
-          <h3 className="entry-title">{ entry.title }</h3>
-          <p>Tags: { entry.tag_name } </p>
-        </div>
-        <p className="entry-body">{ entry.body }</p>
+            <p>{ date }</p>
+            <h3 className="entry-title">{ entry.title }</h3>
+            <p>Tags: { entry.tag_name } </p>
+          </div>
+          <p className="entry-body">{ entry.body }</p>
         </div>
       </div>
 
