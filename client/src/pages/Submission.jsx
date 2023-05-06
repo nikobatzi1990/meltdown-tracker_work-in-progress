@@ -16,6 +16,7 @@ const Submission = () => {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
+  const [isToggled, setIsToggled] = useState(false);
 
   const submissionData = { 
     uid: user.uid, 
@@ -49,6 +50,17 @@ const Submission = () => {
     event.preventDefault();
     const value = event.target.nextElementSibling.innerText;
     setTime(value);
+  }
+
+  const handleClassToggle = (event) => {
+    event.preventDefault();
+    if (isToggled === false) {
+      event.target.className = "toggled material-symbols-outlined"
+      setIsToggled(true);
+    } else {
+      event.target.className = "light-bulb material-symbols-outlined"
+      setIsToggled(false);
+    }
   }
 
   async function handleSubmission(event) {
@@ -93,15 +105,18 @@ const Submission = () => {
 
         <div className="submission">
           <div className="top">
-            <div className="light-bulb">
-              <span class="material-symbols-outlined">emoji_objects</span>
-            </div>
+
+
+            <Button 
+              className = "light-bulb material-symbols-outlined"
+              text= { <span>emoji_objects</span> }
+              onClick = { handleClassToggle } />
 
             <Input 
               className="input title-input"
               placeholder="Title"
               value={ title }
-              onChange={ handleTitleInput }/>
+              onChange={ handleTitleInput } />
 
             <Input 
               className="input"

@@ -11,9 +11,8 @@ const EntryList = () => {
 
   useEffect(() => {
     getEntries();
-  });
+  }, []);
 
-  // handles getting user's entries
   async function getEntries() {
     try {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`)

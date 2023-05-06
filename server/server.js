@@ -148,7 +148,7 @@ function setUpServer() {
         .from('posts')
         .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
         .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
-        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name')
+        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name', 'created_at')
         .where('posts.id', '=', req.params.entryId);
         res.status(200).send(entry[0])
 
@@ -193,7 +193,6 @@ function setUpServer() {
 
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-    console.log('🤪', 'IT FINALLY WORKED');
   });
   
   return app;
