@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./SingleEntry.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 
 const Entry = () => {
   const [entry, setEntry] = useState({});
@@ -50,6 +51,14 @@ const Entry = () => {
           </div>
           <p className="entry-body">{ entry.body }</p>
         </div>
+
+        <Button 
+          text="Back to Entries" />
+
+        <div className="edit">
+          <span class="material-symbols-outlined">edit</span> 
+        </div>
+
       </div>
 
       <Footer className = "footer" text = "© 2023 Meltown Tracker"/>

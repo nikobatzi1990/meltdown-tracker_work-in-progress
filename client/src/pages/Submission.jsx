@@ -95,6 +95,7 @@ const Submission = () => {
           <div className="top">
             <div className="light-bulb">
               <span className="material-symbols-outlined">emoji_objects</span>
+              <img></img>
             </div>
 
             <Input 
