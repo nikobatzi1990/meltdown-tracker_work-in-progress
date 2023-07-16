@@ -58,10 +58,12 @@ const Entry = () => {
 
         <Button 
           className = "edit"
+          title="Edit Post"
           text= { <span className="material-symbols-outlined">edit</span> } />
 
         <Button 
           className = "trash"
+          title="Delete Post"
           text= { <span className="material-symbols-outlined">delete</span> } /> 
 
       </div>

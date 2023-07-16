@@ -16,7 +16,7 @@ const Submission = () => {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
-  const [isToggled, setIsToggled] = useState(false);
+  const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = { 
     uid: user.uid, 
@@ -25,7 +25,7 @@ const Submission = () => {
     title: title, 
     body: body, 
     timeOfDay: time, 
-    flagged: false 
+    flagged: isFlagged 
   };
 
   const handleTitleInput = (event) => {
@@ -52,14 +52,14 @@ const Submission = () => {
     setTime(value);
   }
 
-  const handleClassToggle = (event) => {
+  const handleFlag = (event) => {
     event.preventDefault();
-    if (isToggled === false) {
+    if (isFlagged === false) {
       event.target.className = "toggled material-symbols-outlined"
-      setIsToggled(true);
+      setIsFlagged(true);
     } else {
       event.target.className = "light-bulb material-symbols-outlined"
-      setIsToggled(false);
+      setIsFlagged(false);
     }
   }
 
@@ -80,37 +80,41 @@ const Submission = () => {
       <div className="main-body">
         <div className="time-of-day">
           <p>Time of Day</p>
-          <figure>
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
               alt="a bird and the morning sky"
-              onClick={ handleTimeOfDay } />
-            <figcaption>Morning</figcaption>
-          </figure>
-          <figure>
+              onClick={ handleTimeOfDay } 
+              title="Morning (5am ~ 11am)" />
+
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
               alt="the sunny afternoon sky"
-              onClick={ handleTimeOfDay } />
-            <figcaption>Afternoon</figcaption>
-          </figure>
-          <figure >
+              onClick={ handleTimeOfDay } 
+              title="Afternoon (11am ~ 5pm)"/>
+            
+            <img 
+              src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
+              alt="the orange, evening sky"
+              onClick={ handleTimeOfDay }
+              title="Evening (5pm ~ 8pm)" />
+
             <img 
               src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
               alt="the night sky"
-              onClick={ handleTimeOfDay } />
-            <figcaption>Night</figcaption>
-          </figure>
+              onClick={ handleTimeOfDay } 
+              title="Night (8pm ~ 5am)" />
+
         </div>
 
         <div className="submission">
           <div className="top">
 
 
-            <Button 
+            <Button
+              title="Was this a significant event?" 
               className = "light-bulb material-symbols-outlined"
               text= { <span>emoji_objects</span> }
-              onClick = { handleClassToggle } />
+              onClick = { handleFlag } />
 
             <Input 
               className="input title-input"

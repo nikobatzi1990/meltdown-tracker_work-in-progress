@@ -10,7 +10,7 @@ body {
 }
 
 .time-of-day {
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,7 @@ body {
   background-color: #2A93D5;
   font-size: large;
   text-align: center;
+  gap: 10px;
 }
 
 img {
