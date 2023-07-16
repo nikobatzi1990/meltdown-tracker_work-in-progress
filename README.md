@@ -8,7 +8,10 @@
 
 1. [Project Description](#project-description)
 2. [Tech Stack](#tech-stack)
-3. [How to Use for Developers](#how-to-use-developers) 
+3. [Getting Started](#getting-started) 
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Deployment](#deployment)
 4. [License](#license)
 
 </details>
@@ -39,7 +42,9 @@ These instructions will get you a copy of the project up and running on your loc
 * [Node](https://nodejs.org/en)
 * [PostgreSQL](https://www.postgresql.org/)
 
-### Installing
+### Installation
+
+### Deployment
 
 ## License
 MIT License
