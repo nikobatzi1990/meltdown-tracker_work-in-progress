@@ -37,10 +37,10 @@ const  { onClick }  = props;
       {
         tags.map((tag) => {
           return (
-            <span 
+            <button 
               value={ tag }
               className="tag"
-              onClick = { clickTag } >{"   " + tag + "   " }</span>
+              onClick = { clickTag } >{"   " + tag + "   " }</button>
           )
         })
       }
