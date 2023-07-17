@@ -17,8 +17,6 @@
 </details>
 <br/>
 
-
-
 ## Product Description
 
 The Meltdown Tracker is a tool for parents of children with autism and is designed to help them keep track of the frequency of their child’s meltdowns along with any environmental factors that were present at the time. It can be difficult to pinpoint what exactly might cause a child with autism to suffer a meltdown since every child is different and will react differently to environmental stimuli. This is especially true when the child is non-verbal and can't easily communicate what is upsetting them. It will likely take a long time and many meltdowns before the parent is finally able to identify the trigger accurately. This application aims to make that process quicker by giving parents an easy way to keep track of incidents and notice patterns.
@@ -34,7 +32,6 @@ The Meltdown Tracker is a tool for parents of children with autism and is design
 | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) | Client-side Responsive Rendering |
 | ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) | Continuous Deployment |
 
-
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -43,6 +40,36 @@ These instructions will get you a copy of the project up and running on your loc
 * [PostgreSQL](https://www.postgresql.org/)
 
 ### Installation
+
+#### 1. Clone Repo to your Local Machine and Install Dependencies
+- Clone the repo to your local machine using the following command:
+```bash
+  git clone insert-your-SSH-URL-here
+```
+- Install the necessary dependencies by running the following command in the root repository:
+```bash
+  npm install && cd client && npm install
+```
+
+#### 2. Initialize a PostgreSQL Database
+- Run PostgreSQL in the terminal and create a new database with the following command:
+```bash
+  CREATE DATABASE <database_name_here>;
+```
+#### 3. Create .env files and .gitignore
+- Create a new .env file in the root repository and copy-paste the data from .env.example
+  - LOCAL_HOST= the host number (127.0.0.1 for "local host")
+  - LOCAL_PORT= your postgreSQL port number (default is 5432)
+  - LOCAL_USER= your postgreSQL username goes here
+  - LOCAL_PASSWORD= your postgreSQL password goes here
+  - LOCAL_DATABASE= the name you gave your postgreSQL database
+  - DATABASE_URL= (see [Deployment](#deployment))
+  - NODE_ENV= (see [Deployment](#deployment))
+
+#### 4. Setup a Firebase Project for User Authentication
+- Create a new [Firebase Project](https://firebase.google.com/) and register a new Web App to the project
+- Enable "Add Authentication with Email/Password sign-in."
+- In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
 
 ### Deployment
 
