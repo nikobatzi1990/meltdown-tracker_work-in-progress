@@ -1,6 +1,7 @@
 # Meltdown Tracker
 
-# [Deployed Application](https://solo-mvp-meltdown-trackers.onrender.com)
+#### [Deployed Application](https://solo-mvp-meltdown-trackers.onrender.com)
+Note: As of July 16th, 2023 the free 90-day deployment on Render has expired; I am currently working on re-deploying on Heroku.
 
 ## Table of Contents
 <details>
@@ -72,6 +73,7 @@ These instructions will get you a copy of the project up and running on your loc
 - In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
 
 ### Deployment
+Currently working on switching deployment from Render to Heroku.
 
 ## License
 MIT License
