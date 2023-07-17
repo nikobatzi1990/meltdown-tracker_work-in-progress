@@ -10,7 +10,7 @@ const  { onClick }  = props;
 
   useEffect(() => {
     getTags();
-  });
+  }, [tags]);
   
   async function getTags() {
     try {
@@ -37,10 +37,10 @@ const  { onClick }  = props;
       {
         tags.map((tag) => {
           return (
-            <span 
+            <button 
               value={ tag }
               className="tag"
-              onClick = { clickTag } >{"   " + tag + "   " }</span>
+              onClick = { clickTag } >{"   " + tag + "   " }</button>
           )
         })
       }
