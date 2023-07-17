@@ -65,9 +65,9 @@ const Submission = () => {
 
   async function handleSubmission(event) {
     event.preventDefault();
-    const previousTimesUsed = await axios.get(`/api/${submissionData.tagName}/timesUsed`);
+    const previousTimesUsed = await axios.get(`/api/tags/${submissionData.tagName}/timesUsed`);
     submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-    await axios.post('/api/submission', submissionData);
+    await axios.post('/api/entries/submission', submissionData);
     navigate('/entries');
   }
 

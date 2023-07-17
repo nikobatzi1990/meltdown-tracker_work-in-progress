@@ -34,7 +34,7 @@ function setUpServer() {
   });
 
   // endpoint for getting the number of times a tag has been used
-  app.get('/api/:tagName/timesUsed', async (req, res) => {
+  app.get('/api/tags/:tagName/timesUsed', async (req, res) => {
     let timesUsed;
     await knex.select('times_used').from('tags')
       .where('tag_name', req.params.tagName)
@@ -50,7 +50,7 @@ function setUpServer() {
   });
 
   // endpoint for posting a new tag
-  app.post('/api/tags', async (req, res) => {
+  app.post('/api/tags/newTag', async (req, res) => {
     const { tagName, uid } = req.body;
     try {
       const userId = await knex.select('id')
@@ -70,7 +70,7 @@ function setUpServer() {
   });
 
   // endpoint for posting a new entry submission
-  app.post('/api/submission', async (req, res) => {
+  app.post('/api/entries/submission', async (req, res) => {
     const { uid, tagName, timesUsed, title, body, timeOfDay, flagged } = req.body;
       const userId = await knex.select('id')
         .from('users')
@@ -142,7 +142,7 @@ function setUpServer() {
   });
 
   // endpoint for getting one entry by id
-  app.get('/api/:entryId/entry', async (req,res) => {
+  app.get('/api/entries/:entryId', async (req,res) => {
     try {
       const entry = await knex
         .from('posts')
@@ -158,7 +158,7 @@ function setUpServer() {
   });
 
   // endpoint for editing an entry by id
-  app.patch('/api/:entryId/entry', async (req, res) => {
+  app.patch('/api/entries/:entryId/edit', async (req, res) => {
     const { title, body, timeOfDay, flagged } = req.body;
 
     try {
@@ -179,7 +179,7 @@ function setUpServer() {
   });
 
   // endpoint for deleting an entry
-  app.delete('/api/:entryId/entry', async (req, res) => {
+  app.delete('/api/entries/:entryId/deletion', async (req, res) => {
     try {
       await knex('posts')
         .delete()
