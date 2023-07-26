@@ -27,7 +27,7 @@ const EntryList = () => {
       {
         entries.map((entry) => {
           return (
-            <div className="entries"onClick = {() => {
+            <div key = {entry.id} className="entries"onClick = {() => {
               navigate(`/entry/${entry.id}`)}}>
               <span>{ entry.title }</span>
               <p>{ entry.body }</p>

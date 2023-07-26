@@ -20,7 +20,7 @@ const Tags = (props) => {
       'tagName': newTag, 
       'uid': user.uid
     }
-    await axios.post('/api/tags', newTagData);
+    await axios.post('/api/tags/newTag', newTagData);
   }
 
   return (

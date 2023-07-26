@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './Entries.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
