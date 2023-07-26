@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./SingleEntry.css";
 import Header from '../components/Header';
@@ -10,6 +10,7 @@ const Entry = () => {
   const [entry, setEntry] = useState({});
   const [date, setDate] = useState('');
   let entryId = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getEntry();
@@ -54,7 +55,9 @@ const Entry = () => {
 
         <Button 
           className="button"
-          text="Back to Entries" />
+          text="Back to Entries" 
+          onClick = {() => {
+            navigate('/entries') }}/>
 
         <Button 
           className = "edit"
