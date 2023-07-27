@@ -18,7 +18,7 @@ const Entry = () => {
 
   async function getEntry() {
     try {
-      const fetchedEntry = await axios.get(`/api/entries/${entryId.entryId}`);
+      const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
       setEntry(fetchedEntry.data);
       setDate(new Date(fetchedEntry.data.created_at)
         .toLocaleDateString(
