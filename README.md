@@ -1,7 +1,7 @@
 # Meltdown Tracker
 
-#### [Deployed Application](https://solo-mvp-meltdown-trackers.onrender.com)
-Note: As of July 16th, 2023 the free 90-day deployment on Render has expired; I am currently working on re-deploying on Heroku.
+## [Deployed Application](https://meltdown-tracker-wip.onrender.com/) 
+##### Note: Please be patient; Render's free tier is pretty slow
 
 ## Table of Contents
 <details>
@@ -73,7 +73,12 @@ These instructions will get you a copy of the project up and running on your loc
 - In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
 
 ### Deployment
-Currently working on switching deployment from Render to Heroku.
+Create an account on [Render](https://render.com/), then click "New +" and select "Web Service". After naming your app, set the Build and Start commands to 'npm run build' and 'npm start', respectively.
+
+Once that's done, click "New +" again and this time select "PostgreSQL" and enter in the Name, Database, and User and click "Create Database" at the bottom of the page. Go to your Dashboard and click on the database. Scroll down and copy-paste the "Internal Database URL".
+
+Now you need to connect the web application and the database together. Go to your Dashboard and click on the web application. On the left side of the screen, click on "Environment" and then add "DATABASE_URL" as the key and the Internal Database URL you copied earlier as the value. Add a second Environment Variable "NODE_ENV" as a key and "production" as its value. 
+
 
 ## License
 MIT License
