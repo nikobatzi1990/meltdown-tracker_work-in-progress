@@ -14,7 +14,7 @@ const Entries = () => {
     <>
       <Header className='header entries-header' text="Meltdown Tracker"/>
 
-      <div>
+      <div className='root'>
         <div className='main'>
           <Tags className='tag-wrapper entries-tags' />
 
@@ -27,6 +27,11 @@ const Entries = () => {
               onClick = { () => {navigate('/submission')} } />
           </div>
         </div>
+        
+        <Button 
+          className="homepage___button button"
+          text="Homepage"
+          onClick = { () => {navigate('/home')} }/>
       </div> 
 
       <Footer 

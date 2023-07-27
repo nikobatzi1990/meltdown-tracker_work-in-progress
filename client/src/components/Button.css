@@ -17,6 +17,10 @@
   align-self: center;
 }
 
+.homepage___button {
+  align-self: center;
+}
+
 .submission__buttons {
   display: flex;
   gap: 15px;
