@@ -16,3 +16,8 @@
 .new__entry {
   align-self: center;
 }
+
+.submission__buttons {
+  display: flex;
+  gap: 15px;
+}

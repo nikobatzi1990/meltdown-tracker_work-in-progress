@@ -138,10 +138,17 @@ const Submission = () => {
             onChange={ handleTextBody }>
           </textarea>
 
-          <Button 
-            className="button"
-            text="Submit" 
-            onClick = { handleSubmission } />
+          <div className="submission__buttons">
+            <Button 
+              className="button"
+              text="Submit" 
+              onClick = { handleSubmission } />
+
+            <Button 
+              className="button"
+              text="Back to Entries" 
+              onClick = { () => {navigate('/entries')} } />
+          </div>
         </div>
       </div>
 
