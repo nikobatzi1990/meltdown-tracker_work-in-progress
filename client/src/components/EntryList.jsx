@@ -15,7 +15,7 @@ const EntryList = () => {
 
   async function getEntries() {
     try {
-      const fetchedEntries = await axios.get(`/api/${user.uid}/entries`)
+      const fetchedEntries = await axios.get(`/api/${user.uid}/entries`);
       setEntries(fetchedEntries.data);
     } catch (error) {
       console.log('👹', error);
@@ -27,7 +27,7 @@ const EntryList = () => {
       {
         entries.map((entry) => {
           return (
-            <div key = {entry.id} className="entries"onClick = {() => {
+            <div key = {entry.id} className="entries" onClick = {() => {
               navigate(`/entry/${entry.id}`)}}>
               <span>{ entry.title }</span>
               <p>{ entry.body }</p>

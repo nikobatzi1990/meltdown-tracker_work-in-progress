@@ -37,7 +37,7 @@ const Homepage = () => {
 
           <Button 
             className="button big-button"
-            text = "Write New" 
+            text = "Add New Entry" 
             onClick = {() => navigate('/submission')} />
         </div>
       </div>

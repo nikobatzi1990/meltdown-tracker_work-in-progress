@@ -142,7 +142,7 @@ function setUpServer() {
   });
 
   // endpoint for getting one entry by id
-  app.get('/api/entries/:entryId', async (req,res) => {
+  app.get('/api/entries/entry/:entryId', async (req,res) => {
     try {
       const entry = await knex
         .from('posts')
