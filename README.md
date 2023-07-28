@@ -1,7 +1,7 @@
 # Meltdown Tracker
 
 ## [Deployed Application](https://meltdown-tracker-wip.onrender.com/) 
-##### Note: Please be patient; Render's free tier is pretty slow
+##### Note: Please be patient; Render's free tier has pretty slow loading times
 
 ## Table of Contents
 <details>
@@ -73,12 +73,24 @@ These instructions will get you a copy of the project up and running on your loc
 - In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
 
 ### Deployment
-Create an account on [Render](https://render.com/), then click "New +" and select "Web Service". After naming your app, set the Build and Start commands to 'npm run build' and 'npm start', respectively.
+
+#### 1. Create New Web App
+
+Create an account on [Render](https://render.com/) if you don't have one, then click "New +" and select "Web Service". After naming your app and selecting which GitHub repo to connect it to, set the Build and Start commands to 'npm run build' and 'npm start', respectively.
+
+<img width="700" alt="build-and-start-comands" src="https://github.com/nikobatzi1990/meltdown-tracker_work-in-progress/assets/103890618/a2794588-05fc-4429-a5bc-6e58159f3c0a">
+
+#### 2. Create a new PostgreSQL Database & Set Environment Variables
 
 Once that's done, click "New +" again and this time select "PostgreSQL" and enter in the Name, Database, and User and click "Create Database" at the bottom of the page. Go to your Dashboard and click on the database. Scroll down and copy-paste the "Internal Database URL".
 
+<img width="700" alt="internal-db-url" src="https://github.com/nikobatzi1990/meltdown-tracker_work-in-progress/assets/103890618/df56b00d-0d68-4c34-bfe2-241010de032a">
+
+#### 3. Connect Web App and PostgreSQL Database
+
 Now you need to connect the web application and the database together. Go to your Dashboard and click on the web application. On the left side of the screen, click on "Environment" and then add "DATABASE_URL" as the key and the Internal Database URL you copied earlier as the value. Add a second Environment Variable "NODE_ENV" as a key and "production" as its value. 
 
+<img width="700" alt="enviromental-variables" src="https://github.com/nikobatzi1990/meltdown-tracker_work-in-progress/assets/103890618/a5f46cf8-0758-4198-9394-01fdab2afad3">
 
 ## License
 MIT License
