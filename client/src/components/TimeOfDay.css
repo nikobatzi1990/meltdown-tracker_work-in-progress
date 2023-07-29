@@ -1,0 +1,22 @@
+.time-of-day {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #2A93D5;
+  font-size: large;
+  text-align: center;
+  gap: 10px;
+}
+
+.time__input {
+  width: 100px;
+}
+
+input:focus {
+  border-style: solid;
+  border-color: rgb(86, 198, 200);
+  border-width: 3px;
+}

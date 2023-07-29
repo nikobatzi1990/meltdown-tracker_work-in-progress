@@ -49,7 +49,7 @@ const Submission = () => {
 
   const handleTimeOfDay = (event) => {
     event.preventDefault();
-    const value = event.target.className;
+    const value = event.target.id;
     setTime(value);
   }
 
@@ -86,9 +86,9 @@ const Submission = () => {
           <div className="top">
             <Button
               title="Was this a significant event?" 
-              className = "light-bulb material-symbols-outlined"
-              text= { <span>emoji_objects</span> }
-              onClick = { handleFlag } />
+              className="light-bulb material-symbols-outlined"
+              text= {<span>emoji_objects</span> }
+              onClick={ handleFlag } />
 
             <Input 
               className="input title-input"
@@ -106,7 +106,7 @@ const Submission = () => {
           <textarea 
             className="entry-body"
             placeholder="Type your entry here!"
-            value = { body }
+            value={ body }
             cols="60" 
             rows="30" 
             onChange={ handleTextBody }>
@@ -116,12 +116,12 @@ const Submission = () => {
             <Button 
               className="button"
               text="Submit" 
-              onClick = { handleSubmission } />
+              onClick={ handleSubmission } />
 
             <Button 
               className="button"
               text="Back to Entries" 
-              onClick = { () => {navigate('/entries')} } />
+              onClick={ () => {navigate('/entries')} } />
           </div>
         </div>
       </div>
