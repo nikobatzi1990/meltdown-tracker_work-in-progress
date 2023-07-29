@@ -19,3 +19,10 @@ img {
   border-style: solid;
   border-color: red;
 }
+
+.time__button {
+  width: 100px;
+  height: 93px;
+  background-size: 100%;
+  /* padding: 0px; */
+}

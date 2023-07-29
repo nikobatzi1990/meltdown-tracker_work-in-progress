@@ -5,40 +5,45 @@ const TimeOfDay = (props) => {
   const { onClick } = props;
   
   return (
-    <div className="time-of-day">
+    <div className="time-of-day" alt="Time of Day Selection">
       <p>Time of Day</p>
-        <button
-          className="Morning"
-          onClick={ onClick } >
-          <img
-            src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" 
-            alt="a bird and the morning sky" 
-            title="Morning (5am ~ 11am)" />
-        </button>
-        <button
-            className="Afternoon"
-            onClick={ onClick } >
-          <img 
-            src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
-            alt="the sunny afternoon sky"
-            title="Afternoon (11am ~ 5pm)" />
-        </button>
-        <button
-          className="Evening"
-          onClick={ onClick }>
-          <img 
-            src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
-            alt="the orange, evening sky"
-            title="Evening (5pm ~ 8pm)" />
-        </button>
-        <button
-          className="Night"
-          onClick={ onClick } >
-          <img 
-            src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
-            alt="the night sky"
-            title="Night (8pm ~ 5am)" />
-        </button>
+
+        <input
+          type="image"
+          id="Morning"
+          className="time__button"
+          onClick={ onClick } 
+          alt="Morning"
+          title="Morning (5am ~ 11am)"
+          src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png" />
+
+        <input
+          type="image"
+          id="Afternoon"
+          className="time__button"
+          onClick={ onClick }
+          src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
+          alt="Afternoon"
+          title="Afternoon (11am ~ 5pm)" />
+
+        <input
+          type="image"
+          id="Evening"
+          className="time__button"
+          onClick={ onClick }
+          src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
+          alt="Evening"
+          title="Evening (5pm ~ 8pm)" />
+
+        <input
+          type="image"
+          id="Night"
+          className="time__button"
+          onClick={ onClick } 
+          src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
+          alt="Night"
+          title="Night (8pm ~ 5am)" />
+    
     </div>
   )
 };

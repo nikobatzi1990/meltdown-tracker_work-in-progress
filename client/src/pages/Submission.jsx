@@ -56,8 +56,8 @@ const Submission = () => {
     // } else if (isSelected === true) {
     //   event.target.className = "selected";
     // }
-    const value = event.target.className;
-    console.log('value:', value)
+    const value = event.target.id;
+    console.log(value)
     setTime(value);
   }
 
