@@ -18,6 +18,8 @@ const Submission = () => {
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
   const [isFlagged, setIsFlagged] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+ 
 
   const submissionData = { 
     uid: user.uid, 
@@ -49,7 +51,13 @@ const Submission = () => {
 
   const handleTimeOfDay = (event) => {
     event.preventDefault();
+    // if (isSelected === false) {
+    //   setIsSelected(true);
+    // } else if (isSelected === true) {
+    //   event.target.className = "selected";
+    // }
     const value = event.target.className;
+    console.log('value:', value)
     setTime(value);
   }
 
@@ -86,9 +94,9 @@ const Submission = () => {
           <div className="top">
             <Button
               title="Was this a significant event?" 
-              className = "light-bulb material-symbols-outlined"
-              text= { <span>emoji_objects</span> }
-              onClick = { handleFlag } />
+              className="light-bulb material-symbols-outlined"
+              text= {<span>emoji_objects</span> }
+              onClick={ handleFlag } />
 
             <Input 
               className="input title-input"
@@ -106,7 +114,7 @@ const Submission = () => {
           <textarea 
             className="entry-body"
             placeholder="Type your entry here!"
-            value = { body }
+            value={ body }
             cols="60" 
             rows="30" 
             onChange={ handleTextBody }>
@@ -116,12 +124,12 @@ const Submission = () => {
             <Button 
               className="button"
               text="Submit" 
-              onClick = { handleSubmission } />
+              onClick={ handleSubmission } />
 
             <Button 
               className="button"
               text="Back to Entries" 
-              onClick = { () => {navigate('/entries')} } />
+              onClick={ () => {navigate('/entries')} } />
           </div>
         </div>
       </div>

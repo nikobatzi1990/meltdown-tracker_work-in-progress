@@ -9,23 +9,6 @@ body {
   align-items: center;
 }
 
-.time-of-day {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #2A93D5;
-  font-size: large;
-  text-align: center;
-  gap: 10px;
-}
-
-img {
-  width: 100px;
-}
-
 .submission {
   display: flex;
   flex-direction: column;
