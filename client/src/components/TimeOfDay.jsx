@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TimeOfDay.css";
 
 const TimeOfDay = (props) => {
@@ -11,7 +11,7 @@ const TimeOfDay = (props) => {
         <input
           type="image"
           id="Morning"
-          className="time__button"
+          className="time__input"
           onClick={ onClick } 
           alt="Morning"
           title="Morning (5am ~ 11am)"
@@ -20,7 +20,7 @@ const TimeOfDay = (props) => {
         <input
           type="image"
           id="Afternoon"
-          className="time__button"
+          className="time__input"
           onClick={ onClick }
           src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
           alt="Afternoon"
@@ -29,7 +29,7 @@ const TimeOfDay = (props) => {
         <input
           type="image"
           id="Evening"
-          className="time__button"
+          className="time__input"
           onClick={ onClick }
           src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
           alt="Evening"
@@ -38,7 +38,7 @@ const TimeOfDay = (props) => {
         <input
           type="image"
           id="Night"
-          className="time__button"
+          className="time__input"
           onClick={ onClick } 
           src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
           alt="Night"

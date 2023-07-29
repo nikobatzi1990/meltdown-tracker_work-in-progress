@@ -18,8 +18,6 @@ const Submission = () => {
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
   const [isFlagged, setIsFlagged] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
- 
 
   const submissionData = { 
     uid: user.uid, 
@@ -51,13 +49,7 @@ const Submission = () => {
 
   const handleTimeOfDay = (event) => {
     event.preventDefault();
-    // if (isSelected === false) {
-    //   setIsSelected(true);
-    // } else if (isSelected === true) {
-    //   event.target.className = "selected";
-    // }
     const value = event.target.id;
-    console.log(value)
     setTime(value);
   }
 
