@@ -57,10 +57,10 @@ const Submission = () => {
   const handleFlag = (event) => {
     event.preventDefault();
     if (isFlagged === false) {
-      event.target.className = "toggled material-symbols-outlined"
+      event.target.className = "filled material-symbols-outlined"
       setIsFlagged(true);
     } else {
-      event.target.className = "light-bulb material-symbols-outlined"
+      event.target.className = "material-symbols-outlined"
       setIsFlagged(false);
     }
   }
@@ -87,7 +87,7 @@ const Submission = () => {
           <div className="top">
             
             <LightBulb 
-              className="light-bulb material-symbols-outlined"
+              className="material-symbols-outlined"
               onClick={ handleFlag }
               title="Was this a significant event?"
                />
