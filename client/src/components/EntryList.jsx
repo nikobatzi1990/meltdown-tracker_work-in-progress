@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
 import './EntryList.css';
+import LightBulb from './LightBulb';
 
 const EntryList = () => {
   const { user } = UserAuth();
@@ -27,10 +28,17 @@ const EntryList = () => {
       {
         entries.map((entry) => {
           return (
-            <div key = {entry.id} className="entries" onClick = {() => {
-              navigate(`/entry/${entry.id}`)}}>
-              <span>{ entry.title }</span>
-              <p>{ entry.body }</p>
+            <div 
+              key = {entry.id} 
+              className="entries" 
+              onClick = { () => {navigate(`/entry/${entry.id}`)} } >
+                {
+                  entry.flagged
+                  ? (<LightBulb className="filled material-symbols-outlined" title="This was a significant event!" alt="Significant Event"/>)
+                  : <></>
+                }
+                <span>{ entry.title }</span>
+                <p>{ entry.body }</p>
             </div>
           )
         })

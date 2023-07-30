@@ -5,6 +5,7 @@ import "./SingleEntry.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import LightBulb from '../components/LightBulb';
 
 const Entry = () => {
   const [entry, setEntry] = useState({});
@@ -42,11 +43,17 @@ const Entry = () => {
     <>
       <Header className = "header entries-header" text = "Meltdown Tracker"/>
       
+      
       <div className="entry">
         <div className="entry-time">{ entry.time_of_day }</div>
         <div className="entry-main">
           <div className="entry-top">
             <p>{ date }</p>
+            {
+              entry.flagged
+              ? (<LightBulb className="filled material-symbols-outlined" title="This was a significant event!" alt="Significant Event"/>)
+              : <></>
+            }
             <h3 className="entry-title">{ entry.title }</h3>
             <p>Tags: { entry.tag_name } </p>
           </div>

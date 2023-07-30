@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
+import LightBulb from "../components/LightBulb";
 
 const Submission = () => {
   const { user } = UserAuth();
@@ -56,10 +57,10 @@ const Submission = () => {
   const handleFlag = (event) => {
     event.preventDefault();
     if (isFlagged === false) {
-      event.target.className = "toggled material-symbols-outlined"
+      event.target.className = "filled material-symbols-outlined"
       setIsFlagged(true);
     } else {
-      event.target.className = "light-bulb material-symbols-outlined"
+      event.target.className = "material-symbols-outlined"
       setIsFlagged(false);
     }
   }
@@ -84,11 +85,12 @@ const Submission = () => {
         
         <div className="submission">
           <div className="top">
-            <Button
-              title="Was this a significant event?" 
-              className="light-bulb material-symbols-outlined"
-              text= {<span>emoji_objects</span> }
-              onClick={ handleFlag } />
+            
+            <LightBulb 
+              className="material-symbols-outlined"
+              onClick={ handleFlag }
+              title="Was this a significant event?"
+               />
 
             <Input 
               className="input title-input"
