@@ -34,7 +34,7 @@ const EntryList = () => {
               onClick = { () => {navigate(`/entry/${entry.id}`)} } >
                 {
                   entry.flagged
-                  ? (<LightBulb className="filled material-symbols-outlined"/>)
+                  ? (<LightBulb className="filled material-symbols-outlined" title="This was a significant event!" alt="Significant Event"/>)
                   : <></>
                 }
                 <span>{ entry.title }</span>

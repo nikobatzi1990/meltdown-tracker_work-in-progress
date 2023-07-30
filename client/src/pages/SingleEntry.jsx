@@ -51,7 +51,7 @@ const Entry = () => {
             <p>{ date }</p>
             {
               entry.flagged
-              ? (<LightBulb className="filled material-symbols-outlined"/>)
+              ? (<LightBulb className="filled material-symbols-outlined" title="This was a significant event!" alt="Significant Event"/>)
               : <></>
             }
             <h3 className="entry-title">{ entry.title }</h3>
