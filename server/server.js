@@ -112,7 +112,7 @@ function setUpServer() {
   app.get('/api/:uid/entries', async (req, res) => {
     
     try {
-      await knex.select('posts.id', 'title', 'body')
+      await knex.select('posts.id', 'title', 'body', 'flagged')
         .from('posts')
         .where('users.UID', req.params.uid)
         .join('users', 'users.id', '=', 'posts.user_id')

@@ -5,6 +5,7 @@ import "./SingleEntry.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import LightBulb from '../components/LightBulb';
 
 const Entry = () => {
   const [entry, setEntry] = useState({});
@@ -41,6 +42,12 @@ const Entry = () => {
   return (
     <>
       <Header className = "header entries-header" text = "Meltdown Tracker"/>
+      
+      {
+        entry.flagged
+        ? (<LightBulb className="filled material-symbols-outlined"/>)
+        : <></>
+      }
       
       <div className="entry">
         <div className="entry-time">{ entry.time_of_day }</div>
