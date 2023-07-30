@@ -43,17 +43,17 @@ const Entry = () => {
     <>
       <Header className = "header entries-header" text = "Meltdown Tracker"/>
       
-      {
-        entry.flagged
-        ? (<LightBulb className="filled material-symbols-outlined"/>)
-        : <></>
-      }
       
       <div className="entry">
         <div className="entry-time">{ entry.time_of_day }</div>
         <div className="entry-main">
           <div className="entry-top">
             <p>{ date }</p>
+            {
+              entry.flagged
+              ? (<LightBulb className="filled material-symbols-outlined"/>)
+              : <></>
+            }
             <h3 className="entry-title">{ entry.title }</h3>
             <p>Tags: { entry.tag_name } </p>
           </div>
