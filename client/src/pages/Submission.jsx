@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
+import LightBulb from "../components/LightBulb";
 
 const Submission = () => {
   const { user } = UserAuth();
@@ -84,11 +85,12 @@ const Submission = () => {
         
         <div className="submission">
           <div className="top">
-            <Button
-              title="Was this a significant event?" 
+            
+            <LightBulb 
               className="light-bulb material-symbols-outlined"
-              text= {<span>emoji_objects</span> }
-              onClick={ handleFlag } />
+              onClick={ handleFlag }
+              title="Was this a significant event?"
+               />
 
             <Input 
               className="input title-input"
