@@ -33,15 +33,15 @@ const  { onClick }  = props;
   }
 
   return ( 
-    <div key = 'tag__list' className='tags'>
+    <div className='tags'>
       {
         tags.map((tag) => {
           return (
             <button 
-              key = {tag.id}
+              key={ tag }
               value={ tag }
               className="tag"
-              onClick = { clickTag } >{"   " + tag + "   " }</button>
+              onClick={ clickTag } >{"   " + tag + "   " }</button>
           )
         })
       }

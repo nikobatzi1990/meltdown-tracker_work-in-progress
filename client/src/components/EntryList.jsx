@@ -29,9 +29,9 @@ const EntryList = () => {
         entries.map((entry) => {
           return (
             <div 
-              key = {entry.id} 
+              key={ entry.id } 
               className="entries" 
-              onClick = { () => {navigate(`/entry/${entry.id}`)} } >
+              onClick={ () => {navigate(`/entry/${entry.id}`)} } >
                 {
                   entry.flagged
                   ? (<LightBulb className="filled material-symbols-outlined" title="This was a significant event!" alt="Significant Event"/>)
