@@ -39,6 +39,11 @@ const Entry = () => {
     }
   }
 
+  const handlePostDeletion = async () => {
+    await axios.delete(`/api/entries/${entryId.entryId}/deletion`);
+    navigate('/entries');
+  }
+
   return (
     <>
       <Header className = "header entries-header" text = "Meltdown Tracker"/>
@@ -74,7 +79,8 @@ const Entry = () => {
         <Button 
           className = "trash"
           title="Delete Post"
-          text= { <span className="material-symbols-outlined">delete</span> } /> 
+          text= { <span className="material-symbols-outlined">delete</span> } 
+          onClick={ handlePostDeletion }/> 
 
       </div>
 
