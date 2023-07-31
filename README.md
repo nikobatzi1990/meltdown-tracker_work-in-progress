@@ -67,7 +67,13 @@ These instructions will get you a copy of the project up and running on your loc
   - DATABASE_URL= (see [Deployment](#deployment))
   - NODE_ENV= (see [Deployment](#deployment))
 
-#### 4. Setup a Firebase Project for User Authentication
+#### 4. Run migrations
+- In the terminal, run the following command to run the database migrations. This is populate the database you created in Step 3 with tables. Make sure you are in the root repository when you run this:
+```bash
+npm run migrate
+```
+
+#### 5. Setup a Firebase Project for User Authentication
 - Create a new [Firebase Project](https://firebase.google.com/) and register a new Web App to the project
 - Enable "Add Authentication with Email/Password sign-in."
 - In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
