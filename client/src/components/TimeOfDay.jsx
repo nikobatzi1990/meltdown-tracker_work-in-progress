@@ -1,5 +1,5 @@
 import React from "react";
-import "./TimeOfDay.css";
+import "./styles/TimeOfDay.css";
 
 const TimeOfDay = (props) => {
   const { onClick } = props;

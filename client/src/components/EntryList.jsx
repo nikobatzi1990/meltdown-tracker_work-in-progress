@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
-import './EntryList.css';
+import './styles/EntryList.css';
 import LightBulb from './LightBulb';
 
 const EntryList = () => {
