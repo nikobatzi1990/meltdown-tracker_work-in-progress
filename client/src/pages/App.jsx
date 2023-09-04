@@ -8,6 +8,7 @@ import Homepage from './Homepage';
 import Entries from './Entries';
 import SingleEntry from './SingleEntry';
 import Submission from './Submission';
+import EditSubmission from './EditSubmission';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path = "/entries" element = {<ProtectedRoute><Entries/></ProtectedRoute>}></Route>
           <Route path =  "/entry/:entryId" element = {<ProtectedRoute><SingleEntry/></ProtectedRoute>}></Route>
           <Route path = "/submission" element = {<ProtectedRoute><Submission/></ProtectedRoute>}></Route>
+          <Route path = "/entry/:entryId/edited" element = {<ProtectedRoute><EditSubmission/></ProtectedRoute>}></Route>
         </Routes>
       </AuthContextProvider>
     </div>
