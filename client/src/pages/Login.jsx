@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./Login.css";
+import "./styles/Login.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Input from '../components/Input';

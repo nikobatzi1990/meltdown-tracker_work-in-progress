@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './EditSubmission.css';
+import './styles/EditSubmission.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
