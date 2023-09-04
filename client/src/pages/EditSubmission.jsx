@@ -7,11 +7,14 @@ import Footer from "../components/Footer";
 
 const EditSubmission = () => {
   const navigate = useNavigate();
+  const entryId = useParams();
+
+  const [entry, setEntry] = useState({});
 
   return (
     <>
-      <Header className="header"/>
-      <Footer className="footer"/>
+      <Header className="header" text = "Meltdown Tracker"/>
+      <Footer className="footer" text = "© 2023 Meltown Tracker"/>
     </>
   );
 }

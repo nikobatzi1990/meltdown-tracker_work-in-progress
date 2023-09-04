@@ -74,7 +74,10 @@ const Entry = () => {
         <Button 
           className = "edit"
           title="Edit Post"
-          text= { <span className="material-symbols-outlined">edit</span> } />
+          text= { <span className="material-symbols-outlined">edit</span> } 
+          onClick={() => {
+            navigate(`/entry/${entryId.entryId}/edited`)
+          }}/>
 
         <Button 
           className = "trash"
