@@ -11,6 +11,16 @@ const EditSubmission = () => {
 
   const [entry, setEntry] = useState({});
 
+  useEffect(() => {
+    getEntry();
+    console.log(entry);
+  }, []);
+
+  const getEntry = async () => {
+    const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+    setEntry(fetchedEntry.data);
+  }
+
   return (
     <>
       <Header className="header" text = "Meltdown Tracker"/>
