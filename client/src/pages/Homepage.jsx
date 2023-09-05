@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./Homepage.css";
+import "./styles/Homepage.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from "../components/Button";

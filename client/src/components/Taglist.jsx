@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
-import './Taglist.css';
+import './styles/Taglist.css';
 
 const Taglist = (props) => {
-const  { onClick }  = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
 

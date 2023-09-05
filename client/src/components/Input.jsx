@@ -1,5 +1,5 @@
 import React from "react";
-import "./Input.css";
+import "./styles/Input.css";
 
 const Input = (props) => {
   const { className, htmlFor, placeholder, type, value, onChange, onSubmit } = props;

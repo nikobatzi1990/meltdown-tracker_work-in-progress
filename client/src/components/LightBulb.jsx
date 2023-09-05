@@ -1,5 +1,5 @@
 import React from "react";
-import './LightBulb.css';
+import './styles/LightBulb.css';
 import Button from "./Button";
 
 const LightBulb = (props) => {

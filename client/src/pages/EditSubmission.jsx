@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 import { UserAuth } from "../context/AuthContext";
-import "./styles/Submission.css";
-import "./styles/Icons.css";
+import axios from 'axios';
+import './styles/EditSubmission.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
@@ -11,23 +10,41 @@ import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
 import LightBulb from "../components/LightBulb";
 
-const Submission = () => {
+const EditSubmission = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
+
+  const entryId = useParams();
+  const [entry, setEntry] = useState({});
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
   const [isFlagged, setIsFlagged] = useState(false);
+  const [classname, setClassname] = useState("");
 
-  const submissionData = { 
+  const getEntry = async () => {
+  const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+  setEntry(fetchedEntry.data);
+  }
+
+  useEffect(() => {
+    getEntry();
+    setTitle(`${entry.title}`);
+    setBody(`${entry.body}`);
+    setTag(`${entry.tag_name}`);
+    setTime(`${entry.time_of_day}`);
+    setIsFlagged(`${entry.flagged}`);
+  }, []);
+
+
+  const editedData = {
     uid: user.uid, 
     tagName: tag, 
-    timesUsed: 0, 
     title: title, 
     body: body, 
     timeOfDay: time, 
-    flagged: isFlagged 
+    flagged: isFlagged,
   };
 
   const handleTitleInput = (event) => {
@@ -54,6 +71,14 @@ const Submission = () => {
     setTime(value);
   }
 
+  const handleInitialFlag = () => {
+    if (isFlagged === true) {
+      setClassname("filled material-symbols-outlined");
+    } else {
+      setClassname("material-symbols-outlined");
+    }
+  }
+
   const handleFlag = (event) => {
     event.preventDefault();
     if (isFlagged === false) {
@@ -65,13 +90,10 @@ const Submission = () => {
     }
   }
 
-  async function handleSubmission(event) {
-    event.preventDefault();
-    const previousTimesUsed = await axios.get(`/api/tags/${submissionData.tagName}/timesUsed`);
-    submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-    await axios.post('/api/entries/submission', submissionData);
-    navigate('/entries');
-  }
+  useEffect(() => {
+    handleInitialFlag();
+    console.log(classname);
+  }, []);
 
   return (
     <>
@@ -87,7 +109,7 @@ const Submission = () => {
           <div className="top">
             
             <LightBulb 
-              className="material-symbols-outlined"
+              className={ classname }
               onClick={ handleFlag }
               title="Was this a significant event?"
                />
@@ -118,7 +140,7 @@ const Submission = () => {
             <Button 
               className="button"
               text="Submit" 
-              onClick={ handleSubmission } />
+              />
 
             <Button 
               className="button"
@@ -133,6 +155,6 @@ const Submission = () => {
       text="© 2023 Meltown Tracker"/>
     </>
   );
-};
+}
 
-export default Submission;
+export default EditSubmission;

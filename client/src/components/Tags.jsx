@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
-import "./Tags.css";
+import "./styles/Tags.css";
 import Button from "./Button";
 import Input from "./Input";
 import Taglist from "./Taglist";
