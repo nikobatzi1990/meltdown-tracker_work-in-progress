@@ -23,29 +23,28 @@ const EditSubmission = () => {
   const [isFlagged, setIsFlagged] = useState(false);
   const [classname, setClassname] = useState("");
 
-  const getEntry = async () => {
-  const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
-  setEntry(fetchedEntry.data);
-  }
+  const editedData = {
+    title: title, 
+    body: body, 
+    timeOfDay: time, 
+    flagged: isFlagged
+  };
 
   useEffect(() => {
-    getEntry();
+    const fetchEntry = async () => {
+      const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+      setEntry(fetchedEntry.data);
+    }
+    fetchEntry();
+  }, []);
+
+  useEffect(() => {
     setTitle(`${entry.title}`);
     setBody(`${entry.body}`);
     setTag(`${entry.tag_name}`);
     setTime(`${entry.time_of_day}`);
     setIsFlagged(`${entry.flagged}`);
-  }, []);
-
-
-  const editedData = {
-    uid: user.uid, 
-    tagName: tag, 
-    title: title, 
-    body: body, 
-    timeOfDay: time, 
-    flagged: isFlagged,
-  };
+  }, [entry]);
 
   const handleTitleInput = (event) => {
     event.preventDefault();
@@ -88,6 +87,11 @@ const EditSubmission = () => {
       event.target.className = "material-symbols-outlined"
       setIsFlagged(false);
     }
+  }
+
+  const handleSubmission = async () => {
+    await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
+    navigate('/entries');
   }
 
   useEffect(() => {
@@ -140,6 +144,7 @@ const EditSubmission = () => {
             <Button 
               className="button"
               text="Submit" 
+              onClick={ handleSubmission }
               />
 
             <Button 
