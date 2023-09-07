@@ -23,21 +23,6 @@ const EditSubmission = () => {
   const [isFlagged, setIsFlagged] = useState(false);
   const [classname, setClassname] = useState("");
 
-  const getEntry = async () => {
-  const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
-  setEntry(fetchedEntry.data);
-  }
-
-  useEffect(() => {
-    getEntry();
-    setTitle(`${entry.title}`);
-    setBody(`${entry.body}`);
-    setTag(`${entry.tag_name}`);
-    setTime(`${entry.time_of_day}`);
-    setIsFlagged(`${entry.flagged}`);
-  }, []);
-
-
   const editedData = {
     uid: user.uid, 
     tagName: tag, 
@@ -46,6 +31,22 @@ const EditSubmission = () => {
     timeOfDay: time, 
     flagged: isFlagged,
   };
+
+  useEffect(() => {
+    const fetchEntry = async () => {
+      const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+      setEntry(fetchedEntry.data);
+    }
+    fetchEntry();
+  }, []);
+
+  useEffect(() => {
+    setTitle(`${entry.title}`);
+    setBody(`${entry.body}`);
+    setTag(`${entry.tag_name}`);
+    setTime(`${entry.time_of_day}`);
+    setIsFlagged(`${entry.flagged}`);
+  }, [entry]);
 
   const handleTitleInput = (event) => {
     event.preventDefault();
