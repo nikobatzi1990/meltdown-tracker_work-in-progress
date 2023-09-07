@@ -24,12 +24,10 @@ const EditSubmission = () => {
   const [classname, setClassname] = useState("");
 
   const editedData = {
-    uid: user.uid, 
-    tagName: tag, 
     title: title, 
     body: body, 
     timeOfDay: time, 
-    flagged: isFlagged,
+    flagged: isFlagged
   };
 
   useEffect(() => {
@@ -91,6 +89,11 @@ const EditSubmission = () => {
     }
   }
 
+  const handleSubmission = async () => {
+    await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
+    navigate('/entries');
+  }
+
   useEffect(() => {
     handleInitialFlag();
     console.log(classname);
@@ -141,6 +144,7 @@ const EditSubmission = () => {
             <Button 
               className="button"
               text="Submit" 
+              onClick={ handleSubmission }
               />
 
             <Button 
