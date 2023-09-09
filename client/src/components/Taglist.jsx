@@ -9,7 +9,7 @@ const Taglist = (props) => {
 
   useEffect(() => {
     getTags();
-  }, [tags]);
+  }, [user.uid]);
   
   async function getTags() {
     try {
@@ -33,18 +33,18 @@ const Taglist = (props) => {
 
   return ( 
     <div className='tags'>
-      {
-        tags.map((tag) => {
-          return (
-            <button 
-              key={ tag }
-              value={ tag }
-              className="tag"
-              onClick={ clickTag } >{"   " + tag + "   " }</button>
-          )
-        })
-      }
-    </div>
+
+    {(tags.length > 0)
+      ? tags.map((tag) => (
+        <button 
+          key={ tag }
+          value={ tag }
+          className="tag"
+          onClick={ clickTag } >{"   " + tag + "   " }</button>
+      ))
+      : 'Loading...'
+    }
+  </div>
   )
 };
 
