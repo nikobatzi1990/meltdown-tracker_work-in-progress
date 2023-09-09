@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles/Entries.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Tags from '../components/Tags';
+import Taglist from '../components/Taglist';
 import EntryList from '../components/EntryList';
 import Button from '../components/Button';
 
@@ -16,7 +16,7 @@ const Entries = () => {
 
       <div className='root'>
         <div className='main'>
-          <Tags className='tag-wrapper entries-tags' />
+          <Taglist className='tag-wrapper entries-tags' />
 
           <div className='entries-wrapper'>
             <EntryList />

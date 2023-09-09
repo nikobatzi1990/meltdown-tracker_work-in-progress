@@ -6,13 +6,14 @@ import Button from "./Button";
 import Input from "./Input";
 
 const Taglist = (props) => {
-  const { className, type } = props;
+  const { className } = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState('');
 
   useEffect(() => {
     handleTaglist();
+    console.log(tags);
   }, [user.uid]);
   
   const handleTaglist = async () => {
@@ -48,20 +49,35 @@ const Taglist = (props) => {
   }
 
   return ( 
-    
-    <div className='tags'>
+    <div className = { className }>
+      <h4>Your tags</h4>
 
-    {(tags.length > 0)
-      ? tags.map((tag) => (
-        <button 
-          key={ tag }
-          value={ tag }
-          className="tag"
-          onClick={ clickTag } >{"   " + tag + "   " }</button>
-      ))
-      : 'Loading...'
-    }
-  </div>
+      <div className='tags'>
+        {(tags.length > 0)
+          ? tags.map((tag) => (
+            <button 
+              key={ tag }
+              value={ tag }
+              className="tag"
+              onClick={ handleClickTag } >{"   " + tag + "   " }</button>
+          ))
+          : 'Loading...'
+        }
+      </div>
+
+      <Input 
+        className="input tag-input"
+        placeholder = "Type your new tag here"
+        onChange = { handleTagInput }
+        value = { newTag }
+        />
+
+      <Button 
+        className="button tag-submit"
+        text = "Add New Tag"
+        onClick = { handleNewTag } />
+
+    </div>
   )
 };
 

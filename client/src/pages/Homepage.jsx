@@ -5,7 +5,7 @@ import "./styles/Homepage.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from "../components/Button";
-import Tags from "../components/Tags";
+import Taglist from "../components/Taglist";
 
 const Homepage = () => {
   const { logoutUser, user } = UserAuth();
@@ -27,7 +27,7 @@ const Homepage = () => {
       <Header className = "header homepage-header" text = "Meltdown Tracker"/>
 
       <div className = "main">
-        <Tags className = "tag-wrapper" />
+        <Taglist className = "tag-wrapper" />
 
         <div className="buttons">
           <Button 
