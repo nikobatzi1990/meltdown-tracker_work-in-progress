@@ -162,7 +162,7 @@ function setUpServer() {
     const { title, body, timeOfDay, flagged } = req.body;
 
     try {
-      const edit = await knex('posts')
+      await knex('posts')
         .where('posts.id', '=', req.params.entryId)
         .update({
         'title': title, 
@@ -171,7 +171,7 @@ function setUpServer() {
         'flagged': flagged,
         'updated_at': new Date()
       });
-      res.status(200).send(edit)
+      res.status(200).send("Post Edited!")
 
     } catch (error) {
       res.status(400).send(error);
