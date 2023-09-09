@@ -29,8 +29,6 @@ const Tags = (props) => {
       type = { type } >
       <h4>Your tags</h4>
 
-          <Taglist />
-
       <Input 
         className="input tag-input"
         placeholder = "Type your new tag here"
