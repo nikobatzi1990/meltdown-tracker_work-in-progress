@@ -13,7 +13,6 @@ const Taglist = (props) => {
 
   useEffect(() => {
     handleTaglist();
-    console.log(tags);
   }, [user.uid]);
   
   const handleTaglist = async () => {

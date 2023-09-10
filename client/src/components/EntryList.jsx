@@ -12,7 +12,6 @@ const EntryList = () => {
 
   useEffect(() => {
     handleEntries();
-    console.log(entries);
   }, [user.uid]);
 
   const handleEntries = async () => {
