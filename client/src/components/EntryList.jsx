@@ -11,10 +11,10 @@ const EntryList = () => {
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-    getEntries();
-  }, [entries]);
+    handleEntries();
+  }, [user.uid]);
 
-  async function getEntries() {
+  const handleEntries = async () => {
     try {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`);
       setEntries(fetchedEntries.data);
@@ -25,9 +25,8 @@ const EntryList = () => {
 
   return (
     <div>
-      {
-        entries.map((entry) => {
-          return (
+      {(entries.length > 0)
+        ? entries.map((entry) => (
             <div 
               key={ entry.id } 
               className="entries" 
@@ -40,12 +39,11 @@ const EntryList = () => {
                 <span>{ entry.title }</span>
                 <p>{ entry.body }</p>
             </div>
-          )
-        })
+          ))
+          : "Loading..."
       }
     </div>
   )
 }
 
 export default EntryList;
-

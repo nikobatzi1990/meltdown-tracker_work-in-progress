@@ -14,30 +14,29 @@ const Entry = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getEntry();
-  }, []);
-
-  async function getEntry() {
-    try {
-      const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
-      setEntry(fetchedEntry.data);
-      setDate(new Date(fetchedEntry.data.created_at)
-        .toLocaleDateString(
-          'en-gb',
-          {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: "numeric", 
-            minute: "numeric", 
-            hour12: true,
-            timeZoneName: "long"
-          })
-        );
-    } catch (error) {
-      console.log('👁️', error);
+    const fetchEntry = async () => {
+      try {
+        const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+        setEntry(fetchedEntry.data);
+        setDate(new Date(fetchedEntry.data.created_at)
+          .toLocaleDateString(
+            'en-gb',
+            {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: "numeric", 
+              minute: "numeric", 
+              hour12: true,
+              timeZoneName: "long"
+            })
+          );
+      } catch (error) {
+        console.alert('👁️', error);
+      }
     }
-  }
+    fetchEntry();
+  }, []);
 
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);

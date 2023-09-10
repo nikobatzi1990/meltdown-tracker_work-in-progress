@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import axios from 'axios';
 import './styles/Taglist.css';
+import Button from "./Button";
+import Input from "./Input";
 
 const Taglist = (props) => {
+  const { className } = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
 
   useEffect(() => {
-    getTags();
-  }, [tags]);
+    handleTaglist();
+  }, [user.uid]);
   
-  async function getTags() {
+  const handleTaglist = async () => {
     try {
       const fetchedTags = await axios.get(`/api/${user.uid}/tags`);
       setTags(fetchedTags.data);
@@ -20,7 +24,20 @@ const Taglist = (props) => {
     }
   }
 
-  async function clickTag (event) {
+  const handleTagInput = (event) => {
+    setNewTag(event.target.value);
+  }
+
+  const handleNewTag = async () => {
+    const newTagData = {
+      'tagName': newTag, 
+      'uid': user.uid
+    }
+    await axios.post('/api/tags/newTag', newTagData);
+    handleTaglist();
+  }
+
+  const handleClickTag = async (event) => {
     event.preventDefault();
     let clickedTag = event.target.innerText;
     try {
@@ -32,18 +49,34 @@ const Taglist = (props) => {
   }
 
   return ( 
-    <div className='tags'>
-      {
-        tags.map((tag) => {
-          return (
+    <div className = { className }>
+      <h4>Your tags</h4>
+
+      <div className='tags'>
+        {(tags.length > 0)
+          ? tags.map((tag) => (
             <button 
               key={ tag }
               value={ tag }
               className="tag"
-              onClick={ clickTag } >{"   " + tag + "   " }</button>
-          )
-        })
-      }
+              onClick={ handleClickTag } >{"   " + tag + "   " }</button>
+          ))
+          : "Loading..."
+        }
+      </div>
+
+      <Input 
+        className="input tag-input"
+        placeholder = "Type your new tag here"
+        onChange = { handleTagInput }
+        value = { newTag }
+        />
+
+      <Button 
+        className="button tag-submit"
+        text = "Add New Tag"
+        onClick = { handleNewTag } />
+
     </div>
   )
 };
