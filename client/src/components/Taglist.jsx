@@ -35,6 +35,7 @@ const Taglist = (props) => {
       'uid': user.uid
     }
     await axios.post('/api/tags/newTag', newTagData);
+    handleTaglist();
   }
 
   const handleClickTag = async (event) => {
