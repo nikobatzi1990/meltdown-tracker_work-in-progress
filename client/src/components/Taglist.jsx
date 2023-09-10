@@ -62,7 +62,7 @@ const Taglist = (props) => {
               className="tag"
               onClick={ handleClickTag } >{"   " + tag + "   " }</button>
           ))
-          : 'Loading...'
+          : "Loading..."
         }
       </div>
 
