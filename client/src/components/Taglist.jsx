@@ -75,7 +75,7 @@ const Taglist = (props) => {
         <Button 
           className="button tag-submit"
           text="Add New Tag"
-          type="submit"/>
+          type="submit" />
       </form>
 
     </div>
