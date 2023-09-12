@@ -64,18 +64,19 @@ const Taglist = (props) => {
           : "Loading..."
         }
       </div>
+      <form onSubmit={ handleNewTag } >
+        <Input 
+          className="input tag-input"
+          placeholder="Type your new tag here"
+          onChange={ handleTagInput }
+          value={ newTag }
+          />
 
-      <Input 
-        className="input tag-input"
-        placeholder = "Type your new tag here"
-        onChange = { handleTagInput }
-        value = { newTag }
-        />
-
-      <Button 
-        className="button tag-submit"
-        text = "Add New Tag"
-        onClick = { handleNewTag } />
+        <Button 
+          className="button tag-submit"
+          text="Add New Tag"
+          type="submit" />
+      </form>
 
     </div>
   )
