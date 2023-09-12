@@ -6,14 +6,13 @@ const Input = (props) => {
 
   return (
     <>
-      <form> { htmlFor } 
+      <form onSubmit = { onSubmit } > { htmlFor } 
         <input
           className = { className }
           placeholder = { placeholder }
           type = { type }
           value = { value }
-          onChange = { onChange }
-          onSubmit = { onSubmit }>
+          onChange = { onChange } >
         </input>
       </form>
     </>
