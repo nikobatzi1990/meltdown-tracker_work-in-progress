@@ -12,7 +12,7 @@ function setUpServer() {
   app.post('/api/signup', async (req, res) => {
     const { username, email, uid } = req.body;
     try {
-      await knex('users').insert({ 'username': username, "email": email, 'UID': uid, 'created_at': new Date() });
+      await knex('users').insert({ 'username': username, 'email': email, 'UID': uid, 'created_at': new Date() });
       res.status(200).send("New User Created");
     } catch (error) {
       res.status(400).send(error);
@@ -71,7 +71,7 @@ function setUpServer() {
 
   // endpoint for posting a new entry submission
   app.post('/api/entries/submission', async (req, res) => {
-    const { uid, tagName, timesUsed, title, body, timeOfDay, flagged } = req.body;
+    const { uid, tagName, timesUsed, title, body, timeOfDay, flagged, intensity } = req.body;
       const userId = await knex.select('id')
         .from('users')
         .where('UID', '=', uid);
@@ -92,7 +92,8 @@ function setUpServer() {
           'user_id': userId[0].id,
           'time_of_day': timeOfDay,
           'created_at': new Date(),
-          'flagged': flagged
+          'flagged': flagged,
+          'intensity': intensity
         });
 
       await knex('tag_to_post')
@@ -159,7 +160,7 @@ function setUpServer() {
 
   // endpoint for editing an entry by id
   app.patch('/api/entries/:entryId/edit', async (req, res) => {
-    const { title, body, timeOfDay, flagged } = req.body;
+    const { title, body, timeOfDay, flagged, intensity } = req.body;
 
     try {
       await knex('posts')
@@ -169,7 +170,8 @@ function setUpServer() {
         'body': body,
         'time_of_day': timeOfDay,
         'flagged': flagged,
-        'updated_at': new Date()
+        'updated_at': new Date(),
+        'intensity': intensity
       });
       res.status(200).send("Post Edited!")
 

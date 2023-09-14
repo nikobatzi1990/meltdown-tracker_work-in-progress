@@ -16,6 +16,4 @@ exports.down = function(knex) {
   knex.schema.table('posts', function (table) {
     table.dropColumn('intensity');
   });
-  // table.dropColumn(name)
-  
 };
