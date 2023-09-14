@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./styles/IntensityLevel.css";
 
 const IntensityLevel = (props) => {
   const { onClick } = props;
