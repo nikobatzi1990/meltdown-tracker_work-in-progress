@@ -1,5 +1,5 @@
 {
-  "name": "solo-mvp",
+  "name": "meltdown-tracker",
   "version": "1.0.0",
   "description": "A journal app to help parents of children with autism to track frequency of meltodowns along with potential enviornment causes",
   "main": "index.js",
