@@ -19,7 +19,7 @@ const Submission = () => {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState("");
+  const [intensity, setIntensity] = useState("not specified");
   const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = { 
@@ -29,7 +29,8 @@ const Submission = () => {
     title: title, 
     body: body, 
     timeOfDay: time, 
-    flagged: isFlagged 
+    flagged: isFlagged, 
+    intensity: intensity 
   };
 
   const handleTitleInput = (event) => {
