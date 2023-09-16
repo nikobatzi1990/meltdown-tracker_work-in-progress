@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  knex.schema.alterTable('posts', function (table) {
+  return knex.schema.table('posts', function (table) {
     table.string('intensity');
   });
 };
@@ -13,7 +13,7 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  knex.schema.table('posts', function (table) {
+  return knex.schema.table('posts', function (table) {
     table.dropColumn('intensity');
   });
 };
