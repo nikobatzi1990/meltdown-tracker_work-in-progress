@@ -13,6 +13,11 @@ body {
   align-self: flex-start;
 }
 
+.entry-intensity {
+  margin-top: 100px;
+  align-self: flex-start;
+}
+
 .entry-title {
   margin: 5px;
   padding: 5px;

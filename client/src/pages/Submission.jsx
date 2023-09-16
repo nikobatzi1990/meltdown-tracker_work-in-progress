@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
+import IntensityLevel from "../components/IntensityLevel";
 import LightBulb from "../components/LightBulb";
 
 const Submission = () => {
@@ -18,6 +19,7 @@ const Submission = () => {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
+  const [intensity, setIntensity] = useState("not specified");
   const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = { 
@@ -27,7 +29,8 @@ const Submission = () => {
     title: title, 
     body: body, 
     timeOfDay: time, 
-    flagged: isFlagged 
+    flagged: isFlagged, 
+    intensity: intensity 
   };
 
   const handleTitleInput = (event) => {
@@ -52,6 +55,12 @@ const Submission = () => {
     event.preventDefault();
     const value = event.target.id;
     setTime(value);
+  }
+
+  const handleIntensity = (event) => {
+    event.preventDefault();
+    const value = event.target.id;
+    setIntensity(value);
   }
 
   const handleFlag = (event) => {
@@ -82,6 +91,7 @@ const Submission = () => {
       <div className="main-body">
 
         <TimeOfDay onClick={ handleTimeOfDay }/>
+        <IntensityLevel onClick={ handleIntensity }/>
         
         <div className="submission">
           <div className="top">
