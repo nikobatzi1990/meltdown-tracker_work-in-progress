@@ -113,7 +113,7 @@ function setUpServer() {
   app.get('/api/:uid/entries', async (req, res) => {
     
     try {
-      await knex.select('posts.id', 'title', 'body', 'flagged')
+      await knex.select('posts.id', 'title', 'body', 'flagged', 'intensity')
         .from('posts')
         .where('users.UID', req.params.uid)
         .join('users', 'users.id', '=', 'posts.user_id')
@@ -149,7 +149,7 @@ function setUpServer() {
         .from('posts')
         .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
         .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
-        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name', 'created_at')
+        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name', 'created_at', 'intensity')
         .where('posts.id', '=', req.params.entryId);
         res.status(200).send(entry[0])
 

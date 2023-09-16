@@ -38,6 +38,9 @@ const Entry = () => {
     fetchEntry();
   }, []);
 
+  useEffect(() => {
+    console.log(entry);
+  }, [entry])
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);
     navigate('/entries');
@@ -49,7 +52,8 @@ const Entry = () => {
       
       
       <div className="entry">
-        <div className="entry-time">{ entry.time_of_day }</div>
+        <div className="entry-time">Time of Day: { entry.time_of_day }</div>
+        <div className="entry-intensity">Meltdown Intensity: { entry.intensity }</div>
         <div className="entry-main">
           <div className="entry-top">
             <p>{ date }</p>
