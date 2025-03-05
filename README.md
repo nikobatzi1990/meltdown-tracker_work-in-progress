@@ -1,11 +1,5 @@
 # Meltdown Tracker
 
-## [Deployed Application](https://meltdown-tracker-wip.onrender.com/) 
-##### Note: Please be patient; Render's free tier has pretty slow loading times
-
-##### This is the original project repository; I am currently working on an updated version in TypeScript. [Click here](https://github.com/nikobatzi1990/meltdown-tracker-typescript/blob/main/README.md) to see that project repo.
-
-
 ## Table of Contents
 <details>
 <summary>Click here to expand</summary>
