@@ -1,14 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AuthContextProvider } from '../context/AuthContext';
-import ProtectedRoute from '../context/ProtectedRoute';
-import Signup from './Signup';
-import Login from './Login';
-import Homepage from './Homepage';
-import Entries from './Entries';
-import SingleEntry from './SingleEntry';
-import Submission from './Submission';
-import EditSubmission from './EditSubmission';
+import { AuthContextProvider } from './context/AuthContext';
+import ProtectedRoute from './context/ProtectedRoute';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Homepage from './pages/Homepage';
+import Entries from './pages/Entries';
+import SingleEntry from './pages/SingleEntry';
+import Submission from './pages/Submission';
+import EditSubmission from './pages/EditSubmission';
 
 function App() {
 
