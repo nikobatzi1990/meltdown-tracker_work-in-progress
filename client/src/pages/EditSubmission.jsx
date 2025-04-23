@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './styles/EditSubmission.css';
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./styles/EditSubmission.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
@@ -10,7 +10,7 @@ import TimeOfDay from "../components/TimeOfDay";
 import LightBulb from "../components/LightBulb";
 import IntensityLevel from "../components/IntensityLevel";
 
-const EditSubmission = () => {
+function EditSubmission() {
   const navigate = useNavigate();
 
   const entryId = useParams();
@@ -24,18 +24,20 @@ const EditSubmission = () => {
   const [classname, setClassname] = useState("");
 
   const editedData = {
-    title: title, 
-    body: body, 
-    timeOfDay: time, 
+    title: title,
+    body: body,
+    timeOfDay: time,
     flagged: isFlagged,
-    intensity: intensity
+    intensity: intensity,
   };
 
   useEffect(() => {
     const fetchEntry = async () => {
-      const fetchedEntry = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+      const fetchedEntry = await axios.get(
+        `/api/entries/entry/${entryId.entryId}`,
+      );
       setEntry(fetchedEntry.data);
-    }
+    };
     fetchEntry();
   }, []);
 
@@ -52,31 +54,31 @@ const EditSubmission = () => {
     event.preventDefault();
     const value = event.target.value;
     setTitle(value);
-  }
+  };
 
   const handleTextBody = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setBody(value);
-  }
+  };
 
   const handleTagInput = (event) => {
     event.preventDefault();
     const value = event.target.value;
     setTag(value);
-  }
+  };
 
   const handleTimeOfDay = (event) => {
     event.preventDefault();
     const value = event.target.id;
     setTime(value);
-  }
+  };
 
   const handleIntensity = (event) => {
     event.preventDefault();
     const value = event.target.id;
     setIntensity(value);
-  }
+  };
 
   const handleInitialFlag = () => {
     if (isFlagged === true) {
@@ -84,23 +86,23 @@ const EditSubmission = () => {
     } else {
       setClassname("material-symbols-outlined");
     }
-  }
+  };
 
   const handleFlag = (event) => {
     event.preventDefault();
     if (isFlagged === false) {
-      event.target.className = "filled material-symbols-outlined"
+      event.target.className = "filled material-symbols-outlined";
       setIsFlagged(true);
     } else {
-      event.target.className = "material-symbols-outlined"
+      event.target.className = "material-symbols-outlined";
       setIsFlagged(false);
     }
-  }
+  };
 
   const handleSubmission = async () => {
     await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
-    navigate('/entries');
-  }
+    navigate("/entries");
+  };
 
   useEffect(() => {
     handleInitialFlag();
@@ -108,64 +110,63 @@ const EditSubmission = () => {
 
   return (
     <>
-      <Header 
-        className="header entries-header" 
-        text="Meltdown Tracker"/>
+      <Header className="header entries-header" text="Meltdown Tracker" />
 
       <div className="main-body">
-
-        <TimeOfDay onClick={ handleTimeOfDay }/>
-        <IntensityLevel onClick={ handleIntensity }/>
+        <TimeOfDay onClick={handleTimeOfDay} />
+        <IntensityLevel onClick={handleIntensity} />
 
         <div className="submission">
           <div className="top">
-            
-            <LightBulb 
-              className={ classname }
-              onClick={ handleFlag }
+            <LightBulb
+              className={classname}
+              onClick={handleFlag}
               title="Was this a significant event?"
-               />
+            />
 
-            <Input 
+            <Input
               className="input title-input"
               placeholder="Title"
-              value={ title }
-              onChange={ handleTitleInput } />
+              value={title}
+              onChange={handleTitleInput}
+            />
 
-            <Input 
+            <Input
               className="input"
               placeholder="Tag"
-              value={ tag }
-              onChange={ handleTagInput } />
+              value={tag}
+              onChange={handleTagInput}
+            />
           </div>
-          
-          <textarea 
+
+          <textarea
             className="submission__body"
             placeholder="Type your entry here!"
-            value={ body }
-            cols="60" 
-            rows="30" 
-            onChange={ handleTextBody }>
-          </textarea>
+            value={body}
+            cols="60"
+            rows="30"
+            onChange={handleTextBody}
+          ></textarea>
 
           <div className="submission__buttons">
-            <Button 
+            <Button
               className="button"
-              text="Submit" 
-              onClick={ handleSubmission }
-              />
+              text="Submit"
+              onClick={handleSubmission}
+            />
 
-            <Button 
+            <Button
               className="button"
-              text="Back to Entries" 
-              onClick={ () => {navigate('/entries')} } />
+              text="Back to Entries"
+              onClick={() => {
+                navigate("/entries");
+              }}
+            />
           </div>
         </div>
       </div>
 
-      <Footer 
-      className="footer" 
-      text="© 2023 Meltown Tracker"/>
+      <Footer className="footer" text="© 2023 Meltown Tracker" />
     </>
   );
 }

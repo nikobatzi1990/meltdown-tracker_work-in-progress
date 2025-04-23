@@ -1,29 +1,29 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
-import auth from '../firebase'
-import { 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
+import auth from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged 
-} from 'firebase/auth';
+  onAuthStateChanged,
+} from "firebase/auth";
 
 const UserContext = createContext();
 
-export const AuthContextProvider = ({children}) => {
+export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  
+
   const createUser = async (username, email, password) => {
     const newUserInfo = {
       username: username,
       email: email,
       password: password,
-      uid: null
+      uid: null,
     };
 
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
     newUserInfo.uid = newUser.user.uid;
-    await axios.post('/api/signup', newUserInfo);
+    await axios.post("/api/signup", newUserInfo);
     return newUser;
   };
 
@@ -37,19 +37,20 @@ export const AuthContextProvider = ({children}) => {
   };
 
   useEffect(() => {
-    const authenticatedUser = onAuthStateChanged(auth, 
-      (currentUser) => {
-        console.log('🫡', currentUser);
-        setUser(currentUser);
-      })
-      return authenticatedUser;
+    const authenticatedUser = onAuthStateChanged(auth, (currentUser) => {
+      console.log("🫡", currentUser);
+      setUser(currentUser);
+    });
+    return authenticatedUser;
   }, []);
 
-  return <UserContext.Provider value={{ createUser, loginUser, logoutUser, user }}>
-    {children}
-  </UserContext.Provider>
-}
+  return (
+    <UserContext.Provider value={{ createUser, loginUser, logoutUser, user }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
 export const UserAuth = () => {
   return useContext(UserContext);
-}
+};
