@@ -1,19 +1,16 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { UserAuth } from "../context/AuthContext";
-import axios from "axios";
-import "./styles/Taglist.css";
+import PropTypes from "prop-types";
 import Button from "./Button";
 import Input from "./Input";
+import "./styles/Taglist.css";
 
 function Taglist(props) {
   const { className } = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
-
-  useEffect(() => {
-    handleTaglist();
-  }, [user.uid]);
 
   const handleTaglist = async () => {
     try {
@@ -23,6 +20,10 @@ function Taglist(props) {
       console.log("😁", error);
     }
   };
+
+  useEffect(() => {
+    handleTaglist();
+  }, [user.uid]);
 
   const handleTagInput = (event) => {
     setNewTag(event.target.value);
@@ -83,5 +84,13 @@ function Taglist(props) {
     </div>
   );
 }
+
+Taglist.defaultProps = {
+  className: "taglist",
+};
+
+Taglist.propTypes = {
+  className: PropTypes.string,
+};
 
 export default Taglist;

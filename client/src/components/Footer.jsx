@@ -1,15 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./styles/Footer.css";
 
 function Footer(props) {
   const { className, text } = props;
 
   return (
-    <div className={className}>
+    <footer className={className}>
       <p>{text}</p>
-    </div>
+    </footer>
   );
 }
+
+Footer.propTypes = {
+  className: PropTypes.string,
+  text: PropTypes.string,
+};
 
 Footer.defaultProps = {
   className: "",

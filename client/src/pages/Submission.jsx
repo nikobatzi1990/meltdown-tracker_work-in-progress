@@ -26,11 +26,11 @@ function Submission() {
     uid: user.uid,
     tagName: tag,
     timesUsed: 0,
-    title: title,
-    body: body,
+    title,
+    body,
     timeOfDay: time,
     flagged: isFlagged,
-    intensity: intensity,
+    intensity,
   };
 
   const handleTitleInput = (event) => {

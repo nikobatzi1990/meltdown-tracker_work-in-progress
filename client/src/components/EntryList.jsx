@@ -1,27 +1,27 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import axios from "axios";
-import "./styles/EntryList.css";
 import LightBulb from "./LightBulb";
+import "./styles/EntryList.css";
 
 function EntryList() {
   const { user } = UserAuth();
   const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
 
-  useEffect(() => {
-    handleEntries();
-  }, [user.uid]);
-
   const handleEntries = async () => {
     try {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`);
       setEntries(fetchedEntries.data);
     } catch (error) {
-      console.log("👹", error);
+      alert("👹", error);
     }
   };
+
+  useEffect(() => {
+    handleEntries();
+  }, [user.uid]);
 
   return (
     <div>
@@ -32,6 +32,11 @@ function EntryList() {
               className="entries"
               onClick={() => {
                 navigate(`/entry/${entry.id}`);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  navigate(`/entry/${entry.id}`);
+                }
               }}
             >
               {entry.flagged ? (

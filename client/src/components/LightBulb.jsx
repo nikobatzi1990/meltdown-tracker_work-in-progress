@@ -1,6 +1,7 @@
 import React from "react";
-import "./styles/LightBulb.css";
+import PropTypes from "prop-types";
 import Button from "./Button";
+import "./styles/LightBulb.css";
 
 function LightBulb(props) {
   const { className, onClick, title } = props;
@@ -14,5 +15,16 @@ function LightBulb(props) {
     />
   );
 }
+
+LightBulb.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  title: PropTypes.string,
+};
+
+LightBulb.defaultProps = {
+  className: "",
+  title: "",
+};
 
 export default LightBulb;

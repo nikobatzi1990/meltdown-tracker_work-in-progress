@@ -21,50 +21,44 @@ function EditSubmission() {
   const [time, setTime] = useState("");
   const [intensity, setIntensity] = useState("not specified");
   const [isFlagged, setIsFlagged] = useState(false);
-  const [classname, setClassname] = useState("");
 
   const editedData = {
-    title: title,
-    body: body,
+    title,
+    body,
     timeOfDay: time,
     flagged: isFlagged,
-    intensity: intensity,
+    intensity,
   };
 
   useEffect(() => {
     const fetchEntry = async () => {
-      const fetchedEntry = await axios.get(
-        `/api/entries/entry/${entryId.entryId}`,
-      );
-      setEntry(fetchedEntry.data);
+      const { data } = await axios.get(`/api/entries/entry/${entryId.entryId}`);
+      setEntry(data);
+      setTitle(data.title);
+      setBody(data.body);
+      setTag(data.tag_name);
+      setTime(data.time_of_day);
+      setIsFlagged(data.flagged);
+      setIntensity(data.intensity);
     };
     fetchEntry();
-  }, []);
-
-  useEffect(() => {
-    setTitle(`${entry.title}`);
-    setBody(`${entry.body}`);
-    setTag(`${entry.tag_name}`);
-    setTime(`${entry.time_of_day}`);
-    setIsFlagged(`${entry.flagged}`);
-    setIntensity(`${entry.intensity}`);
-  }, [entry]);
+  }, [entryId]);
 
   const handleTitleInput = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setTitle(value);
   };
 
   const handleTextBody = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setBody(value);
   };
 
   const handleTagInput = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setTag(value);
   };
 
@@ -80,33 +74,21 @@ function EditSubmission() {
     setIntensity(value);
   };
 
-  const handleInitialFlag = () => {
-    if (isFlagged === true) {
-      setClassname("filled material-symbols-outlined");
-    } else {
-      setClassname("material-symbols-outlined");
-    }
+  const handleFlag = () => {
+    setIsFlagged((prev) => !prev);
   };
 
-  const handleFlag = (event) => {
-    event.preventDefault();
-    if (isFlagged === false) {
-      event.target.className = "filled material-symbols-outlined";
-      setIsFlagged(true);
-    } else {
-      event.target.className = "material-symbols-outlined";
-      setIsFlagged(false);
+  const handleClassname = () => {
+    if (isFlagged) {
+      return "filled material-symbols-outlined";
     }
+    return "material-symbols-outlined";
   };
 
   const handleSubmission = async () => {
     await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
     navigate("/entries");
   };
-
-  useEffect(() => {
-    handleInitialFlag();
-  }, []);
 
   return (
     <>
@@ -119,7 +101,7 @@ function EditSubmission() {
         <div className="submission">
           <div className="top">
             <LightBulb
-              className={classname}
+              className={handleClassname}
               onClick={handleFlag}
               title="Was this a significant event?"
             />
@@ -146,7 +128,7 @@ function EditSubmission() {
             cols="60"
             rows="30"
             onChange={handleTextBody}
-          ></textarea>
+          />
 
           <div className="submission__buttons">
             <Button

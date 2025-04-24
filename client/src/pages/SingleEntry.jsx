@@ -10,7 +10,7 @@ import LightBulb from "../components/LightBulb";
 function Entry() {
   const [entry, setEntry] = useState({});
   const [date, setDate] = useState("");
-  let entryId = useParams();
+  const entryId = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function Entry() {
                 alt="Significant Event"
               />
             ) : (
-              <></>
+              <div></div>
             )}
             <h3 className="entry-title">{entry.title}</h3>
             <p>Tags: {entry.tag_name} </p>

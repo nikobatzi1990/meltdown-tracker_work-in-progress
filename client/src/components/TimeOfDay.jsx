@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./styles/TimeOfDay.css";
 
 function TimeOfDay(props) {
@@ -50,5 +51,9 @@ function TimeOfDay(props) {
     </div>
   );
 }
+
+TimeOfDay.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default TimeOfDay;

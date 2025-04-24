@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./styles/IntensityLevel.css";
 
 function IntensityLevel(props) {
@@ -59,5 +60,9 @@ function IntensityLevel(props) {
     </div>
   );
 }
+
+IntensityLevel.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default IntensityLevel;
