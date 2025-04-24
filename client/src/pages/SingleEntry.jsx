@@ -65,7 +65,7 @@ function Entry() {
                 alt="Significant Event"
               />
             ) : (
-              <div></div>
+              <div />
             )}
             <h3 className="entry-title">{entry.title}</h3>
             <p>Tags: {entry.tag_name} </p>

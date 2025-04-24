@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
 import IntensityLevel from "../components/IntensityLevel";
 import LightBulb from "../components/LightBulb";
+import SubmitButton from "../components/SubmitButton";
 
 function Submission() {
   const { user } = UserAuth();
@@ -35,19 +36,19 @@ function Submission() {
 
   const handleTitleInput = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setTitle(value);
   };
 
   const handleTextBody = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setBody(value);
   };
 
   const handleTagInput = (event) => {
     event.preventDefault();
-    const value = event.target.value;
+    const { value } = event.target;
     setTag(value);
   };
 
@@ -63,15 +64,15 @@ function Submission() {
     setIntensity(value);
   };
 
-  const handleFlag = (event) => {
-    event.preventDefault();
-    if (isFlagged === false) {
-      event.target.className = "filled material-symbols-outlined";
-      setIsFlagged(true);
-    } else {
-      event.target.className = "material-symbols-outlined";
-      setIsFlagged(false);
+  const handleFlag = () => {
+    setIsFlagged((prev) => !prev);
+  };
+
+  const handleClassname = () => {
+    if (isFlagged) {
+      return "filled material-symbols-outlined";
     }
+    return "material-symbols-outlined";
   };
 
   async function handleSubmission(event) {
@@ -88,14 +89,14 @@ function Submission() {
     <>
       <Header className="header entries-header" text="Meltdown Tracker" />
 
-      <div className="main-body">
+      <form className="main-body" onSubmit={handleSubmission}>
         <TimeOfDay onClick={handleTimeOfDay} />
         <IntensityLevel onClick={handleIntensity} />
 
         <div className="submission">
           <div className="top">
             <LightBulb
-              className="material-symbols-outlined"
+              className={handleClassname}
               onClick={handleFlag}
               title="Was this a significant event?"
             />
@@ -122,14 +123,10 @@ function Submission() {
             cols="60"
             rows="30"
             onChange={handleTextBody}
-          ></textarea>
+          />
 
           <div className="submission__buttons">
-            <Button
-              className="button"
-              text="Submit"
-              onClick={handleSubmission}
-            />
+            <SubmitButton className="button" text="Submit" />
 
             <Button
               className="button"
@@ -140,7 +137,7 @@ function Submission() {
             />
           </div>
         </div>
-      </div>
+      </form>
 
       <Footer className="footer" text="© 2023 Meltown Tracker" />
     </>

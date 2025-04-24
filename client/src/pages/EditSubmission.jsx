@@ -14,7 +14,7 @@ function EditSubmission() {
   const navigate = useNavigate();
 
   const entryId = useParams();
-  const [entry, setEntry] = useState({});
+  // const [entry, setEntry] = useState({});
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
@@ -33,7 +33,7 @@ function EditSubmission() {
   useEffect(() => {
     const fetchEntry = async () => {
       const { data } = await axios.get(`/api/entries/entry/${entryId.entryId}`);
-      setEntry(data);
+      // setEntry(data);
       setTitle(data.title);
       setBody(data.body);
       setTag(data.tag_name);

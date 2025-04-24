@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { UserAuth } from "../context/AuthContext";
 import PropTypes from "prop-types";
+import { UserAuth } from "../context/AuthContext";
 import Button from "./Button";
 import Input from "./Input";
 import "./styles/Taglist.css";
@@ -40,7 +40,7 @@ function Taglist(props) {
 
   const handleClickTag = async (event) => {
     event.preventDefault();
-    let clickedTag = event.target.innerText;
+    const clickedTag = event.target.innerText;
     try {
       const fetchedPosts = await axios.get(`/api/entries/${clickedTag}`);
       console.log("👅", fetchedPosts.data);
@@ -61,8 +61,9 @@ function Taglist(props) {
                 value={tag}
                 className="tag"
                 onClick={handleClickTag}
+                type="button"
               >
-                {"   " + tag + "   "}
+                {tag}
               </button>
             ))
           : "Loading..."}
