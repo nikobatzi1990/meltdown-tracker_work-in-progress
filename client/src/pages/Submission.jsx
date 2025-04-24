@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -33,6 +33,10 @@ function Submission() {
     flagged: isFlagged,
     intensity,
   };
+
+  useEffect(() => {
+    console.log("❤️", submissionData);
+  }, [submissionData]);
 
   const handleTitleInput = (event) => {
     event.preventDefault();
@@ -75,8 +79,7 @@ function Submission() {
     return "material-symbols-outlined";
   };
 
-  async function handleSubmission(event) {
-    event.preventDefault();
+  async function handleSubmission() {
     const previousTimesUsed = await axios.get(
       `/api/tags/${submissionData.tagName}/timesUsed`,
     );

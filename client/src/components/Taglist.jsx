@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
-import Button from "./Button";
+import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 import "./styles/Taglist.css";
 
@@ -26,15 +26,21 @@ function Taglist(props) {
   }, [user.uid]);
 
   const handleTagInput = (event) => {
+    event.preventDefault();
     setNewTag(event.target.value);
   };
 
-  const handleNewTag = async () => {
-    const newTagData = {
-      tagName: newTag,
-      uid: user.uid,
-    };
-    await axios.post("/api/tags/newTag", newTagData);
+  const handleNewTag = async (event) => {
+    event.preventDefault();
+    try {
+      const newTagData = {
+        tagName: newTag,
+        uid: user.uid,
+      };
+      await axios.post("/api/tags/newTag", newTagData);
+    } catch (error) {
+      console.log("💀", error);
+    }
     handleTaglist();
   };
 
@@ -76,11 +82,7 @@ function Taglist(props) {
           value={newTag}
         />
 
-        <Button
-          className="button tag-submit"
-          text="Add New Tag"
-          type="submit"
-        />
+        <SubmitButton className="button tag-submit" text="Add New Tag" />
       </form>
     </div>
   );

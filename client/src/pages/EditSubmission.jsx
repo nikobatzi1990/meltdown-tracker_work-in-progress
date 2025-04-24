@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
 import LightBulb from "../components/LightBulb";
 import IntensityLevel from "../components/IntensityLevel";
+import SubmitButton from "../components/SubmitButton";
 
 function EditSubmission() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ function EditSubmission() {
     <>
       <Header className="header entries-header" text="Meltdown Tracker" />
 
-      <div className="main-body">
+      <form className="main-body" onSubmit={handleSubmission}>
         <TimeOfDay onClick={handleTimeOfDay} />
         <IntensityLevel onClick={handleIntensity} />
 
@@ -131,11 +132,7 @@ function EditSubmission() {
           />
 
           <div className="submission__buttons">
-            <Button
-              className="button"
-              text="Submit"
-              onClick={handleSubmission}
-            />
+            <SubmitButton className="button" text="Submit" />
 
             <Button
               className="button"
@@ -146,7 +143,7 @@ function EditSubmission() {
             />
           </div>
         </div>
-      </div>
+      </form>
 
       <Footer className="footer" text="© 2023 Meltown Tracker" />
     </>

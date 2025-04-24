@@ -46,7 +46,6 @@ function EntryList() {
                 <div />
               )}
               <span>{entry.title}</span>
-              <p>{entry.body}</p>
             </a>
           ))
         : "Loading..."}
