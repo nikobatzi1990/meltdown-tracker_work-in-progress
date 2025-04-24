@@ -1,5 +1,11 @@
-import React from "react";
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import {
+  React,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 import axios from "axios";
 import {
   signInWithEmailAndPassword,
@@ -7,12 +13,12 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import auth from "../firebase";
 import PropTypes from "prop-types";
+import auth from "../firebase";
 
 const UserContext = createContext();
 
-export function AuthContextProvider ({ children }) {
+export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   const createUser = async (username, email, password) => {
@@ -34,9 +40,7 @@ export function AuthContextProvider ({ children }) {
     return loggedIn;
   };
 
-  const logoutUser = () => {
-    return signOut(auth);
-  };
+  const logoutUser = () => signOut(auth);
 
   useEffect(() => {
     const authenticatedUser = onAuthStateChanged(auth, (currentUser) => {
@@ -46,22 +50,23 @@ export function AuthContextProvider ({ children }) {
     return authenticatedUser;
   }, []);
 
-  AuthContextProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  const contextValue = useMemo(() => ({
-    createUser,
-    loginUser,
-    logoutUser,
-    user,
-  }), [createUser, loginUser, logoutUser, user]);
+  const contextValue = useMemo(
+    () => ({
+      createUser,
+      loginUser,
+      logoutUser,
+      user,
+    }),
+    [createUser, loginUser, logoutUser, user],
+  );
 
   return (
-    <UserContext.Provider value={{ contextValue }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
+}
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const UserAuth = () => useContext(UserContext);

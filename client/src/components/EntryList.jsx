@@ -27,16 +27,13 @@ function EntryList() {
     <div>
       {entries.length > 0
         ? entries.map((entry) => (
-            <div
+            <a
               key={entry.id}
+              href={`/entry/${entry.id}`}
               className="entries"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 navigate(`/entry/${entry.id}`);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  navigate(`/entry/${entry.id}`);
-                }
               }}
             >
               {entry.flagged ? (
@@ -46,11 +43,11 @@ function EntryList() {
                   alt="Significant Event"
                 />
               ) : (
-                <></>
+                <div />
               )}
               <span>{entry.title}</span>
               <p>{entry.body}</p>
-            </div>
+            </a>
           ))
         : "Loading..."}
     </div>

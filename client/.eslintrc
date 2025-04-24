@@ -5,6 +5,10 @@
     },
     "extends": ["airbnb", "prettier"],
     "plugins": ["prettier"],
+    "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
     "rules": {
       "prettier/prettier": ["error"],
       "jsx-a11y/label-has-associated-control": [
