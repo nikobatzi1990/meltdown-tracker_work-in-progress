@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.header {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}

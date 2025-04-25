@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles/Header.css";
 
 function Header(props) {
   const { className, text } = props;

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import LightBulb from "./LightBulb";
-import "./styles/EntryList.css";
 
 function EntryList() {
   const { user } = UserAuth();

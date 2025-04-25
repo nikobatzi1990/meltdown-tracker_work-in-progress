@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/Entries.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Taglist from "../components/Taglist";

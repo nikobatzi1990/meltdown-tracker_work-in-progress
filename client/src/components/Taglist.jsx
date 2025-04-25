@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
-import "./styles/Taglist.css";
 
 function Taglist(props) {
   const { className } = props;

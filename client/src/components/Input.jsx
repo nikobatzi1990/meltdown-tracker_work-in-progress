@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles/Input.css";
 
 function Input(props) {
   const { className, placeholder, type, value, onChange } = props;

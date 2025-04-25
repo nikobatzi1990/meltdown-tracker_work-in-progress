@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./styles/Submission.css";
-import "./styles/Icons.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
