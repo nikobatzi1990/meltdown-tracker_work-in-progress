@@ -62,7 +62,7 @@ function Login() {
         </p>
       </div>
 
-      <Footer className="login-footer" text="© 2023 Meltown Tracker" />
+      <Footer className="login-footer" />
     </div>
   );
 }

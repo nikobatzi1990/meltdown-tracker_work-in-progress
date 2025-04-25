@@ -97,7 +97,7 @@ function Entry() {
         />
       </div>
 
-      <Footer className="footer" text="© 2023 Meltown Tracker" />
+      <Footer className="footer" />
     </>
   );
 }
