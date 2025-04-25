@@ -8,8 +8,8 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
 import IntensityLevel from "../components/IntensityLevel";
-import LightBulb from "../components/LightBulb";
 import SubmitButton from "../components/SubmitButton";
+import ExclamationPoint from "../components/ExclamationPoint";
 
 function Submission() {
   const { user } = UserAuth();
@@ -96,7 +96,7 @@ function Submission() {
 
         <div className="submission">
           <div className="top">
-            <LightBulb
+            <ExclamationPoint
               className={handleClassname}
               onClick={handleFlag}
               title="Was this a significant event?"

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import LightBulb from "./LightBulb";
+import ExclamationPoint from "./ExclamationPoint";
 
 function EntryList() {
   const { user } = UserAuth();
@@ -36,10 +36,10 @@ function EntryList() {
               }}
             >
               {entry.flagged ? (
-                <LightBulb
-                  className="filled material-symbols-outlined"
-                  title="This was a significant event!"
-                  alt="Significant Event"
+                <ExclamationPoint
+                // className="filled material-symbols-outlined"
+                // title="This was a significant event!"
+                // alt="Significant Event"
                 />
               ) : (
                 <div />

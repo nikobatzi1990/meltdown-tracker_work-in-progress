@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
-import LightBulb from "../components/LightBulb";
+import ExclamationPoint from "../components/ExclamationPoint";
 
 function Entry() {
   const [entry, setEntry] = useState({});
@@ -58,7 +58,7 @@ function Entry() {
           <div className="entry-top">
             <p>{date}</p>
             {entry.flagged ? (
-              <LightBulb
+              <ExclamationPoint
                 className="filled material-symbols-outlined"
                 title="This was a significant event!"
                 alt="Significant Event"
