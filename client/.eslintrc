@@ -3,7 +3,7 @@
       "browser": true,
       "es2021": true
     },
-    "extends": ["airbnb", "prettier", "tailwindcss"],
+    "extends": ["airbnb", "prettier"],
     "plugins": ["prettier"],
     "parserOptions": {
     "sourceType": "module",
