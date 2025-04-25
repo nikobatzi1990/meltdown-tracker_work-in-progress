@@ -72,7 +72,7 @@ function Signup() {
         </p>
       </div>
 
-      <Footer className="login-footer" />
+      <Footer />
     </div>
   );
 }

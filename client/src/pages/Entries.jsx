@@ -11,7 +11,7 @@ function Entries() {
 
   return (
     <>
-      <Header className="header entries-header" text="Meltdown Tracker" />
+      <Header className="header" text="Meltdown Tracker" />
 
       <div className="root">
         <div className="main">
@@ -39,7 +39,7 @@ function Entries() {
         />
       </div>
 
-      <Footer className="footer" />
+      <Footer />
     </>
   );
 }

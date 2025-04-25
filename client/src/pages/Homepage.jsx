@@ -12,6 +12,8 @@ function Homepage() {
 
   return (
     <div>
+      <Header className="header" text="Meltdown Tracker" />
+
       <div className="greeting">
         <p>Hello, {user.email}! </p>
         <Button
@@ -23,8 +25,6 @@ function Homepage() {
           }}
         />
       </div>
-
-      <Header className="header homepage-header" text="Meltdown Tracker" />
 
       <div className="main">
         <Taglist className="tag-wrapper" />
@@ -43,7 +43,7 @@ function Homepage() {
           />
         </div>
       </div>
-      <Footer className="footer" />
+      <Footer />
     </div>
   );
 }

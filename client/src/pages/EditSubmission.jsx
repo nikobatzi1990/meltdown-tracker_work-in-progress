@@ -92,7 +92,7 @@ function EditSubmission() {
 
   return (
     <>
-      <Header className="header entries-header" text="Meltdown Tracker" />
+      <Header className="header" text="Meltdown Tracker" />
 
       <form className="main-body" onSubmit={handleSubmission}>
         <TimeOfDay onClick={handleTimeOfDay} />
@@ -144,7 +144,7 @@ function EditSubmission() {
         </div>
       </form>
 
-      <Footer className="footer" />
+      <Footer />
     </>
   );
 }

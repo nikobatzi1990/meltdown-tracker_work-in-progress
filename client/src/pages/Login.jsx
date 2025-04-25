@@ -62,7 +62,7 @@ function Login() {
         </p>
       </div>
 
-      <Footer className="login-footer" />
+      <Footer />
     </div>
   );
 }

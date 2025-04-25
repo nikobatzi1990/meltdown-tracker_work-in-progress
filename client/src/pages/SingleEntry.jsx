@@ -97,7 +97,7 @@ function Entry() {
         />
       </div>
 
-      <Footer className="footer" />
+      <Footer />
     </>
   );
 }

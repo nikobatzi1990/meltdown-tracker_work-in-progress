@@ -140,7 +140,7 @@ function Submission() {
         </div>
       </form>
 
-      <Footer className="footer" />
+      <Footer />
     </>
   );
 }
