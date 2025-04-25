@@ -83,7 +83,7 @@ function Submission() {
     );
     submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
     await axios.post("/api/entries/submission", submissionData);
-    navigate("/entries");
+    navigate("/");
   }
 
   return (
@@ -126,14 +126,13 @@ function Submission() {
             onChange={handleTextBody}
           />
 
-          <div className="submission__buttons">
-            <SubmitButton className="button" text="Submit" />
+          <div>
+            <SubmitButton />
 
             <Button
-              className="button"
-              text="Back to Entries"
+              text="Back to Homepage"
               onClick={() => {
-                navigate("/entries");
+                navigate("/");
               }}
             />
           </div>

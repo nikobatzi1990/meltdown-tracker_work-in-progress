@@ -42,7 +42,7 @@ function Entry() {
   }, [entry]);
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);
-    navigate("/entries");
+    navigate("/");
   };
 
   return (
@@ -73,16 +73,13 @@ function Entry() {
         </div>
 
         <Button
-          className="button"
-          text="Back to Entries"
+          text="Back to Homepage"
           onClick={() => {
-            navigate("/entries");
+            navigate("/");
           }}
         />
 
         <Button
-          className="edit"
-          title="Edit Post"
           text={<span className="material-symbols-outlined">edit</span>}
           onClick={() => {
             navigate(`/entry/${entryId.entryId}/edited`);

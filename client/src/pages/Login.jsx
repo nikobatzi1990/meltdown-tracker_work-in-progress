@@ -49,12 +49,7 @@ function Login() {
           }}
         />
 
-        <Button
-          className="button"
-          type="submit"
-          text="Login"
-          onClick={handleLogin}
-        />
+        <Button type="submit" text="Login" onClick={handleLogin} />
 
         <p>
           Don&apos;t have an account?

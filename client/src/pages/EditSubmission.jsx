@@ -6,9 +6,9 @@ import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
-import LightBulb from "../components/LightBulb";
 import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
+import ExclamationPoint from "../components/ExclamationPoint";
 
 function EditSubmission() {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ function EditSubmission() {
 
   const handleSubmission = async () => {
     await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
-    navigate("/entries");
+    navigate("/");
   };
 
   return (
@@ -100,7 +100,7 @@ function EditSubmission() {
 
         <div className="submission">
           <div className="top">
-            <LightBulb
+            <ExclamationPoint
               className={handleClassname}
               onClick={handleFlag}
               title="Was this a significant event?"
@@ -131,13 +131,12 @@ function EditSubmission() {
           />
 
           <div className="submission__buttons">
-            <SubmitButton className="button" text="Submit" />
+            <SubmitButton />
 
             <Button
-              className="button"
-              text="Back to Entries"
+              text="Back to Homepage"
               onClick={() => {
-                navigate("/entries");
+                navigate("/");
               }}
             />
           </div>

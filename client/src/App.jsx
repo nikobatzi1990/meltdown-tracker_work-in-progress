@@ -5,7 +5,6 @@ import ProtectedRoute from "./context/ProtectedRoute";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
-import Entries from "./pages/Entries";
 import SingleEntry from "./pages/SingleEntry";
 import Submission from "./pages/Submission";
 import EditSubmission from "./pages/EditSubmission";
@@ -25,14 +24,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/entries"
-            element={
-              <ProtectedRoute>
-                <Entries />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/entry/:entryId"
             element={

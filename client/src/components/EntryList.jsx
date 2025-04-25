@@ -35,16 +35,10 @@ function EntryList() {
                 navigate(`/entry/${entry.id}`);
               }}
             >
-              {entry.flagged ? (
-                <ExclamationPoint
-                // className="filled material-symbols-outlined"
-                // title="This was a significant event!"
-                // alt="Significant Event"
-                />
-              ) : (
-                <div />
-              )}
-              <span>{entry.title}</span>
+              <div className="flex gap-3">
+                {entry.flagged ? <ExclamationPoint /> : <div />}
+                <span>{entry.title}</span>
+              </div>
             </a>
           ))
         : "Loading..."}

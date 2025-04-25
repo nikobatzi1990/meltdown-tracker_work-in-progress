@@ -38,6 +38,7 @@ function Signup() {
             setUsername(e.target.value);
           }}
         />
+
         <Input
           htmlFor="Email"
           type="email"
@@ -60,12 +61,7 @@ function Signup() {
           }}
         />
 
-        <Button
-          className="button"
-          type="submit"
-          text="Submit"
-          onClick={handleSignup}
-        />
+        <Button type="submit" text="Submit" onClick={handleSignup} />
         <p>
           Already have an account?
           <Link to="/"> Log In! </Link>
