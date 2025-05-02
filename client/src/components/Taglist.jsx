@@ -58,7 +58,7 @@ function Taglist(props) {
     <div className={className}>
       <h4>Your tags</h4>
 
-      <div className="tags">
+      <div>
         {tags.length > 0
           ? tags.map((tag) => (
               <button
@@ -75,13 +75,12 @@ function Taglist(props) {
       </div>
       <form onSubmit={handleNewTag}>
         <Input
-          className="input tag-input"
-          placeholder="Type your new tag here"
+          className="w-30 border-1 rounded"
           onChange={handleTagInput}
           value={newTag}
         />
 
-        <SubmitButton className="button tag-submit" text="Add New Tag" />
+        <SubmitButton text="Add New Tag" />
       </form>
     </div>
   );

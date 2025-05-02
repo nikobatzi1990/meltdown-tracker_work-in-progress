@@ -91,7 +91,7 @@ function EditSubmission() {
   };
 
   return (
-    <>
+    <div className="@container">
       <Header className="header" text="Meltdown Tracker" />
 
       <form className="main-body" onSubmit={handleSubmission}>
@@ -122,11 +122,11 @@ function EditSubmission() {
           </div>
 
           <textarea
-            className="submission__body"
+            className=""
             placeholder="Type your entry here!"
             value={body}
-            cols="60"
-            rows="30"
+            cols="50"
+            rows="10"
             onChange={handleTextBody}
           />
 
@@ -136,7 +136,7 @@ function EditSubmission() {
             <Button
               text="Back to Homepage"
               onClick={() => {
-                navigate("/");
+                navigate("/home");
               }}
             />
           </div>
@@ -144,7 +144,7 @@ function EditSubmission() {
       </form>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

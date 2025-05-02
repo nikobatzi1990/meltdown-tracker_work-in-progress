@@ -11,50 +11,45 @@ function IntensityLevel(props) {
         type="image"
         id="1"
         className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694480953/number_1_glcplx.png"
+        src=""
         onClick={onClick}
         alt="Level 1"
-        title="Level 1"
       />
 
       <input
         type="image"
         id="2"
         className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481004/number_2_is4p8l.png"
+        src=""
         onClick={onClick}
         alt="Level 2"
-        title="Level 2"
       />
 
       <input
         type="image"
         id="3"
         className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481007/number_3_zirrfq.png"
+        src=""
         onClick={onClick}
         alt="Level 3"
-        title="Level 3"
       />
 
       <input
         type="image"
         id="4"
         className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481011/number_4_hrhmmx.png"
+        src=""
         onClick={onClick}
         alt="Level 4"
-        title="Level 4"
       />
 
       <input
         type="image"
         id="5"
         className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481012/number_5_ra5e2q.png"
+        src=""
         onClick={onClick}
         alt="Level 5"
-        title="Level 5"
       />
     </div>
   );

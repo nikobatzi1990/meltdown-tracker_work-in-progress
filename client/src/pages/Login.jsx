@@ -31,7 +31,7 @@ function Login() {
         <Input
           htmlFor="Email"
           type="email"
-          className=""
+          className="w-50"
           placeholder="Enter your email here"
           value={email}
           onChange={(e) => {
@@ -42,18 +42,17 @@ function Login() {
         <Input
           htmlFor="Password"
           type="password"
-          className=""
+          className="w-50"
           placeholder="Enter your password here"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-
         <SubmitButton text="Login" />
       </form>
 
-      <p>
+      <p className="m-10">
         Don&apos;t have an account?
         <Link to="/signup"> Sign up! </Link>
       </p>

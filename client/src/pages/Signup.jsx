@@ -32,7 +32,7 @@ function Signup() {
         <Input
           htmlFor="Username"
           type="username"
-          className="signup-input"
+          className="w-50"
           placeholder="your nickname"
           value={username}
           onChange={(e) => {
@@ -43,7 +43,7 @@ function Signup() {
         <Input
           htmlFor="Email"
           type="email"
-          className="signup-input"
+          className="w-50"
           placeholder="youremail@domain.com"
           value={email}
           onChange={(e) => {
@@ -54,7 +54,7 @@ function Signup() {
         <Input
           htmlFor="Password"
           type="password"
-          className="signup-input"
+          className="w-50"
           placeholder="your password"
           value={password}
           onChange={(e) => {
@@ -64,7 +64,7 @@ function Signup() {
         <SubmitButton text="Sign Up" />
       </form>
 
-      <p>
+      <p className="m-10">
         Already have an account?
         <Link to="/"> Log In! </Link>
       </p>

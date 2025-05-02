@@ -15,7 +15,7 @@ function TimeOfDay(props) {
         onClick={onClick}
         alt="Morning"
         title="Morning (5am ~ 11am)"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png"
+        src=""
       />
 
       <input
@@ -23,7 +23,7 @@ function TimeOfDay(props) {
         id="Afternoon"
         className="time__input"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
+        src=""
         alt="Afternoon"
         title="Afternoon (11am ~ 5pm)"
       />
@@ -33,7 +33,7 @@ function TimeOfDay(props) {
         id="Evening"
         className="time__input"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
+        src=""
         alt="Evening"
         title="Evening (5pm ~ 8pm)"
       />
@@ -43,7 +43,7 @@ function TimeOfDay(props) {
         id="Night"
         className="time__input"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
+        src=""
         alt="Night"
         title="Night (8pm ~ 5am)"
       />

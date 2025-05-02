@@ -57,14 +57,12 @@ function Entry() {
         <div className="entry-main">
           <div className="entry-top">
             <p>{date}</p>
-            {entry.flagged ? (
+            {entry.flagged && (
               <ExclamationPoint
                 className="filled material-symbols-outlined"
                 title="This was a significant event!"
                 alt="Significant Event"
               />
-            ) : (
-              <div />
             )}
             <h3 className="entry-title">{entry.title}</h3>
             <p>Tags: {entry.tag_name} </p>
@@ -75,7 +73,7 @@ function Entry() {
         <Button
           text="Back to Homepage"
           onClick={() => {
-            navigate("/");
+            navigate("/home");
           }}
         />
 

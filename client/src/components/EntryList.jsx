@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import ExclamationPoint from "./ExclamationPoint";
+import Button from "./Button";
 
 function EntryList() {
   const { user } = UserAuth();
@@ -29,7 +30,6 @@ function EntryList() {
             <a
               key={entry.id}
               href={`/entry/${entry.id}`}
-              className="entries"
               onClick={(e) => {
                 e.preventDefault();
                 navigate(`/entry/${entry.id}`);
@@ -42,6 +42,12 @@ function EntryList() {
             </a>
           ))
         : "Loading..."}
+      <Button
+        text="Add new entry"
+        onClick={() => {
+          navigate("/submission");
+        }}
+      />
     </div>
   );
 }
