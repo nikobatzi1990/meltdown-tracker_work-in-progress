@@ -1,51 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Input from "./Input";
 
 function TimeOfDay(props) {
   const { onClick } = props;
 
   return (
-    <div className="time-of-day" alt="Time of Day Selection">
-      <p>Time of Day</p>
+    <div className="flex gap-5" alt="Time of Day Selection">
+      <p>Time of Day:</p>
 
-      <input
-        type="image"
-        id="Morning"
-        className="time__input"
+      <Input
+        type="radio"
+        id="morning"
+        name="timeOfDay"
         onClick={onClick}
         alt="Morning"
-        title="Morning (5am ~ 11am)"
-        src=""
+        labelText="Morning"
       />
 
-      <input
-        type="image"
-        id="Afternoon"
-        className="time__input"
+      <Input
+        type="radio"
+        id="afternoon"
+        name="timeOfDay"
         onClick={onClick}
-        src=""
         alt="Afternoon"
-        title="Afternoon (11am ~ 5pm)"
+        labelText="Afternoon"
       />
 
-      <input
-        type="image"
-        id="Evening"
-        className="time__input"
+      <Input
+        type="radio"
+        id="evening"
+        name="timeOfDay"
         onClick={onClick}
-        src=""
         alt="Evening"
-        title="Evening (5pm ~ 8pm)"
+        labelText="Evening"
       />
 
-      <input
-        type="image"
-        id="Night"
-        className="time__input"
+      <Input
+        type="radio"
+        id="night"
+        name="timeOfDay"
         onClick={onClick}
-        src=""
         alt="Night"
-        title="Night (8pm ~ 5am)"
+        labelText="Night"
       />
     </div>
   );

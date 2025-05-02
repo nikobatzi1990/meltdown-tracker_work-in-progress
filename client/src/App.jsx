@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 import Entry from "./pages/Entry";
 import Submission from "./pages/Submission";
-import EditSubmission from "./pages/EditSubmission";
+import EditEntry from "./pages/EditEntry";
 
 function App() {
   return (
@@ -42,10 +42,10 @@ function App() {
             }
           />
           <Route
-            path="/entry/:entryId/edited"
+            path="/entry/:entryId/edit"
             element={
               <ProtectedRoute>
-                <EditSubmission />
+                <EditEntry />
               </ProtectedRoute>
             }
           />

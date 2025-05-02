@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
-// import TimeOfDay from "../components/TimeOfDay";
-// import IntensityLevel from "../components/IntensityLevel";
+import TimeOfDay from "../components/TimeOfDay";
+import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
 import ExclamationPoint from "../components/ExclamationPoint";
 
@@ -17,8 +17,8 @@ function Submission() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
-  // const [time, setTime] = useState("");
-  // const [intensity, setIntensity] = useState("not specified");
+  const [time, setTime] = useState("");
+  const [intensity, setIntensity] = useState("not specified");
   const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = {
@@ -27,9 +27,9 @@ function Submission() {
     timesUsed: 0,
     title,
     body,
-    // timeOfDay: time,
+    timeOfDay: time,
     flagged: isFlagged,
-    // intensity,
+    intensity,
   };
 
   useEffect(() => {
@@ -54,17 +54,17 @@ function Submission() {
     setTag(value);
   };
 
-  // const handleTimeOfDay = (event) => {
-  //   event.preventDefault();
-  //   const value = event.target.id;
-  //   setTime(value);
-  // };
+  const handleTimeOfDay = (event) => {
+    event.preventDefault();
+    const value = event.target.id;
+    setTime(value);
+  };
 
-  // const handleIntensity = (event) => {
-  //   event.preventDefault();
-  //   const value = event.target.id;
-  //   setIntensity(value);
-  // };
+  const handleIntensity = (event) => {
+    event.preventDefault();
+    const value = event.target.id;
+    setIntensity(value);
+  };
 
   const handleFlag = () => {
     setIsFlagged((prev) => !prev);
@@ -91,8 +91,8 @@ function Submission() {
       <Header className="header" text="Meltdown Tracker" />
 
       <form onSubmit={handleSubmission}>
-        {/* <TimeOfDay onClick={handleTimeOfDay} /> */}
-        {/* <IntensityLevel onClick={handleIntensity} /> */}
+        <TimeOfDay onClick={handleTimeOfDay} />
+        <IntensityLevel onClick={handleIntensity} />
 
         <div>
           <div className="flex gap-5">

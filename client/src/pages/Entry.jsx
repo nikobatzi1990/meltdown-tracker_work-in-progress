@@ -80,7 +80,7 @@ function Entry() {
         <Button
           text={<span className="material-symbols-outlined">edit</span>}
           onClick={() => {
-            navigate(`/entry/${entryId.entryId}/edited`);
+            navigate(`/entry/${entryId.entryId}/edit`);
           }}
         />
 

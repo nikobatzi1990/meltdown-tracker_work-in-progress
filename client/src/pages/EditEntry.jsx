@@ -10,7 +10,7 @@ import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
 import ExclamationPoint from "../components/ExclamationPoint";
 
-function EditSubmission() {
+function EditEntry() {
   const navigate = useNavigate();
 
   const entryId = useParams();
@@ -148,4 +148,4 @@ function EditSubmission() {
   );
 }
 
-export default EditSubmission;
+export default EditEntry;
