@@ -4,7 +4,7 @@ import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
-import Button from "../components/Button";
+import SubmitButton from "../components/SubmitButton";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,14 +23,15 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <Header className="header login-header" text="Meltdown Tracker" />
+    <div className="@container flex flex-col justify-center items-center">
+      <Header className="header" text="Meltdown Tracker" />
+      <h3 className="text-xl m-5">Login</h3>
 
-      <div className="inputs">
+      <form className="flex flex-col gap-3" onSubmit={handleLogin}>
         <Input
           htmlFor="Email"
           type="email"
-          className="input login-input"
+          className=""
           placeholder="Enter your email here"
           value={email}
           onChange={(e) => {
@@ -41,7 +42,7 @@ function Login() {
         <Input
           htmlFor="Password"
           type="password"
-          className="input login-input"
+          className=""
           placeholder="Enter your password here"
           value={password}
           onChange={(e) => {
@@ -49,13 +50,13 @@ function Login() {
           }}
         />
 
-        <Button type="submit" text="Login" onClick={handleLogin} />
+        <SubmitButton text="Login" />
+      </form>
 
-        <p>
-          Don&apos;t have an account?
-          <Link to="/SignUp"> Sign up! </Link>
-        </p>
-      </div>
+      <p>
+        Don&apos;t have an account?
+        <Link to="/signup"> Sign up! </Link>
+      </p>
 
       <Footer />
     </div>

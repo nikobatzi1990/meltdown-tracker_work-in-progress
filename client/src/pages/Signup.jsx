@@ -4,7 +4,7 @@ import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
-import Button from "../components/Button";
+import SubmitButton from "../components/SubmitButton";
 
 function Signup() {
   const navigate = useNavigate();
@@ -24,10 +24,11 @@ function Signup() {
   };
 
   return (
-    <div className="signup">
-      <Header className="header login-header" text="Meltdown Tracker" />
+    <div className="@container flex flex-col justify-center items-center">
+      <Header className="header" text="Meltdown Tracker" />
+      <h3 className="text-xl m-5">Sign Up</h3>
 
-      <div className="inputs">
+      <form className="flex flex-col gap-3" onSubmit={handleSignup}>
         <Input
           htmlFor="Username"
           type="username"
@@ -60,13 +61,13 @@ function Signup() {
             setPassword(e.target.value);
           }}
         />
+        <SubmitButton text="Sign Up" />
+      </form>
 
-        <Button type="submit" text="Submit" onClick={handleSignup} />
-        <p>
-          Already have an account?
-          <Link to="/"> Log In! </Link>
-        </p>
-      </div>
+      <p>
+        Already have an account?
+        <Link to="/"> Log In! </Link>
+      </p>
 
       <Footer />
     </div>
