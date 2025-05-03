@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 
-function Taglist(props) {
-  const { className } = props;
+function Taglist() {
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
@@ -55,16 +53,15 @@ function Taglist(props) {
   };
 
   return (
-    <div className={className}>
-      <h4>Your tags</h4>
+    <div className="w-50 flex flex-col justify-center items-center gap-3">
+      <h3 className="text-xl m-5">Tags</h3>
 
-      <div>
+      <div className="flex gap-1">
         {tags.length > 0
           ? tags.map((tag) => (
               <button
                 key={tag}
                 value={tag}
-                className="tag"
                 onClick={handleClickTag}
                 type="button"
               >
@@ -85,13 +82,5 @@ function Taglist(props) {
     </div>
   );
 }
-
-Taglist.defaultProps = {
-  className: "taglist",
-};
-
-Taglist.propTypes = {
-  className: PropTypes.string,
-};
 
 export default Taglist;

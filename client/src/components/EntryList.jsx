@@ -24,7 +24,8 @@ function EntryList() {
   }, [user.uid]);
 
   return (
-    <div>
+    <div className="w-50 flex flex-col justify-center items-center gap-3">
+      <h3 className="text-xl m-5">Entries</h3>
       {entries.length > 0
         ? entries.map((entry) => (
             <a
@@ -35,13 +36,9 @@ function EntryList() {
                 navigate(`/entry/${entry.id}`);
               }}
             >
-              <div className="flex gap-3">
-                {entry.flagged ? (
-                  <ExclamationPoint isFlagged="true" />
-                ) : (
-                  <div />
-                )}
-                <span>{entry.title}</span>
+              <div className="flex items-center gap-3">
+                {entry.flagged && <ExclamationPoint isFlagged="true" />}
+                <span className="text-lg">{entry.title}</span>
               </div>
             </a>
           ))

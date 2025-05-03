@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
@@ -15,12 +16,12 @@ function Entry() {
   useEffect(() => {
     const fetchEntry = async () => {
       try {
-        const fetchedEntry = await axios.get(
+        const { data } = await axios.get(
           `/api/entries/entry/${entryId.entryId}`,
         );
-        setEntry(fetchedEntry.data);
+        setEntry(data);
         setDate(
-          new Date(fetchedEntry.data.created_at).toLocaleDateString("en-gb", {
+          new Date(data.created_at).toLocaleDateString("en-gb", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -30,16 +31,18 @@ function Entry() {
             timeZoneName: "long",
           }),
         );
+        console.log("🎆", data);
       } catch (error) {
         console.alert("👁️", error);
       }
     };
     fetchEntry();
-  }, []);
+  }, [entryId]);
 
   useEffect(() => {
-    console.log(entry);
+    console.log("🐸", entry);
   }, [entry]);
+
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);
     navigate("/home");
@@ -47,44 +50,34 @@ function Entry() {
 
   return (
     <>
-      <Header className="header entries-header" text="Meltdown Tracker" />
+      <Header text="Meltdown Tracker" />
+      <p>Time of Day: {entry.time_of_day}</p>
+      <p>Meltdown Intensity: {entry.intensity}</p>
+      <p>{date}</p>
+      {entry.flagged && <ExclamationPoint isFlagged="true" />}
+      <h3 className="entry-title">{entry.title}</h3>
+      <p>Tags: {entry.tag_name} </p>
+      <p>{entry.body}</p>
 
-      <div className="entry">
-        <div className="entry-time">Time of Day: {entry.time_of_day}</div>
-        <div className="entry-intensity">
-          Meltdown Intensity: {entry.intensity}
-        </div>
-        <div className="entry-main">
-          <div className="entry-top">
-            <p>{date}</p>
-            {entry.flagged && <ExclamationPoint isFlagged="true" />}
-            <h3 className="entry-title">{entry.title}</h3>
-            <p>Tags: {entry.tag_name} </p>
-          </div>
-          <p className="entry-body">{entry.body}</p>
-        </div>
+      <button
+        type="button"
+        onClick={() => {
+          navigate(`/entry/${entryId.entryId}/edit`);
+        }}
+      >
+        <PencilIcon className="h-6 w-6 text-gray-500" />
+      </button>
 
-        <Button
-          text="Back to Homepage"
-          onClick={() => {
-            navigate("/home");
-          }}
-        />
+      <button type="button" onClick={handlePostDeletion}>
+        <TrashIcon className="h-6 w-6 text-gray-500" />
+      </button>
 
-        <Button
-          text={<span className="material-symbols-outlined">edit</span>}
-          onClick={() => {
-            navigate(`/entry/${entryId.entryId}/edit`);
-          }}
-        />
-
-        <Button
-          className="trash"
-          title="Delete Post"
-          text={<span className="material-symbols-outlined">delete</span>}
-          onClick={handlePostDeletion}
-        />
-      </div>
+      <Button
+        text="Back to Homepage"
+        onClick={() => {
+          navigate("/home");
+        }}
+      />
 
       <Footer />
     </>

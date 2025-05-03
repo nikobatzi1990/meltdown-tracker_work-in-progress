@@ -7,11 +7,11 @@ import Button from "./Button";
 function Header(props) {
   const { logoutUser, user } = UserAuth();
   const navigate = useNavigate();
-  const { className, text } = props;
+  const { text } = props;
 
   return (
     <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <h1 className={className}>{text}</h1>
+      <h1>{text}</h1>
       {user && (
         <div>
           <p>Hello, {user.email}! </p>
@@ -29,12 +29,10 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  className: PropTypes.string,
   text: PropTypes.string,
 };
 
 Header.defaultProps = {
-  className: "",
   text: "",
 };
 

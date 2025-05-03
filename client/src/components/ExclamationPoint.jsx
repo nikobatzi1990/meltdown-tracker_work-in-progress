@@ -6,7 +6,7 @@ import { ExclamationCircleIcon as ExclamationPointOutline } from "@heroicons/rea
 function ExclamationPoint(props) {
   const { isFlagged, onClick } = props;
   return (
-    <div role="switch" aria-checked="false">
+    <div role="switch" aria-checked={isFlagged}>
       {isFlagged ? (
         <ExclamationPointSolid className="h-5 w-5" onClick={onClick} />
       ) : (
