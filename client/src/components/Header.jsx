@@ -10,7 +10,7 @@ function Header(props) {
   const { className, text } = props;
 
   return (
-    <header>
+    <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
       <h1 className={className}>{text}</h1>
       {user && (
         <div>

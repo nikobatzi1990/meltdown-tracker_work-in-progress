@@ -4,8 +4,7 @@
   --font-quicksand: "Quicksand", sans-serif;
 }
 
-.header {
-  font-family: "Quicksand", sans-serif;
+h1 {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
