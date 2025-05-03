@@ -6,7 +6,7 @@ function Input(props) {
     props;
 
   return (
-    <label htmlFor={id}>
+    <label htmlFor={id} className="flex flex-col">
       {labelText}
       <input
         id={id}

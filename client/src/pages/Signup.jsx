@@ -9,14 +9,13 @@ import SubmitButton from "../components/SubmitButton";
 function Signup() {
   const navigate = useNavigate();
   const { createUser } = UserAuth();
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignup = async (event) => {
     event.preventDefault();
     try {
-      await createUser(username, email, password);
+      await createUser(email, password);
       navigate("/home");
     } catch (error) {
       console.log("🤡", error);
@@ -24,26 +23,20 @@ function Signup() {
   };
 
   return (
-    <div className="@container flex flex-col justify-center items-center">
-      <Header className="header" text="Meltdown Tracker" />
-      <h3 className="text-xl m-5">Sign Up</h3>
+    <div className="@container flex flex-col">
+      <Header text="Meltdown Tracker" />
 
-      <form className="flex flex-col gap-3" onSubmit={handleSignup}>
+      <form
+        className="flex flex-col justify-center items-center gap-3"
+        onSubmit={handleSignup}
+      >
+        <h3 className="text-xl m-5">Sign Up</h3>
+
         <Input
-          htmlFor="Username"
-          type="username"
+          id="emailInput"
           className="w-50"
-          placeholder="your nickname"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-
-        <Input
-          htmlFor="Email"
+          labelText="Email"
           type="email"
-          className="w-50"
           placeholder="youremail@domain.com"
           value={email}
           onChange={(e) => {
@@ -52,9 +45,10 @@ function Signup() {
         />
 
         <Input
-          htmlFor="Password"
-          type="password"
+          id="passwordInput"
           className="w-50"
+          labelText="Password"
+          type="password"
           placeholder="your password"
           value={password}
           onChange={(e) => {
@@ -62,12 +56,12 @@ function Signup() {
           }}
         />
         <SubmitButton text="Sign Up" />
-      </form>
 
-      <p className="m-10">
-        Already have an account?
-        <Link to="/"> Log In! </Link>
-      </p>
+        <p className="m-10">
+          Already have an account?
+          <Link to="/"> Log In! </Link>
+        </p>
+      </form>
 
       <Footer />
     </div>

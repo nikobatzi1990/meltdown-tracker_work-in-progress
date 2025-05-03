@@ -23,15 +23,19 @@ function Login() {
   };
 
   return (
-    <div className="@container flex flex-col justify-center items-center">
-      <Header className="header" text="Meltdown Tracker" />
-      <h3 className="text-xl m-5">Login</h3>
+    <div className="@container flex flex-col">
+      <Header text="Meltdown Tracker" />
 
-      <form className="flex flex-col gap-3" onSubmit={handleLogin}>
+      <form
+        className="flex flex-col justify-center items-center gap-3"
+        onSubmit={handleLogin}
+      >
+        <h3 className="text-xl m-5">Login</h3>
         <Input
-          htmlFor="Email"
-          type="email"
+          id="emailInput"
           className="w-50"
+          labelText="Email"
+          type="email"
           placeholder="Enter your email here"
           value={email}
           onChange={(e) => {
@@ -40,9 +44,10 @@ function Login() {
         />
 
         <Input
-          htmlFor="Password"
-          type="password"
+          id="passwordInput"
           className="w-50"
+          labelText="Password"
+          type="password"
           placeholder="Enter your password here"
           value={password}
           onChange={(e) => {
@@ -50,12 +55,12 @@ function Login() {
           }}
         />
         <SubmitButton text="Login" />
-      </form>
 
-      <p className="m-10">
-        Don&apos;t have an account?
-        <Link to="/signup"> Sign up! </Link>
-      </p>
+        <p className="m-10">
+          Don&apos;t have an account?
+          <Link to="/signup"> Sign up! </Link>
+        </p>
+      </form>
 
       <Footer />
     </div>
