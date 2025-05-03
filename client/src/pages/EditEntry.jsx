@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./styles/EditSubmission.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import TimeOfDay from "../components/TimeOfDay";
-import LightBulb from "../components/LightBulb";
 import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
+import ExclamationPoint from "../components/ExclamationPoint";
 
-function EditSubmission() {
+function EditEntry() {
   const navigate = useNavigate();
 
   const entryId = useParams();
@@ -20,7 +19,7 @@ function EditSubmission() {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState("not specified");
+  const [intensity, setIntensity] = useState(1);
   const [isFlagged, setIsFlagged] = useState(false);
 
   const editedData = {
@@ -79,75 +78,57 @@ function EditSubmission() {
     setIsFlagged((prev) => !prev);
   };
 
-  const handleClassname = () => {
-    if (isFlagged) {
-      return "filled material-symbols-outlined";
-    }
-    return "material-symbols-outlined";
-  };
-
   const handleSubmission = async () => {
     await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
-    navigate("/entries");
+    navigate("/home");
   };
 
   return (
-    <>
-      <Header className="header entries-header" text="Meltdown Tracker" />
+    <div className="@container">
+      <Header text="Meltdown Tracker" />
 
-      <form className="main-body" onSubmit={handleSubmission}>
+      <form onSubmit={handleSubmission}>
         <TimeOfDay onClick={handleTimeOfDay} />
         <IntensityLevel onClick={handleIntensity} />
 
-        <div className="submission">
-          <div className="top">
-            <LightBulb
-              className={handleClassname}
-              onClick={handleFlag}
-              title="Was this a significant event?"
-            />
+        <div>
+          <div>
+            <ExclamationPoint isFlagged={isFlagged} onClick={handleFlag} />
 
             <Input
-              className="input title-input"
               placeholder="Title"
               value={title}
               onChange={handleTitleInput}
             />
 
-            <Input
-              className="input"
-              placeholder="Tag"
-              value={tag}
-              onChange={handleTagInput}
-            />
+            <Input placeholder="Tag" value={tag} onChange={handleTagInput} />
           </div>
 
           <textarea
-            className="submission__body"
+            className=""
             placeholder="Type your entry here!"
             value={body}
-            cols="60"
-            rows="30"
+            cols="50"
+            rows="10"
             onChange={handleTextBody}
           />
 
-          <div className="submission__buttons">
-            <SubmitButton className="button" text="Submit" />
+          <div>
+            <SubmitButton />
 
             <Button
-              className="button"
-              text="Back to Entries"
+              text="Back to Homepage"
               onClick={() => {
-                navigate("/entries");
+                navigate("/home");
               }}
             />
           </div>
         </div>
       </form>
 
-      <Footer className="footer" text="© 2023 Meltown Tracker" />
-    </>
+      <Footer />
+    </div>
   );
 }
 
-export default EditSubmission;
+export default EditEntry;

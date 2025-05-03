@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import LightBulb from "./LightBulb";
-import "./styles/EntryList.css";
+import ExclamationPoint from "./ExclamationPoint";
+import Button from "./Button";
 
 function EntryList() {
   const { user } = UserAuth();
@@ -24,31 +24,31 @@ function EntryList() {
   }, [user.uid]);
 
   return (
-    <div>
+    <div className="w-50 flex flex-col justify-center items-center gap-3">
+      <h3 className="text-xl m-5">Entries</h3>
       {entries.length > 0
         ? entries.map((entry) => (
             <a
               key={entry.id}
               href={`/entry/${entry.id}`}
-              className="entries"
               onClick={(e) => {
                 e.preventDefault();
                 navigate(`/entry/${entry.id}`);
               }}
             >
-              {entry.flagged ? (
-                <LightBulb
-                  className="filled material-symbols-outlined"
-                  title="This was a significant event!"
-                  alt="Significant Event"
-                />
-              ) : (
-                <div />
-              )}
-              <span>{entry.title}</span>
+              <div className="flex items-center gap-3">
+                {entry.flagged && <ExclamationPoint isFlagged="true" />}
+                <span className="text-lg">{entry.title}</span>
+              </div>
             </a>
           ))
         : "Loading..."}
+      <Button
+        text="Add new entry"
+        onClick={() => {
+          navigate("/submission");
+        }}
+      />
     </div>
   );
 }

@@ -5,7 +5,6 @@ const path = require('path');
 function setUpServer() {
   const app = express();
 
-  app.use(express.static(path.resolve(__dirname, '../client/build')));
   app.use(express.json());
 
   // signup endpoint
@@ -72,9 +71,15 @@ function setUpServer() {
   // endpoint for posting a new entry submission
   app.post('/api/entries/submission', async (req, res) => {
     const { uid, tagName, timesUsed, title, body, timeOfDay, flagged, intensity } = req.body;
-      const userId = await knex.select('id')
+    console.log("☕️", req.body);  
+    const userId = await knex.select('id')
         .from('users')
         .where('UID', '=', uid);
+    
+    // let tag = await knex('tags')
+    //   .select('id', 'times_used')
+    //   .where({ tag_name: tagName, user_id: userId })
+    //   .first();
       
       try {
       const tagQuery = await knex('tags')
@@ -83,7 +88,6 @@ function setUpServer() {
           'times_used': timesUsed
         })
         .where('tag_name', '=', tagName);
-
       const postQuery = await knex('posts')
         .returning('id')
         .insert({ 
@@ -143,14 +147,15 @@ function setUpServer() {
   });
 
   // endpoint for getting one entry by id
-  app.get('/api/entries/entry/:entryId', async (req,res) => {
+  app.get('/api/entries/entry/:entryId', async (req, res) => {
     try {
       const entry = await knex
         .from('posts')
+        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name', 'created_at', 'intensity')
         .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
         .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
-        .select('title', 'body', 'time_of_day', 'flagged', 'tags.tag_name', 'created_at', 'intensity')
         .where('posts.id', '=', req.params.entryId);
+        console.log("🥶", entry);
         res.status(200).send(entry[0])
 
     } catch (error) {
@@ -192,6 +197,7 @@ function setUpServer() {
       res.status(400).send(error);
     }
   });
+  app.use(express.static(path.resolve(__dirname, '../client/build')));
 
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

@@ -1,25 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./styles/Footer.css";
 
-function Footer(props) {
-  const { className, text } = props;
-
+function Footer() {
   return (
-    <footer className={className}>
-      <p>{text}</p>
+    <footer className="fixed inset-x-0 bottom-0 h-10 text-center font-quicksand">
+      <p>© 2023 - 2025 Meltown Tracker</p>
     </footer>
   );
 }
-
-Footer.propTypes = {
-  className: PropTypes.string,
-  text: PropTypes.string,
-};
-
-Footer.defaultProps = {
-  className: "",
-  text: "",
-};
 
 export default Footer;

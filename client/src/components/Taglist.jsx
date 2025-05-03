@@ -1,13 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
-import "./styles/Taglist.css";
 
-function Taglist(props) {
-  const { className } = props;
+function Taglist() {
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
@@ -56,16 +53,15 @@ function Taglist(props) {
   };
 
   return (
-    <div className={className}>
-      <h4>Your tags</h4>
+    <div className="w-50 flex flex-col justify-center items-center gap-3">
+      <h3 className="text-xl m-5">Tags</h3>
 
-      <div className="tags">
+      <div className="flex gap-1">
         {tags.length > 0
           ? tags.map((tag) => (
               <button
                 key={tag}
                 value={tag}
-                className="tag"
                 onClick={handleClickTag}
                 type="button"
               >
@@ -76,24 +72,15 @@ function Taglist(props) {
       </div>
       <form onSubmit={handleNewTag}>
         <Input
-          className="input tag-input"
-          placeholder="Type your new tag here"
+          className="w-30 border-1 rounded"
           onChange={handleTagInput}
           value={newTag}
         />
 
-        <SubmitButton className="button tag-submit" text="Add New Tag" />
+        <SubmitButton text="Add New Tag" />
       </form>
     </div>
   );
 }
-
-Taglist.defaultProps = {
-  className: "taglist",
-};
-
-Taglist.propTypes = {
-  className: PropTypes.string,
-};
 
 export default Taglist;

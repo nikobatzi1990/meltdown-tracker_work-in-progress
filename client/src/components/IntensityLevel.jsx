@@ -1,61 +1,56 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles/IntensityLevel.css";
+import Input from "./Input";
 
 function IntensityLevel(props) {
   const { onClick } = props;
   return (
-    <div className="intensity-level" alt="Meltdown Intensity">
-      <p>Meltdown Intensity</p>
+    <div className="flex gap-5" alt="Meltdown Intensity">
+      <p>Meltdown Intensity:</p>
 
-      <input
-        type="image"
-        id="1"
-        className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694480953/number_1_glcplx.png"
+      <Input
+        type="radio"
+        id="intensity-1"
+        name="intensity"
         onClick={onClick}
         alt="Level 1"
-        title="Level 1"
+        labelText="1"
       />
 
-      <input
-        type="image"
-        id="2"
-        className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481004/number_2_is4p8l.png"
+      <Input
+        type="radio"
+        id="intensity-2"
+        name="intensity"
         onClick={onClick}
         alt="Level 2"
-        title="Level 2"
+        labelText="2"
       />
 
-      <input
-        type="image"
-        id="3"
-        className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481007/number_3_zirrfq.png"
+      <Input
+        type="radio"
+        id="intensity-3"
+        name="intensity"
         onClick={onClick}
         alt="Level 3"
-        title="Level 3"
+        labelText="3"
       />
 
-      <input
-        type="image"
-        id="4"
-        className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481011/number_4_hrhmmx.png"
+      <Input
+        type="radio"
+        id="intensity-4"
+        name="intensity"
         onClick={onClick}
         alt="Level 4"
-        title="Level 4"
+        labelText="4"
       />
 
-      <input
-        type="image"
-        id="5"
-        className="intensity__input"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1694481012/number_5_ra5e2q.png"
+      <Input
+        type="radio"
+        id="intensity-5"
+        name="intensity"
         onClick={onClick}
         alt="Level 5"
-        title="Level 5"
+        labelText="5"
       />
     </div>
   );

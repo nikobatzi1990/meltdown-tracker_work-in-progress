@@ -5,14 +5,13 @@ import ProtectedRoute from "./context/ProtectedRoute";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
-import Entries from "./pages/Entries";
-import SingleEntry from "./pages/SingleEntry";
+import Entry from "./pages/Entry";
 import Submission from "./pages/Submission";
-import EditSubmission from "./pages/EditSubmission";
+import EditEntry from "./pages/EditEntry";
 
 function App() {
   return (
-    <div>
+    <div className="font-quicksand">
       <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -25,19 +24,12 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/entries"
-            element={
-              <ProtectedRoute>
-                <Entries />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/entry/:entryId"
             element={
               <ProtectedRoute>
-                <SingleEntry />
+                <Entry />
               </ProtectedRoute>
             }
           />
@@ -50,10 +42,10 @@ function App() {
             }
           />
           <Route
-            path="/entry/:entryId/edited"
+            path="/entry/:entryId/edit"
             element={
               <ProtectedRoute>
-                <EditSubmission />
+                <EditEntry />
               </ProtectedRoute>
             }
           />

@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./styles/Signup.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
-import Button from "../components/Button";
+import SubmitButton from "../components/SubmitButton";
 
 function Signup() {
   const navigate = useNavigate();
   const { createUser } = UserAuth();
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignup = async (event) => {
     event.preventDefault();
     try {
-      await createUser(username, email, password);
+      await createUser(email, password);
       navigate("/home");
     } catch (error) {
       console.log("🤡", error);
@@ -25,24 +23,20 @@ function Signup() {
   };
 
   return (
-    <div className="signup">
-      <Header className="header login-header" text="Meltdown Tracker" />
+    <div className="@container flex flex-col">
+      <Header text="Meltdown Tracker" />
 
-      <div className="inputs">
+      <form
+        className="flex flex-col justify-center items-center gap-3"
+        onSubmit={handleSignup}
+      >
+        <h3 className="text-xl m-5">Sign Up</h3>
+
         <Input
-          htmlFor="Username"
-          type="username"
-          className="signup-input"
-          placeholder="your nickname"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <Input
-          htmlFor="Email"
+          id="emailInput"
+          className="w-50"
+          labelText="Email"
           type="email"
-          className="signup-input"
           placeholder="youremail@domain.com"
           value={email}
           onChange={(e) => {
@@ -51,29 +45,25 @@ function Signup() {
         />
 
         <Input
-          htmlFor="Password"
+          id="passwordInput"
+          className="w-50"
+          labelText="Password"
           type="password"
-          className="signup-input"
           placeholder="your password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
+        <SubmitButton text="Sign Up" />
 
-        <Button
-          className="button"
-          type="submit"
-          text="Submit"
-          onClick={handleSignup}
-        />
-        <p>
+        <p className="m-10">
           Already have an account?
           <Link to="/"> Log In! </Link>
         </p>
-      </div>
+      </form>
 
-      <Footer className="login-footer" text="© 2023 Meltown Tracker" />
+      <Footer />
     </div>
   );
 }

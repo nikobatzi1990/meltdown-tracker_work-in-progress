@@ -1,52 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles/TimeOfDay.css";
+import Input from "./Input";
 
 function TimeOfDay(props) {
   const { onClick } = props;
 
   return (
-    <div className="time-of-day" alt="Time of Day Selection">
-      <p>Time of Day</p>
+    <div className="flex gap-5" alt="Time of Day Selection">
+      <p>Time of Day:</p>
 
-      <input
-        type="image"
-        id="Morning"
-        className="time__input"
+      <Input
+        type="radio"
+        id="morning"
+        name="timeOfDay"
         onClick={onClick}
         alt="Morning"
-        title="Morning (5am ~ 11am)"
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888678/morning_rfereh.png"
+        labelText="Morning"
       />
 
-      <input
-        type="image"
-        id="Afternoon"
-        className="time__input"
+      <Input
+        type="radio"
+        id="afternoon"
+        name="timeOfDay"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888682/afternoon_rdniws.png"
         alt="Afternoon"
-        title="Afternoon (11am ~ 5pm)"
+        labelText="Afternoon"
       />
 
-      <input
-        type="image"
-        id="Evening"
-        className="time__input"
+      <Input
+        type="radio"
+        id="evening"
+        name="timeOfDay"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1683356575/time3_yuu_wahh07.png"
         alt="Evening"
-        title="Evening (5pm ~ 8pm)"
+        labelText="Evening"
       />
 
-      <input
-        type="image"
-        id="Night"
-        className="time__input"
+      <Input
+        type="radio"
+        id="night"
+        name="timeOfDay"
         onClick={onClick}
-        src="https://res.cloudinary.com/dp2pjsbnz/image/upload/v1681888684/night_nubelk.png"
         alt="Night"
-        title="Night (8pm ~ 5am)"
+        labelText="Night"
       />
     </div>
   );

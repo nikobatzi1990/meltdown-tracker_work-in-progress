@@ -2,26 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function SubmitButton(props) {
-  const { className, text, title } = props;
-
+  const { text } = props;
   return (
-    <button title={title} className={className} type="submit">
-      {" "}
+    <button className="cursor-pointer rounded-md" type="submit">
       {text}
     </button>
   );
 }
 
 SubmitButton.propTypes = {
-  className: PropTypes.string,
   text: PropTypes.string,
-  title: PropTypes.string,
 };
 
 SubmitButton.defaultProps = {
-  className: "",
-  text: "",
-  title: "",
+  text: "" || "Submit",
 };
 
 export default SubmitButton;
