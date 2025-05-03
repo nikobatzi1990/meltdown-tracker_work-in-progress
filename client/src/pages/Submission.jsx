@@ -18,7 +18,7 @@ function Submission() {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState("not specified");
+  const [intensity, setIntensity] = useState(1);
   const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = {
@@ -70,20 +70,13 @@ function Submission() {
     setIsFlagged((prev) => !prev);
   };
 
-  const handleClassname = () => {
-    if (isFlagged) {
-      return "filled material-symbols-outlined";
-    }
-    return "material-symbols-outlined";
-  };
-
   async function handleSubmission() {
     const previousTimesUsed = await axios.get(
       `/api/tags/${submissionData.tagName}/timesUsed`,
     );
     submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
     await axios.post("/api/entries/submission", submissionData);
-    navigate("/");
+    navigate("/home");
   }
 
   return (
@@ -96,10 +89,7 @@ function Submission() {
 
         <div>
           <div className="flex gap-5">
-            <ExclamationPoint
-              className={handleClassname}
-              onClick={handleFlag}
-            />
+            <ExclamationPoint onClick={handleFlag} isFlagged={isFlagged} />
 
             <Input
               className=""

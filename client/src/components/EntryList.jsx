@@ -36,7 +36,11 @@ function EntryList() {
               }}
             >
               <div className="flex gap-3">
-                {entry.flagged ? <ExclamationPoint /> : <div />}
+                {entry.flagged ? (
+                  <ExclamationPoint isFlagged="true" />
+                ) : (
+                  <div />
+                )}
                 <span>{entry.title}</span>
               </div>
             </a>

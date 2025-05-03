@@ -42,7 +42,7 @@ function Entry() {
   }, [entry]);
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -57,13 +57,7 @@ function Entry() {
         <div className="entry-main">
           <div className="entry-top">
             <p>{date}</p>
-            {entry.flagged && (
-              <ExclamationPoint
-                className="filled material-symbols-outlined"
-                title="This was a significant event!"
-                alt="Significant Event"
-              />
-            )}
+            {entry.flagged && <ExclamationPoint isFlagged="true" />}
             <h3 className="entry-title">{entry.title}</h3>
             <p>Tags: {entry.tag_name} </p>
           </div>

@@ -19,7 +19,7 @@ function EditEntry() {
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
   const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState("not specified");
+  const [intensity, setIntensity] = useState(1);
   const [isFlagged, setIsFlagged] = useState(false);
 
   const editedData = {
@@ -78,47 +78,30 @@ function EditEntry() {
     setIsFlagged((prev) => !prev);
   };
 
-  const handleClassname = () => {
-    if (isFlagged) {
-      return "filled material-symbols-outlined";
-    }
-    return "material-symbols-outlined";
-  };
-
   const handleSubmission = async () => {
     await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
-    navigate("/");
+    navigate("/home");
   };
 
   return (
     <div className="@container">
-      <Header className="header" text="Meltdown Tracker" />
+      <Header text="Meltdown Tracker" />
 
-      <form className="main-body" onSubmit={handleSubmission}>
+      <form onSubmit={handleSubmission}>
         <TimeOfDay onClick={handleTimeOfDay} />
         <IntensityLevel onClick={handleIntensity} />
 
-        <div className="submission">
-          <div className="top">
-            <ExclamationPoint
-              className={handleClassname}
-              onClick={handleFlag}
-              title="Was this a significant event?"
-            />
+        <div>
+          <div>
+            <ExclamationPoint isFlagged={isFlagged} onClick={handleFlag} />
 
             <Input
-              className="input title-input"
               placeholder="Title"
               value={title}
               onChange={handleTitleInput}
             />
 
-            <Input
-              className="input"
-              placeholder="Tag"
-              value={tag}
-              onChange={handleTagInput}
-            />
+            <Input placeholder="Tag" value={tag} onChange={handleTagInput} />
           </div>
 
           <textarea
@@ -130,7 +113,7 @@ function EditEntry() {
             onChange={handleTextBody}
           />
 
-          <div className="submission__buttons">
+          <div>
             <SubmitButton />
 
             <Button
