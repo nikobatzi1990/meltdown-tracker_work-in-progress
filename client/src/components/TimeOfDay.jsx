@@ -16,7 +16,6 @@ function TimeOfDay(props) {
         labelText="Morning"
         onChange={onChange}
         checked={timeOfDay === "morning"}
-        defaultChecked
       />
 
       <RadioInput

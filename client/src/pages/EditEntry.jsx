@@ -12,74 +12,54 @@ import ExclamationPoint from "../components/ExclamationPoint";
 
 function EditEntry() {
   const navigate = useNavigate();
-
   const entryId = useParams();
-  // const [entry, setEntry] = useState({});
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [tag, setTag] = useState("");
-  const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState(1);
-  const [isFlagged, setIsFlagged] = useState(false);
 
-  const editedData = {
-    title,
-    body,
-    timeOfDay: time,
-    flagged: isFlagged,
-    intensity,
-  };
+  const [form, setForm] = useState({
+    title: "",
+    body: "",
+    tagName: "",
+    timeOfDay: "",
+    intensity: "",
+    flagged: false,
+  });
 
   useEffect(() => {
     const fetchEntry = async () => {
-      const { data } = await axios.get(`/api/entries/entry/${entryId.entryId}`);
-      // setEntry(data);
-      setTitle(data.title);
-      setBody(data.body);
-      setTag(data.tag_name);
-      setTime(data.time_of_day);
-      setIsFlagged(data.flagged);
-      setIntensity(data.intensity);
+      try {
+        const { data } = await axios.get(
+          `/api/entries/entry/${entryId.entryId}`,
+        );
+        setForm({
+          title: data.title,
+          body: data.body,
+          tagName: data.tag_name,
+          timeOfDay: data.time_of_day,
+          intensity: String(data.intensity),
+          flagged: data.flagged,
+        });
+      } catch (err) {
+        console.error("👵🏻", err);
+      }
     };
     fetchEntry();
   }, [entryId]);
 
-  const handleTitleInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTitle(value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleTextBody = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setBody(value);
+  const toggleFlag = () => {
+    setForm((prev) => ({ ...prev, flagged: !prev.flagged }));
   };
 
-  const handleTagInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTag(value);
-  };
-
-  const handleTimeOfDay = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
-    setTime(value);
-  };
-
-  const handleIntensity = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
-    setIntensity(value);
-  };
-
-  const handleFlag = () => {
-    setIsFlagged((prev) => !prev);
-  };
-
-  const handleSubmission = async () => {
-    await axios.patch(`/api/entries/${entryId.entryId}/edit`, editedData);
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(`/api/entries/${entryId.entryId}/edit`, form);
+    } catch (err) {
+      console.error("🥸", err);
+    }
     navigate("/home");
   };
 
@@ -88,43 +68,47 @@ function EditEntry() {
       <Header text="Meltdown Tracker" />
 
       <form onSubmit={handleSubmission}>
-        <TimeOfDay onClick={handleTimeOfDay} />
-        <IntensityLevel onClick={handleIntensity} />
+        <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
+        <IntensityLevel onChange={handleChange} intensity={form.intensity} />
 
         <div>
           <div>
-            <ExclamationPoint isFlagged={isFlagged} onClick={handleFlag} />
+            <ExclamationPoint isFlagged={form.flagged} onClick={toggleFlag} />
 
             <Input
               placeholder="Title"
-              value={title}
-              onChange={handleTitleInput}
+              name="title"
+              value={form.title}
+              onChange={handleChange}
             />
 
-            <Input placeholder="Tag" value={tag} onChange={handleTagInput} />
+            <Input
+              placeholder="Tag"
+              name="tagName"
+              value={form.tagName}
+              onChange={handleChange}
+            />
           </div>
 
           <textarea
             className=""
-            placeholder="Type your entry here!"
-            value={body}
+            name="body"
+            value={form.body}
             cols="50"
             rows="10"
-            onChange={handleTextBody}
+            onChange={handleChange}
           />
 
-          <div>
-            <SubmitButton />
-
-            <Button
-              text="Back to Homepage"
-              onClick={() => {
-                navigate("/home");
-              }}
-            />
-          </div>
+          <SubmitButton />
         </div>
       </form>
+
+      <Button
+        text="Back to Homepage"
+        onClick={() => {
+          navigate("/home");
+        }}
+      />
 
       <Footer />
     </div>

@@ -16,7 +16,6 @@ function IntensityLevel(props) {
         labelText="1"
         onChange={onChange}
         checked={intensity === "1"}
-        defaultChecked
       />
 
       <RadioInput

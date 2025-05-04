@@ -15,7 +15,7 @@ function EntryList() {
       const fetchedEntries = await axios.get(`/api/${user.uid}/entries`);
       setEntries(fetchedEntries.data);
     } catch (error) {
-      alert("👹", error);
+      console.log("👹", error);
     }
   };
 

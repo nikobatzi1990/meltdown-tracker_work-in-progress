@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -16,18 +16,14 @@ function Submission() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     uid: user.uid,
-    timesUsed: 1,
     title: "",
     body: "",
     tagName: "",
+    timesUsed: 1,
     timeOfDay: "morning",
     intensity: "1",
-    isFlagged: false,
+    flagged: false,
   });
-
-  useEffect(() => {
-    console.log("❤️", form);
-  }, [form]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +31,7 @@ function Submission() {
   };
 
   const toggleFlag = () => {
-    setForm((prev) => ({ ...prev, isFlagged: !prev.isFlagged }));
+    setForm((prev) => ({ ...prev, flagged: !prev.flagged }));
   };
 
   const handleNewTag = async () => {
@@ -45,14 +41,12 @@ function Submission() {
         const response = await axios.get(`/api/${user.uid}/tags`);
         // If tag exists, update timesUsed
         if (response.data.includes(form.tagName)) {
-          console.log("Tag already exists, updating timesUsed...");
           const previousTimesUsed = await axios.get(
             `/api/tags/${form.tagName}/timesUsed`,
           );
-          form.timesUsed += Number(previousTimesUsed.data);
+          form.timesUsed = Number(previousTimesUsed.data) + 1;
           // If tag does not exist, create a new one
         } else {
-          console.log("Tag not found, creating a new one...");
           await axios.post("/api/tags/newTag", {
             tagName: form.tagName,
             uid: user.uid,
@@ -68,8 +62,7 @@ function Submission() {
   const handleSubmission = async (e) => {
     e.preventDefault();
     try {
-      handleNewTag();
-      console.log("Form data: ", form);
+      await handleNewTag();
       await axios.post("/api/entries/submission", form);
       console.log("Form submitted successfully");
     } catch (err) {
@@ -88,7 +81,7 @@ function Submission() {
 
         <div>
           <div className="flex gap-5">
-            <ExclamationPoint onClick={toggleFlag} isFlagged={form.isFlagged} />
+            <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
 
             <Input
               className=""
