@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
@@ -14,105 +14,76 @@ import ExclamationPoint from "../components/ExclamationPoint";
 function Submission() {
   const { user } = UserAuth();
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [tag, setTag] = useState("");
-  const [time, setTime] = useState("morning");
-  const [intensity, setIntensity] = useState("1");
-  const [isFlagged, setIsFlagged] = useState(false);
-
-  const submissionData = {
-    uid: user.uid,
-    tagName: tag,
+  const [form, setForm] = useState({
+    uid: user?.uid,
     timesUsed: 0,
-    title,
-    body,
-    timeOfDay: time,
-    flagged: isFlagged,
-    intensity,
-  };
+    title: "",
+    body: "",
+    tag: "",
+    timeOfDay: "morning",
+    intensity: "1",
+    isFlagged: false,
+  });
 
   useEffect(() => {
-    console.log("❤️", submissionData);
-  }, [submissionData]);
+    console.log("❤️", form);
+  }, [form]);
 
-  const handleTitleInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTitle(value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleTextBody = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setBody(value);
+  const toggleFlag = () => {
+    setForm((prev) => ({ ...prev, isFlagged: !prev.isFlagged }));
   };
 
-  const handleTagInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTag(value);
-  };
-
-  const handleTimeOfDay = (e) => {
-    // event.preventDefault();
-    const { value } = e.target;
-    setTime(value);
-  };
-
-  const handleIntensity = (e) => {
-    // event.preventDefault();
-    const { value } = e.target;
-    setIntensity(value);
-  };
-
-  const handleFlag = () => {
-    setIsFlagged((prev) => !prev);
-  };
-
-  async function handleSubmission() {
-    const previousTimesUsed = await axios.get(
-      `/api/tags/${submissionData.tagName}/timesUsed`,
-    );
-    submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-    await axios.post("/api/entries/submission", submissionData);
-    navigate("/home");
-  }
+  // async function handleSubmission() {
+  //   const previousTimesUsed = await axios.get(
+  //     `/api/tags/${submissionData.tagName}/timesUsed`,
+  //   );
+  //   submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
+  //   await axios.post("/api/entries/submission", submissionData);
+  //   navigate("/home");
+  // }
 
   return (
     <div className="@container">
       <Header text="Meltdown Tracker" />
 
-      <form method="post" onSubmit={handleSubmission}>
-        <TimeOfDay onChange={handleTimeOfDay} timeOfDay={time} />
-        <IntensityLevel onChange={handleIntensity} intensity={intensity} />
+      <form method="post">
+        <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
+        <IntensityLevel onChange={handleChange} intensity={form.intensity} />
 
         <div>
           <div className="flex gap-5">
-            <ExclamationPoint onClick={handleFlag} isFlagged={isFlagged} />
+            <ExclamationPoint onClick={toggleFlag} isFlagged={form.isFlagged} />
 
             <Input
               className=""
               placeholder="Title"
-              value={title}
-              onChange={handleTitleInput}
+              name="title"
+              value={form.title}
+              onChange={handleChange}
             />
 
             <Input
               className=""
               placeholder="Tag"
-              value={tag}
-              onChange={handleTagInput}
+              name="tag"
+              value={form.tag}
+              onChange={handleChange}
             />
           </div>
 
           <textarea
             className=""
             placeholder="Type your entry here!"
-            value={body}
+            name="body"
+            value={form.body}
             cols="50"
             rows="20"
-            onChange={handleTextBody}
+            onChange={handleChange}
           />
 
           <SubmitButton />
