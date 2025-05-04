@@ -1,63 +1,65 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "./Input";
+import RadioInput from "./RadioInput";
 
 function IntensityLevel(props) {
-  const { onClick } = props;
-  return (
-    <div className="flex gap-5" alt="Meltdown Intensity">
-      <p>Meltdown Intensity:</p>
+  const { onChange, intensity } = props;
 
-      <Input
-        type="radio"
+  return (
+    <fieldset className="flex gap-5">
+      <legend>Meltdown Intensity:</legend>
+
+      <RadioInput
+        value="1"
         id="intensity-1"
         name="intensity"
-        onClick={onClick}
-        alt="Level 1"
         labelText="1"
+        onChange={onChange}
+        checked={intensity === "1"}
       />
 
-      <Input
-        type="radio"
+      <RadioInput
+        value="2"
         id="intensity-2"
         name="intensity"
-        onClick={onClick}
-        alt="Level 2"
         labelText="2"
+        onChange={onChange}
+        checked={intensity === "2"}
       />
 
-      <Input
-        type="radio"
+      <RadioInput
+        value="3"
         id="intensity-3"
         name="intensity"
-        onClick={onClick}
-        alt="Level 3"
         labelText="3"
+        onChange={onChange}
+        checked={intensity === "3"}
       />
 
-      <Input
-        type="radio"
+      <RadioInput
+        value="4"
         id="intensity-4"
         name="intensity"
-        onClick={onClick}
-        alt="Level 4"
         labelText="4"
+        onChange={onChange}
+        checked={intensity === "4"}
       />
 
-      <Input
-        type="radio"
+      <RadioInput
+        value="5"
         id="intensity-5"
         name="intensity"
-        onClick={onClick}
-        alt="Level 5"
         labelText="5"
+        onChange={onChange}
+        checked={intensity === "5"}
       />
-    </div>
+    </fieldset>
   );
 }
 
 IntensityLevel.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  intensity: PropTypes.string.isRequired,
 };
 
 export default IntensityLevel;

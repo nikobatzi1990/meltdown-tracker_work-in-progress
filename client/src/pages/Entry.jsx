@@ -31,17 +31,12 @@ function Entry() {
             timeZoneName: "long",
           }),
         );
-        console.log("🎆", data);
       } catch (error) {
         console.alert("👁️", error);
       }
     };
     fetchEntry();
   }, [entryId]);
-
-  useEffect(() => {
-    console.log("🐸", entry);
-  }, [entry]);
 
   const handlePostDeletion = async () => {
     await axios.delete(`/api/entries/${entryId.entryId}/deletion`);

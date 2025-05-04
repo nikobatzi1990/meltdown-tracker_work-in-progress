@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -14,105 +14,100 @@ import ExclamationPoint from "../components/ExclamationPoint";
 function Submission() {
   const { user } = UserAuth();
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [tag, setTag] = useState("");
-  const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState(1);
-  const [isFlagged, setIsFlagged] = useState(false);
-
-  const submissionData = {
+  const [form, setForm] = useState({
     uid: user.uid,
-    tagName: tag,
-    timesUsed: 0,
-    title,
-    body,
-    timeOfDay: time,
-    flagged: isFlagged,
-    intensity,
+    title: "",
+    body: "",
+    tagName: "",
+    timesUsed: 1,
+    timeOfDay: "morning",
+    intensity: "1",
+    flagged: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  useEffect(() => {
-    console.log("❤️", submissionData);
-  }, [submissionData]);
-
-  const handleTitleInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTitle(value);
+  const toggleFlag = () => {
+    setForm((prev) => ({ ...prev, flagged: !prev.flagged }));
   };
 
-  const handleTextBody = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setBody(value);
+  const handleNewTag = async () => {
+    if (form.tagName) {
+      try {
+        // Check if the tag already exists
+        const response = await axios.get(`/api/${user.uid}/tags`);
+        // If tag exists, update timesUsed
+        if (response.data.includes(form.tagName)) {
+          const previousTimesUsed = await axios.get(
+            `/api/tags/${form.tagName}/timesUsed`,
+          );
+          form.timesUsed = Number(previousTimesUsed.data) + 1;
+          // If tag does not exist, create a new one
+        } else {
+          await axios.post("/api/tags/newTag", {
+            tagName: form.tagName,
+            uid: user.uid,
+            timesUsed: form.timesUsed,
+          });
+        }
+      } catch (err) {
+        console.error("🐷: ", err);
+      }
+    }
   };
 
-  const handleTagInput = (event) => {
-    event.preventDefault();
-    const { value } = event.target;
-    setTag(value);
-  };
-
-  const handleTimeOfDay = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
-    setTime(value);
-  };
-
-  const handleIntensity = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
-    setIntensity(value);
-  };
-
-  const handleFlag = () => {
-    setIsFlagged((prev) => !prev);
-  };
-
-  async function handleSubmission() {
-    const previousTimesUsed = await axios.get(
-      `/api/tags/${submissionData.tagName}/timesUsed`,
-    );
-    submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-    await axios.post("/api/entries/submission", submissionData);
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+    try {
+      await handleNewTag();
+      await axios.post("/api/entries/submission", form);
+      console.log("Form submitted successfully");
+    } catch (err) {
+      console.error("📦 Error: ", err);
+    }
     navigate("/home");
-  }
+  };
 
   return (
     <div className="@container">
-      <Header className="header" text="Meltdown Tracker" />
+      <Header text="Meltdown Tracker" />
 
-      <form onSubmit={handleSubmission}>
-        <TimeOfDay onClick={handleTimeOfDay} />
-        <IntensityLevel onClick={handleIntensity} />
+      <form method="post" onSubmit={handleSubmission}>
+        <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
+        <IntensityLevel onChange={handleChange} intensity={form.intensity} />
 
         <div>
           <div className="flex gap-5">
-            <ExclamationPoint onClick={handleFlag} isFlagged={isFlagged} />
+            <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
 
             <Input
               className=""
               placeholder="Title"
-              value={title}
-              onChange={handleTitleInput}
+              name="title"
+              value={form.title}
+              onChange={handleChange}
             />
 
             <Input
               className=""
               placeholder="Tag"
-              value={tag}
-              onChange={handleTagInput}
+              name="tagName"
+              value={form.tagName}
+              onChange={handleChange}
             />
           </div>
 
           <textarea
             className=""
             placeholder="Type your entry here!"
-            value={body}
+            name="body"
+            value={form.body}
             cols="50"
             rows="20"
-            onChange={handleTextBody}
+            onChange={handleChange}
           />
 
           <SubmitButton />
