@@ -33,6 +33,7 @@ function Taglist() {
       const newTagData = {
         tagName: newTag,
         uid: user.uid,
+        timesUsed: 0,
       };
       await axios.post("/api/tags/newTag", newTagData);
     } catch (error) {

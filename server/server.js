@@ -50,7 +50,8 @@ function setUpServer() {
 
   // endpoint for posting a new tag
   app.post('/api/tags/newTag', async (req, res) => {
-    const { tagName, uid } = req.body;
+    const { tagName, uid, timesUsed } = req.body;
+    console.log("🫁", req.body);
     try {
       const userId = await knex.select('id')
         .from('users')
@@ -60,7 +61,7 @@ function setUpServer() {
         .insert({ 
           'user_id': userId[0].id, 
           'tag_name': tagName, 
-          'times_used': 0 
+          'times_used': timesUsed
         });
       res.status(200).send(newTag);
     } catch (error) {
@@ -71,7 +72,7 @@ function setUpServer() {
   // endpoint for posting a new entry submission
   app.post('/api/entries/submission', async (req, res) => {
     const { uid, tagName, timesUsed, title, body, timeOfDay, flagged, intensity } = req.body;
-    console.log("☕️", req.body);  
+    // console.log("☕️", req.body);  
     const userId = await knex.select('id')
         .from('users')
         .where('UID', '=', uid);

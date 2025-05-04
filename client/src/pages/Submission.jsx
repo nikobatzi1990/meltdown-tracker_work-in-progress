@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
@@ -15,11 +15,11 @@ function Submission() {
   const { user } = UserAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    uid: user?.uid,
-    timesUsed: 0,
+    uid: user.uid,
+    timesUsed: 1,
     title: "",
     body: "",
-    tag: "",
+    tagName: "",
     timeOfDay: "morning",
     intensity: "1",
     isFlagged: false,
@@ -38,20 +38,51 @@ function Submission() {
     setForm((prev) => ({ ...prev, isFlagged: !prev.isFlagged }));
   };
 
-  // async function handleSubmission() {
-  //   const previousTimesUsed = await axios.get(
-  //     `/api/tags/${submissionData.tagName}/timesUsed`,
-  //   );
-  //   submissionData.timesUsed = Number(previousTimesUsed.data) + 1;
-  //   await axios.post("/api/entries/submission", submissionData);
-  //   navigate("/home");
-  // }
+  const handleNewTag = async () => {
+    if (form.tagName) {
+      try {
+        // Check if the tag already exists
+        const response = await axios.get(`/api/${user.uid}/tags`);
+        // If tag exists, update timesUsed
+        if (response.data.includes(form.tagName)) {
+          console.log("Tag already exists, updating timesUsed...");
+          const previousTimesUsed = await axios.get(
+            `/api/tags/${form.tagName}/timesUsed`,
+          );
+          form.timesUsed += Number(previousTimesUsed.data);
+          // If tag does not exist, create a new one
+        } else {
+          console.log("Tag not found, creating a new one...");
+          await axios.post("/api/tags/newTag", {
+            tagName: form.tagName,
+            uid: user.uid,
+            timesUsed: form.timesUsed,
+          });
+        }
+      } catch (err) {
+        console.error("🐷: ", err);
+      }
+    }
+  };
+
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+    try {
+      handleNewTag();
+      console.log("Form data: ", form);
+      await axios.post("/api/entries/submission", form);
+      console.log("Form submitted successfully");
+    } catch (err) {
+      console.error("📦 Error: ", err);
+    }
+    navigate("/home");
+  };
 
   return (
     <div className="@container">
       <Header text="Meltdown Tracker" />
 
-      <form method="post">
+      <form method="post" onSubmit={handleSubmission}>
         <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
         <IntensityLevel onChange={handleChange} intensity={form.intensity} />
 
@@ -70,8 +101,8 @@ function Submission() {
             <Input
               className=""
               placeholder="Tag"
-              name="tag"
-              value={form.tag}
+              name="tagName"
+              value={form.tagName}
               onChange={handleChange}
             />
           </div>
