@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function RadioInput(props) {
-  const { id, name, value, labelText, defaultChecked } = props;
+  const { id, name, value, labelText, checked, onChange } = props;
 
   return (
     <label htmlFor={id} className="flex flex-col">
@@ -12,7 +12,8 @@ function RadioInput(props) {
         name={name}
         type="radio"
         value={value}
-        defaultChecked={defaultChecked}
+        checked={checked}
+        onChange={onChange}
       />
     </label>
   );
@@ -23,11 +24,12 @@ RadioInput.propTypes = {
   name: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  defaultChecked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
-RadioInput.defaultProps = {
-  defaultChecked: false,
-};
+// RadioInput.defaultProps = {
+//   defaultChecked: false,
+// };
 
 export default RadioInput;

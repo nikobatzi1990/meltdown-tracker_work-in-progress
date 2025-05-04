@@ -1,7 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import RadioInput from "./RadioInput";
 
-function TimeOfDay() {
+function TimeOfDay(props) {
+  const { onChange, timeOfDay } = props;
+
   return (
     <fieldset className="flex gap-5">
       <legend>Time of Day:</legend>
@@ -11,7 +14,9 @@ function TimeOfDay() {
         id="morning"
         name="timeOfDay"
         labelText="Morning"
-        defaultChecked="true"
+        onChange={onChange}
+        checked={timeOfDay === "morning"}
+        defaultChecked
       />
 
       <RadioInput
@@ -19,6 +24,8 @@ function TimeOfDay() {
         id="afternoon"
         name="timeOfDay"
         labelText="Afternoon"
+        onChange={onChange}
+        checked={timeOfDay === "afternoon"}
       />
 
       <RadioInput
@@ -26,11 +33,24 @@ function TimeOfDay() {
         id="evening"
         name="timeOfDay"
         labelText="Evening"
+        onChange={onChange}
+        checked={timeOfDay === "evening"}
       />
 
-      <RadioInput value="night" id="night" name="timeOfDay" labelText="Night" />
+      <RadioInput
+        value="night"
+        id="night"
+        name="timeOfDay"
+        labelText="Night"
+        checked={timeOfDay === "night"}
+      />
     </fieldset>
   );
 }
+
+TimeOfDay.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  timeOfDay: PropTypes.string.isRequired,
+};
 
 export default TimeOfDay;

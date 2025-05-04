@@ -17,8 +17,8 @@ function Submission() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("");
-  const [time, setTime] = useState("");
-  const [intensity, setIntensity] = useState(1);
+  const [time, setTime] = useState("morning");
+  const [intensity, setIntensity] = useState("1");
   const [isFlagged, setIsFlagged] = useState(false);
 
   const submissionData = {
@@ -54,15 +54,15 @@ function Submission() {
     setTag(value);
   };
 
-  const handleTimeOfDay = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
+  const handleTimeOfDay = (e) => {
+    // event.preventDefault();
+    const { value } = e.target;
     setTime(value);
   };
 
-  const handleIntensity = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
+  const handleIntensity = (e) => {
+    // event.preventDefault();
+    const { value } = e.target;
     setIntensity(value);
   };
 
@@ -81,11 +81,11 @@ function Submission() {
 
   return (
     <div className="@container">
-      <Header className="header" text="Meltdown Tracker" />
+      <Header text="Meltdown Tracker" />
 
-      <form onSubmit={handleSubmission}>
-        <TimeOfDay onClick={handleTimeOfDay} />
-        <IntensityLevel onClick={handleIntensity} />
+      <form method="post" onSubmit={handleSubmission}>
+        <TimeOfDay onChange={handleTimeOfDay} timeOfDay={time} />
+        <IntensityLevel onChange={handleIntensity} intensity={intensity} />
 
         <div>
           <div className="flex gap-5">
