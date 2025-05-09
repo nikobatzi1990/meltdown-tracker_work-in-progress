@@ -6,11 +6,11 @@ import { ExclamationCircleIcon as ExclamationPointOutline } from "@heroicons/rea
 function ExclamationPoint(props) {
   const { isFlagged, onClick } = props;
   return (
-    <div role="switch" aria-checked={isFlagged}>
+    <div role="switch" aria-checked={isFlagged} className="flex items-center">
       {isFlagged ? (
-        <ExclamationPointSolid className="h-5 w-5" onClick={onClick} />
+        <ExclamationPointSolid className="h-7 w-7" onClick={onClick} />
       ) : (
-        <ExclamationPointOutline className="h-5 w-5" onClick={onClick} />
+        <ExclamationPointOutline className="h-7 w-7" onClick={onClick} />
       )}
     </div>
   );

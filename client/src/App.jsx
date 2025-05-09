@@ -11,7 +11,7 @@ import EditEntry from "./pages/EditEntry";
 
 function App() {
   return (
-    <div className="font-quicksand">
+    <div className="font-quicksand typography">
       <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Login />} />
