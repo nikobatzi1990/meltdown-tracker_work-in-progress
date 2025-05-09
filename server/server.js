@@ -51,7 +51,6 @@ function setUpServer() {
   // endpoint for posting a new tag
   app.post('/api/tags/newTag', async (req, res) => {
     const { tagName, uid, timesUsed } = req.body;
-    console.log("🫁", req.body);
     try {
       const userId = await knex.select('id')
         .from('users')
@@ -72,23 +71,18 @@ function setUpServer() {
   // endpoint for posting a new entry submission
   app.post('/api/entries/submission', async (req, res) => {
     const { uid, tagName, timesUsed, title, body, timeOfDay, flagged, intensity } = req.body;
-    // console.log("☕️", req.body);  
     const userId = await knex.select('id')
         .from('users')
         .where('UID', '=', uid);
-    
-    // let tag = await knex('tags')
-    //   .select('id', 'times_used')
-    //   .where({ tag_name: tagName, user_id: userId })
-    //   .first();
       
-      try {
+    try {
       const tagQuery = await knex('tags')
         .returning('id')
         .update({
           'times_used': timesUsed
         })
         .where('tag_name', '=', tagName);
+
       const postQuery = await knex('posts')
         .returning('id')
         .insert({ 
@@ -108,9 +102,9 @@ function setUpServer() {
         });
 
       res.status(200).send(postQuery)
-      
+    
     } catch (error) {
-        res.status(400).send(error);
+      res.status(400).send(error);
     }
   });
 
@@ -156,7 +150,6 @@ function setUpServer() {
         .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
         .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
         .where('posts.id', '=', req.params.entryId);
-        console.log("🥶", entry);
         res.status(200).send(entry[0])
 
     } catch (error) {
@@ -166,8 +159,7 @@ function setUpServer() {
 
   // endpoint for editing an entry by id
   app.patch('/api/entries/:entryId/edit', async (req, res) => {
-    const { title, body, timeOfDay, flagged, intensity } = req.body;
-
+    const { title, body, timeOfDay, flagged, intensity, tagName } = req.body;
     try {
       await knex('posts')
         .where('posts.id', '=', req.params.entryId)
