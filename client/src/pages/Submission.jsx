@@ -76,7 +76,11 @@ function Submission() {
     <div className="@container">
       <Header text="Meltdown Tracker" />
 
-      <form method="post" onSubmit={handleSubmission}>
+      <form
+        method="post"
+        onSubmit={handleSubmission}
+        className="overflow-y-auto"
+      >
         <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
         <IntensityLevel onChange={handleChange} intensity={form.intensity} />
 

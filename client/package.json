@@ -38,7 +38,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "prettify": "npx prettier . --write"
+    "prettify": "npx prettier . --write",
+    "sass": "sass --watch src/styles/sass.scss:src/styles/sass.css"
   },
   "eslintConfig": {
     "extends": [
