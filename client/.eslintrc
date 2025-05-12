@@ -17,6 +17,28 @@
           "controlComponents": ["Input"],
           "assert": "both"
         }
+      ],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "allowed",
+          "ts": "never",
+          "tsx": "never"
+        }
       ]
+    },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "node": {
+        "paths": ["./src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
+}

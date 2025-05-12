@@ -10,6 +10,7 @@ import TimeOfDay from "../components/TimeOfDay";
 import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
 import ExclamationPoint from "../components/ExclamationPoint";
+import TextEditor from "../components/TextEditor";
 
 function Submission() {
   const { user } = UserAuth();
@@ -100,7 +101,9 @@ function Submission() {
             />
           </div>
 
-          <textarea
+          <TextEditor />
+
+          {/* <textarea
             className=""
             placeholder="Type your entry here!"
             name="body"
@@ -108,7 +111,7 @@ function Submission() {
             cols="50"
             rows="20"
             onChange={handleChange}
-          />
+          /> */}
 
           <SubmitButton />
         </div>

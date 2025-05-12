@@ -1,0 +1,5 @@
+# ignore files from TipTap Editor
+src/components/tiptap-*
+src/hooks
+src/lib
+src/styles/_*
