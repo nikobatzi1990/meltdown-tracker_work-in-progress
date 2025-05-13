@@ -44,7 +44,7 @@ function Entry() {
   };
 
   return (
-    <>
+    <div className="@container">
       <Header text="Meltdown Tracker" />
 
       <Button
@@ -89,7 +89,7 @@ function Entry() {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
