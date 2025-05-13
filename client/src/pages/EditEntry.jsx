@@ -67,48 +67,55 @@ function EditEntry() {
     <div className="@container">
       <Header text="Meltdown Tracker" />
 
-      <form onSubmit={handleSubmission}>
-        <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
-        <IntensityLevel onChange={handleChange} intensity={form.intensity} />
-
-        <div>
-          <div>
-            <ExclamationPoint isFlagged={form.flagged} onClick={toggleFlag} />
-
-            <Input
-              placeholder="Title"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-            />
-
-            <Input
-              placeholder="Tag"
-              name="tagName"
-              value={form.tagName}
-              onChange={handleChange}
-            />
-          </div>
-
-          <textarea
-            className=""
-            name="body"
-            value={form.body}
-            cols="50"
-            rows="10"
-            onChange={handleChange}
-          />
-
-          <SubmitButton />
-        </div>
-      </form>
-
       <Button
+        className="m-3 cursor-pointer rounded-md"
         text="Back to Homepage"
         onClick={() => {
           navigate("/home");
         }}
       />
+
+      <form onSubmit={handleSubmission} className="grid grid-cols-1 gap-4 p-5">
+        <div className="flex gap-5">
+          <ExclamationPoint isFlagged={form.flagged} onClick={toggleFlag} />
+
+          <Input
+            className="border-1 border-solid rounded-md p-1 min-w-80"
+            placeholder="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+          />
+
+          <Input
+            className="border-1 border-solid rounded-md p-1 min-w-80"
+            placeholder="Tag"
+            name="tagName"
+            value={form.tagName}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="flex gap-10">
+          <textarea
+            className="border-1 border-solid rounded-md p-2 w-full"
+            name="body"
+            value={form.body}
+            cols="50"
+            rows="20"
+            onChange={handleChange}
+          />
+
+          <div className="flex flex-col justify-around gap-10">
+            <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
+            <IntensityLevel
+              onChange={handleChange}
+              intensity={form.intensity}
+            />
+            <SubmitButton />
+          </div>
+        </div>
+      </form>
 
       <Footer />
     </div>

@@ -92,7 +92,7 @@ function Submission() {
           <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
 
           <Input
-            className="border-1 border-solid rounded-md p-1"
+            className="border-1 border-solid rounded-md p-1 min-w-80"
             placeholder="Title"
             name="title"
             value={form.title}
@@ -100,7 +100,7 @@ function Submission() {
           />
 
           <Input
-            className="border-1 border-solid rounded-md p-1"
+            className="border-1 border-solid rounded-md p-1 min-w-80"
             placeholder="Tag"
             name="tagName"
             value={form.tagName}
