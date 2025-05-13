@@ -46,6 +46,15 @@ function Entry() {
   return (
     <>
       <Header text="Meltdown Tracker" />
+
+      <Button
+        className="m-3 cursor-pointer rounded-md"
+        text="Back to Homepage"
+        onClick={() => {
+          navigate("/home");
+        }}
+      />
+
       <div className="grid grid-cols-1 gap-4 p-5">
         <div className="flex gap-5">
           {entry.flagged && <ExclamationPoint isFlagged="true" />}
@@ -72,13 +81,6 @@ function Entry() {
         </div>
         <p className="mx-10">{entry.body}</p>
         <p>Tags: {entry.tag_name} </p>
-
-        <Button
-          text="Back to Homepage"
-          onClick={() => {
-            navigate("/home");
-          }}
-        />
       </div>
 
       <Footer />
