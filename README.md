@@ -1,6 +1,6 @@
 # Meltdown Tracker
 
-UPDATE 04/22/25: Currently migrating this project to Vite from the depreciated CRA. Afterwards, I will be updating the page styles to improve the overall look of the application.
+UPDATE 05/13/25: Currently updating the page styles to improve the overall look of the application.
 
 ## Table of Contents
 <details>
