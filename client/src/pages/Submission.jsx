@@ -75,33 +75,42 @@ function Submission() {
     <div className="@container">
       <Header text="Meltdown Tracker" />
 
-      <form method="post" onSubmit={handleSubmission}>
-        <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
-        <IntensityLevel onChange={handleChange} intensity={form.intensity} />
+      <Button
+        className="m-3 cursor-pointer rounded-md"
+        text="Back to Homepage"
+        onClick={() => {
+          navigate("/home");
+        }}
+      />
 
-        <div>
-          <div className="flex gap-5">
-            <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
+      <form
+        method="post"
+        onSubmit={handleSubmission}
+        className="grid grid-cols-1 gap-4 p-5"
+      >
+        <div className="flex gap-5">
+          <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
 
-            <Input
-              className=""
-              placeholder="Title"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-            />
+          <Input
+            className="border-1 border-solid rounded-md"
+            placeholder="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+          />
 
-            <Input
-              className=""
-              placeholder="Tag"
-              name="tagName"
-              value={form.tagName}
-              onChange={handleChange}
-            />
-          </div>
+          <Input
+            className="border-1 border-solid rounded-md"
+            placeholder="Tag"
+            name="tagName"
+            value={form.tagName}
+            onChange={handleChange}
+          />
+        </div>
 
+        <div className="flex gap-10">
           <textarea
-            className=""
+            className="border-1 border-solid rounded-md w-full"
             placeholder="Type your entry here!"
             name="body"
             value={form.body}
@@ -109,17 +118,16 @@ function Submission() {
             rows="20"
             onChange={handleChange}
           />
-
-          <SubmitButton />
+          <div className="flex flex-col justify-around gap-10">
+            <TimeOfDay onChange={handleChange} timeOfDay={form.timeOfDay} />
+            <IntensityLevel
+              onChange={handleChange}
+              intensity={form.intensity}
+            />
+            <SubmitButton />
+          </div>
         </div>
       </form>
-
-      <Button
-        text="Back to Homepage"
-        onClick={() => {
-          navigate("/home");
-        }}
-      />
 
       <Footer />
     </div>
