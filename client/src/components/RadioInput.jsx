@@ -5,7 +5,7 @@ function RadioInput(props) {
   const { id, name, value, labelText, checked, onChange } = props;
 
   return (
-    <label htmlFor={id} className="flex flex-col">
+    <label htmlFor={id} className="flex flex-col accent-sky-800">
       {labelText}
       <input
         id={id}

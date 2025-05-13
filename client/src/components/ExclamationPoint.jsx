@@ -8,9 +8,12 @@ function ExclamationPoint(props) {
   return (
     <div role="switch" aria-checked={isFlagged} className="flex items-center">
       {isFlagged ? (
-        <ExclamationPointSolid className="h-7 w-7" onClick={onClick} />
+        <ExclamationPointSolid
+          className="h-8 w-8 fill-sky-800"
+          onClick={onClick}
+        />
       ) : (
-        <ExclamationPointOutline className="h-7 w-7" onClick={onClick} />
+        <ExclamationPointOutline className="h-8 w-8" onClick={onClick} />
       )}
     </div>
   );
