@@ -20,7 +20,7 @@ function Submission() {
     body: "",
     tagName: "",
     timesUsed: 1,
-    timeOfDay: "morning",
+    timeOfDay: "Morning",
     intensity: "1",
     flagged: false,
   });
@@ -92,7 +92,7 @@ function Submission() {
           <ExclamationPoint onClick={toggleFlag} isFlagged={form.flagged} />
 
           <Input
-            className="border-1 border-solid rounded-md"
+            className="border-1 border-solid rounded-md p-1"
             placeholder="Title"
             name="title"
             value={form.title}
@@ -100,7 +100,7 @@ function Submission() {
           />
 
           <Input
-            className="border-1 border-solid rounded-md"
+            className="border-1 border-solid rounded-md p-1"
             placeholder="Tag"
             name="tagName"
             value={form.tagName}
@@ -110,7 +110,7 @@ function Submission() {
 
         <div className="flex gap-10">
           <textarea
-            className="border-1 border-solid rounded-md w-full"
+            className="border-1 border-solid rounded-md p-2 w-full"
             placeholder="Type your entry here!"
             name="body"
             value={form.body}

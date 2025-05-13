@@ -7,7 +7,7 @@ function IntensityLevel(props) {
 
   return (
     <fieldset className="flex gap-5">
-      <legend>Meltdown Intensity:</legend>
+      <legend className="my-1">Meltdown Intensity:</legend>
 
       <RadioInput
         value="1"

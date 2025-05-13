@@ -7,7 +7,7 @@ function TimeOfDay(props) {
 
   return (
     <fieldset className="flex gap-5">
-      <legend>Time of Day:</legend>
+      <legend className="my-1">Time of Day:</legend>
 
       <RadioInput
         value="Morning"
