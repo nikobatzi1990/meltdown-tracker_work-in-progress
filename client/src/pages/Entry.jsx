@@ -46,33 +46,47 @@ function Entry() {
   return (
     <>
       <Header text="Meltdown Tracker" />
-      <p>Time of Day: {entry.time_of_day}</p>
-      <p>Meltdown Intensity: {entry.intensity}</p>
-      <p>{date}</p>
-      {entry.flagged && <ExclamationPoint isFlagged="true" />}
-      <h3 className="entry-title">{entry.title}</h3>
-      <p>Tags: {entry.tag_name} </p>
-      <p>{entry.body}</p>
-
-      <button
-        type="button"
-        onClick={() => {
-          navigate(`/entry/${entryId.entryId}/edit`);
-        }}
-      >
-        <PencilIcon className="h-6 w-6 text-gray-500" />
-      </button>
-
-      <button type="button" onClick={handlePostDeletion}>
-        <TrashIcon className="h-6 w-6 text-gray-500" />
-      </button>
 
       <Button
+        className="m-3 cursor-pointer rounded-md"
         text="Back to Homepage"
         onClick={() => {
           navigate("/home");
         }}
       />
+
+      <div className="grid grid-cols-1 gap-4 p-5">
+        <div className="flex gap-5">
+          {entry.flagged && <ExclamationPoint isFlagged="true" />}
+          <h3 className="text-entry-title">{entry.title}</h3>
+          <div className="flex gap-5">
+            <button
+              className="cursor-pointer"
+              type="button"
+              onClick={() => {
+                navigate(`/entry/${entryId.entryId}/edit`);
+              }}
+            >
+              <PencilIcon className="h-6 w-6 text-gray-500" />
+            </button>
+
+            <button
+              className="cursor-pointer"
+              type="button"
+              onClick={handlePostDeletion}
+            >
+              <TrashIcon className="h-6 w-6 text-gray-500" />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-10">
+          <p>Time of Day: {entry.time_of_day}</p>
+          <p>Intensity: {entry.intensity}</p>
+          <p className="">{date}</p>
+        </div>
+        <p className="mx-10">{entry.body}</p>
+        <p>Tags: {entry.tag_name} </p>
+      </div>
 
       <Footer />
     </>

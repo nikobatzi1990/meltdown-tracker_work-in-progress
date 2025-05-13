@@ -10,38 +10,38 @@ function TimeOfDay(props) {
       <legend>Time of Day:</legend>
 
       <RadioInput
-        value="morning"
+        value="Morning"
         id="morning"
         name="timeOfDay"
         labelText="Morning"
         onChange={onChange}
-        checked={timeOfDay === "morning"}
+        checked={timeOfDay === "Morning"}
       />
 
       <RadioInput
-        value="afternoon"
+        value="Afternoon"
         id="afternoon"
         name="timeOfDay"
         labelText="Afternoon"
         onChange={onChange}
-        checked={timeOfDay === "afternoon"}
+        checked={timeOfDay === "Afternoon"}
       />
 
       <RadioInput
-        value="evening"
+        value="Evening"
         id="evening"
         name="timeOfDay"
         labelText="Evening"
         onChange={onChange}
-        checked={timeOfDay === "evening"}
+        checked={timeOfDay === "Evening"}
       />
 
       <RadioInput
-        value="night"
+        value="Night"
         id="night"
         name="timeOfDay"
         labelText="Night"
-        checked={timeOfDay === "night"}
+        checked={timeOfDay === "Night"}
       />
     </fieldset>
   );
