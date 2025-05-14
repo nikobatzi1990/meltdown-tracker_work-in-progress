@@ -4,9 +4,9 @@ import { ExclamationCircleIcon as ExclamationPointSolid } from "@heroicons/react
 import { ExclamationCircleIcon as ExclamationPointOutline } from "@heroicons/react/24/outline";
 
 function ExclamationPoint(props) {
-  const { isFlagged, onClick } = props;
+  const { isFlagged, onClick, className } = props;
   return (
-    <div role="switch" aria-checked={isFlagged} className="flex items-center">
+    <div role="switch" aria-checked={isFlagged} className={className}>
       {isFlagged ? (
         <ExclamationPointSolid
           className="h-8 w-8 fill-sky-800"
@@ -22,10 +22,12 @@ function ExclamationPoint(props) {
 ExclamationPoint.propTypes = {
   isFlagged: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 ExclamationPoint.defaultProps = {
   onClick: () => {},
+  className: "",
 };
 
 export default ExclamationPoint;

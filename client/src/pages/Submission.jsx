@@ -73,7 +73,7 @@ function Submission() {
 
   return (
     <div className="@container">
-      <Header text="Meltdown Tracker" />
+      <Header />
 
       <Button
         className="m-3 cursor-pointer rounded-md"

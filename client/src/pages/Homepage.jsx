@@ -7,7 +7,7 @@ import EntryList from "../components/EntryList";
 function Homepage() {
   return (
     <div className="@container">
-      <Header text="Meltdown Tracker" />
+      <Header />
       <div className="grid grid-cols-2">
         <Taglist />
         <EntryList />

@@ -24,7 +24,7 @@ function Login() {
 
   return (
     <div className="@container flex flex-col">
-      <Header text="Meltdown Tracker" />
+      <Header />
 
       <form
         className="flex flex-col justify-center items-center gap-3"
