@@ -6,9 +6,9 @@ import EntryList from "../components/EntryList";
 
 function Homepage() {
   return (
-    <div className="@container w-full">
-      <Header className="header" text="Meltdown Tracker" />
-      <div className="flex justify-center items-center gap-10">
+    <div className="@container">
+      <Header text="Meltdown Tracker" />
+      <div className="grid grid-cols-2">
         <Taglist />
         <EntryList />
       </div>

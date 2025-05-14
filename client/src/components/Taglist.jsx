@@ -54,7 +54,7 @@ function Taglist() {
   };
 
   return (
-    <div className="w-50 flex flex-col justify-center items-center gap-3">
+    <div className="flex flex-col gap-3">
       <h3 className="text-xl m-5">Tags</h3>
 
       <div className="flex gap-1">
