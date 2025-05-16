@@ -57,7 +57,7 @@ function Taglist() {
     <div className="grid grid-cols-1 m-5">
       <h3 className="text-xxl m-5 text-center">Tags</h3>
 
-      <div className="p-2 grid grid-cols-6 grid-rows-6 gap-4 text-lg border-1 rounded">
+      <div className="p-4 grid grid-cols-5 grid-rows-6 gap-4 text-lg border-1 rounded-md">
         {tags.length > 0
           ? tags.map((tag) => (
               <button
@@ -76,7 +76,7 @@ function Taglist() {
       <form onSubmit={handleNewTag} className="flex flex-col gap-4 m-3">
         <Input
           id="newTag"
-          className="p-2 border-1 rounded"
+          className="p-2 border-1 rounded-md"
           type="text"
           value={newTag}
           onChange={handleTagInput}
