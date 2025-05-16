@@ -24,8 +24,8 @@ function EntryList() {
   }, [user.uid]);
 
   return (
-    <div className="w-50 flex flex-col justify-center items-center gap-3">
-      <h3 className="text-xl m-5">Entries</h3>
+    <div className="grid grid-cols-1 m-5 gap-3">
+      <h3 className="text-xxl m-5 text-center">Entries</h3>
       {entries.length > 0
         ? entries.map((entry) => (
             <a
@@ -36,14 +36,22 @@ function EntryList() {
                 navigate(`/entry/${entry.id}`);
               }}
             >
-              <div className="flex items-center gap-3">
-                {entry.flagged && <ExclamationPoint isFlagged="true" />}
-                <span className="text-lg">{entry.title}</span>
+              <div className="grid grid-cols-4 gap-3 p-3 border-solid border-1 rounded-md cursor-pointer">
+                {entry.flagged && (
+                  <ExclamationPoint
+                    isFlagged="true"
+                    className="col-start-1 col-end-2 justify-self-end"
+                  />
+                )}
+                <span className="text-lg col-start-2 col-end-5">
+                  {entry.date} {entry.title}
+                </span>
               </div>
             </a>
           ))
         : "Loading..."}
       <Button
+        className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white place-self-center"
         text="Add new entry"
         onClick={() => {
           navigate("/submission");

@@ -28,7 +28,6 @@ function Entry() {
             hour: "numeric",
             minute: "numeric",
             hour12: true,
-            timeZoneName: "long",
           }),
         );
       } catch (error) {
@@ -45,7 +44,7 @@ function Entry() {
 
   return (
     <div className="@container">
-      <Header text="Meltdown Tracker" />
+      <Header />
 
       <Button
         className="m-3 cursor-pointer rounded-md"

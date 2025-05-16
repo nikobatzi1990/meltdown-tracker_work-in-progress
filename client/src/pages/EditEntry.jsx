@@ -65,7 +65,7 @@ function EditEntry() {
 
   return (
     <div className="@container">
-      <Header text="Meltdown Tracker" />
+      <Header />
 
       <Button
         className="m-3 cursor-pointer rounded-md"
@@ -112,7 +112,7 @@ function EditEntry() {
               onChange={handleChange}
               intensity={form.intensity}
             />
-            <SubmitButton />
+            <SubmitButton className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white" />
           </div>
         </div>
       </form>
