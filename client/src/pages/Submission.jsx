@@ -124,7 +124,7 @@ function Submission() {
               onChange={handleChange}
               intensity={form.intensity}
             />
-            <SubmitButton />
+            <SubmitButton className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white" />
           </div>
         </div>
       </form>

@@ -28,7 +28,6 @@ function Entry() {
             hour: "numeric",
             minute: "numeric",
             hour12: true,
-            timeZoneName: "long",
           }),
         );
       } catch (error) {

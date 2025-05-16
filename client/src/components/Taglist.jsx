@@ -54,13 +54,14 @@ function Taglist() {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-xl m-5">Tags</h3>
+    <div className="grid grid-cols-1 m-5">
+      <h3 className="text-xxl m-5 text-center">Tags</h3>
 
-      <div className="flex gap-1">
+      <div className="p-2 grid grid-cols-6 grid-rows-6 gap-4 text-lg border-1 rounded">
         {tags.length > 0
           ? tags.map((tag) => (
               <button
+                className="border-solid border-1 rounded-md cursor-pointer"
                 key={tag}
                 value={tag}
                 onClick={handleClickTag}
@@ -71,14 +72,21 @@ function Taglist() {
             ))
           : "Loading..."}
       </div>
-      <form onSubmit={handleNewTag}>
+
+      <form onSubmit={handleNewTag} className="flex flex-col gap-4 m-3">
         <Input
-          className="w-30 border-1 rounded"
-          onChange={handleTagInput}
+          id="newTag"
+          className="p-2 border-1 rounded"
+          type="text"
           value={newTag}
+          onChange={handleTagInput}
+          name="newTag"
         />
 
-        <SubmitButton text="Add New Tag" />
+        <SubmitButton
+          className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white place-self-center"
+          text="Add new tag(s)"
+        />
       </form>
     </div>
   );
