@@ -27,8 +27,7 @@ function Taglist() {
     setNewTag(event.target.value);
   };
 
-  const handleNewTag = async (event) => {
-    event.preventDefault();
+  const handleNewTag = async () => {
     try {
       const newTagData = {
         tagName: newTag,
