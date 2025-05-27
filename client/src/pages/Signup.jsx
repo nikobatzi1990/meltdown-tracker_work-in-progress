@@ -34,10 +34,10 @@ function Signup() {
 
         <Input
           id="emailInput"
-          className="w-50"
+          className="w-60 p-1 border-1 rounded-md"
           labelText="Email"
           type="email"
-          placeholder="youremail@domain.com"
+          placeholder="email-address@domain.com"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -46,20 +46,26 @@ function Signup() {
 
         <Input
           id="passwordInput"
-          className="w-50"
+          className="w-60 p-1 border-1 rounded-md"
           labelText="Password"
           type="password"
-          placeholder="your password"
+          placeholder="Enter password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <SubmitButton text="Sign Up" />
+        <SubmitButton
+          text="Sign Up"
+          className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white"
+        />
 
         <p className="m-10">
           Already have an account?
-          <Link to="/"> Log In! </Link>
+          <Link to="/" className="text-blue-700 hover:underline">
+            {" "}
+            Log In!
+          </Link>
         </p>
       </form>
 

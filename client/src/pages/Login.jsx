@@ -33,7 +33,7 @@ function Login() {
         <h3 className="text-xl m-5">Login</h3>
         <Input
           id="emailInput"
-          className="w-50"
+          className="w-60 p-1 border-1 rounded-md"
           labelText="Email"
           type="email"
           placeholder="Enter your email here"
@@ -45,7 +45,7 @@ function Login() {
 
         <Input
           id="passwordInput"
-          className="w-50"
+          className="w-60 p-1 border-1 rounded-md"
           labelText="Password"
           type="password"
           placeholder="Enter your password here"
@@ -54,11 +54,17 @@ function Login() {
             setPassword(e.target.value);
           }}
         />
-        <SubmitButton text="Login" />
+        <SubmitButton
+          text="Login"
+          className="p-2 cursor-pointer border-none rounded-md bg-sky-900 text-white"
+        />
 
         <p className="m-10">
           Don&apos;t have an account?
-          <Link to="/signup"> Sign up! </Link>
+          <Link to="/signup" className="text-blue-700 hover:underline">
+            {" "}
+            Sign up!
+          </Link>
         </p>
       </form>
 
