@@ -58,7 +58,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```bash
   CREATE DATABASE <database_name_here>;
 ```
-#### 3. Create .env files and .gitignore
+#### 3. Create .env file and .gitignore
 - Create a new .env file in the root repository and copy-paste the data from .env.example
   - LOCAL_HOST= the host number (127.0.0.1 for "local host")
   - LOCAL_PORT= your postgreSQL port number (default is 5432)
@@ -77,6 +77,15 @@ npm run migrate
 #### 5. Setup a Firebase Project for User Authentication
 - Create a new [Firebase Project](https://firebase.google.com/) and register a new Web App to the project
 - Enable "Add Authentication with Email/Password sign-in."
+- Create a new .env file in the client repository and copy-paste the following from the .env.example file:
+```bash
+  VITE_FB_API_KEY=
+  VITE_FB_AUTH_DOMAIN=
+  VITE_FB_PROJECT_ID=
+  VITE_FB_STORAGE_BUCKET=
+  VITE_FB_MESSAGING_SENDER_ID=
+  VITE_FB_APP_ID=
+```
 - In the Firebase Project Settings, click on General and scroll down until you see "// Your web app's Firebase configuration" and an object called firebaseConfig. Copy-paste the values from that object into your .env file in the client repository.
 
 ### Deployment
