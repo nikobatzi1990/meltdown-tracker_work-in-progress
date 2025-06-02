@@ -41,11 +41,13 @@ function Taglist() {
     handleTaglist();
   };
 
-  const handleClickTag = async (event) => {
-    event.preventDefault();
-    const clickedTag = event.target.innerText;
+  const handleClickTag = async (e) => {
+    e.preventDefault();
+    const clickedTag = e.target.value;
     try {
-      const fetchedPosts = await axios.get(`/api/entries/${clickedTag}`);
+      const fetchedPosts = await axios.get(
+        `/api/${user.uid}/entries/${clickedTag}`,
+      );
       console.log("👅", fetchedPosts.data);
     } catch (error) {
       console.log("💋", error);
