@@ -1,27 +1,12 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+import PropTypes from "prop-types";
 import ExclamationPoint from "./ExclamationPoint";
 import Button from "./Button";
 
-function EntryList() {
-  const { user } = UserAuth();
+function EntryList(props) {
+  const { entries } = props;
   const navigate = useNavigate();
-  const [entries, setEntries] = useState([]);
-
-  const handleEntries = async () => {
-    try {
-      const fetchedEntries = await axios.get(`/api/${user.uid}/entries`);
-      setEntries(fetchedEntries.data);
-    } catch (error) {
-      console.log("👹", error);
-    }
-  };
-
-  useEffect(() => {
-    handleEntries();
-  }, [user.uid]);
 
   return (
     <div className="grid grid-cols-1 m-5 gap-3">
@@ -60,5 +45,16 @@ function EntryList() {
     </div>
   );
 }
+
+EntryList.propTypes = {
+  entries: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      flagged: PropTypes.bool,
+    }),
+  ).isRequired,
+};
 
 export default EntryList;
