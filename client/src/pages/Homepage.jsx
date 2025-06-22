@@ -17,7 +17,7 @@ function Homepage() {
       const fetchedPosts = await axios.get(
         `/api/${user.uid}/entries/${clickedTag}`,
       );
-      console.log("👅", fetchedPosts.data);
+      setEntries(fetchedPosts.data);
     } catch (error) {
       console.log("💋", error);
     }
