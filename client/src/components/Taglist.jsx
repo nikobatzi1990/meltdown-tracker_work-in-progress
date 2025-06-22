@@ -24,9 +24,9 @@ function Taglist(props) {
     handleTaglist();
   }, [user.uid]);
 
-  const handleTagInput = (event) => {
-    event.preventDefault();
-    setNewTag(event.target.value);
+  const handleTagInput = (e) => {
+    e.preventDefault();
+    setNewTag(e.target.value);
   };
 
   const handleNewTag = async () => {
@@ -60,7 +60,7 @@ function Taglist(props) {
                 {tag}
               </button>
             ))
-          : "Loading..."}
+          : "No entries"}
       </div>
 
       <form onSubmit={handleNewTag} className="flex flex-col gap-4 m-3">

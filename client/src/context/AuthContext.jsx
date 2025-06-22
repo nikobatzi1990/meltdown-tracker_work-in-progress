@@ -44,7 +44,6 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const authenticatedUser = onAuthStateChanged(auth, (currentUser) => {
-      console.log("🫡", currentUser);
       setUser(currentUser);
     });
     return authenticatedUser;
