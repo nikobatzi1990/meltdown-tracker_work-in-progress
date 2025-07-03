@@ -25,15 +25,19 @@ function Homepage() {
     handleEntries();
   }, [user.uid]);
 
-  // const toggleTagClicked = () => {
-  //   setIsTagClicked((prev) => !prev);
-  // };
-
   const handleClickTag = async (e) => {
     const clickedTag = e.target.value;
+
+    if (clickedTag === selectedTag) {
+      setSelectedTag("");
+      setIsTagClicked(false);
+      handleEntries();
+      return;
+    }
+
     setSelectedTag(clickedTag);
     setIsTagClicked(true);
-    console.log("Clicked Tag: ", clickedTag);
+
     try {
       const fetchedPosts = await axios.get(
         `/api/${user.uid}/entries/${clickedTag}`,
@@ -41,7 +45,6 @@ function Homepage() {
       setEntries(fetchedPosts.data);
     } catch (error) {
       console.log("💋", error);
-      // }
     }
   };
 
