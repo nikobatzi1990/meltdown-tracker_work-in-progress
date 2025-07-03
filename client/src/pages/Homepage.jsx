@@ -25,24 +25,23 @@ function Homepage() {
     handleEntries();
   }, [user.uid]);
 
-  const toggleTagClicked = () => {
-    setIsTagClicked((prev) => !prev);
-  };
+  // const toggleTagClicked = () => {
+  //   setIsTagClicked((prev) => !prev);
+  // };
 
   const handleClickTag = async (e) => {
-    e.preventDefault();
-    toggleTagClicked();
-    if (isTagClicked) {
-      const clickedTag = e.target.value;
-      try {
-        const fetchedPosts = await axios.get(
-          `/api/${user.uid}/entries/${clickedTag}`,
-        );
-        setEntries(fetchedPosts.data);
-        setSelectedTag(clickedTag);
-      } catch (error) {
-        console.log("💋", error);
-      }
+    const clickedTag = e.target.value;
+    setSelectedTag(clickedTag);
+    setIsTagClicked(true);
+    console.log("Clicked Tag: ", clickedTag);
+    try {
+      const fetchedPosts = await axios.get(
+        `/api/${user.uid}/entries/${clickedTag}`,
+      );
+      setEntries(fetchedPosts.data);
+    } catch (error) {
+      console.log("💋", error);
+      // }
     }
   };
 
