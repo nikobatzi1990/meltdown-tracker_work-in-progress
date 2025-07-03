@@ -18,7 +18,7 @@ function setUpServer() {
     }
   });
   
-  // endpoint for getting user created tags
+  // endpoint for getting a user's created tags
   app.get('/api/:uid/tags', async (req, res) => {
     const tagList = [];
     await knex.select('tag_name').from('tags')
@@ -126,16 +126,17 @@ function setUpServer() {
     }
   });
 
-  // endpoint for all entries that include specified tag
-  app.get('/api/entries/:tagName', async (req, res) => {
+  // endpoint for all of a user's entries that include specified tag
+  app.get('/api/:uid/entries/:tagName', async (req, res) => {
     try {
       const result = await knex.select('title', 'body')
       .from('posts')
+      .where('users.UID', req.params.uid)
+      .join('users', 'users.id', '=', 'posts.user_id')
       .join('tag_to_post', 'tag_to_post.post_id', '=','posts.id')
       .join('tags', 'tag_to_post.tag_id', '=', 'tags.id')
       .where('tags.tag_name', '=', req.params.tagName);
       res.status(200).send(result);
-
     } catch (error) {
       res.status(400).send(error);
     }

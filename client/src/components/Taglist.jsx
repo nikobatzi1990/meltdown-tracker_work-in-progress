@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 
-function Taglist() {
+function Taglist(props) {
+  const { onClick } = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
@@ -22,9 +24,9 @@ function Taglist() {
     handleTaglist();
   }, [user.uid]);
 
-  const handleTagInput = (event) => {
-    event.preventDefault();
-    setNewTag(event.target.value);
+  const handleTagInput = (e) => {
+    e.preventDefault();
+    setNewTag(e.target.value);
   };
 
   const handleNewTag = async () => {
@@ -41,17 +43,6 @@ function Taglist() {
     handleTaglist();
   };
 
-  const handleClickTag = async (event) => {
-    event.preventDefault();
-    const clickedTag = event.target.innerText;
-    try {
-      const fetchedPosts = await axios.get(`/api/entries/${clickedTag}`);
-      console.log("👅", fetchedPosts.data);
-    } catch (error) {
-      console.log("💋", error);
-    }
-  };
-
   return (
     <div className="grid grid-cols-1 m-5">
       <h3 className="text-xxl m-5 text-center">Tags</h3>
@@ -63,13 +54,13 @@ function Taglist() {
                 className="border-solid border-1 rounded-md cursor-pointer"
                 key={tag}
                 value={tag}
-                onClick={handleClickTag}
+                onClick={onClick}
                 type="button"
               >
                 {tag}
               </button>
             ))
-          : "Loading..."}
+          : "No entries"}
       </div>
 
       <form onSubmit={handleNewTag} className="flex flex-col gap-4 m-3">
@@ -92,3 +83,7 @@ function Taglist() {
 }
 
 export default Taglist;
+
+Taglist.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

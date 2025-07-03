@@ -81,7 +81,7 @@ function Entry() {
         <div className="flex gap-10">
           <p>Time of Day: {entry.time_of_day}</p>
           <p>Intensity: {entry.intensity}</p>
-          <p className="">{date}</p>
+          <p>{date}</p>
         </div>
         <p className="mx-10">{entry.body}</p>
         <p>Tags: {entry.tag_name} </p>
